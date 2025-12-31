@@ -4,114 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English Flashcards</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="min-h-screen flex flex-col text-slate-800">
+<body class="min-h-screen flex flex-col text-slate-800 bg-slate-50">
 
-    <!-- Navbar -->
     <nav class="bg-indigo-600 text-white shadow-lg sticky top-0 z-50">
         <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-2">
                 <i class="fa-solid fa-layer-group text-xl"></i>
                 <span class="font-heading text-xl font-bold">EngFlashcards</span>
             </div>
-            <div class="text-sm opacity-90">
+            <div class="text-sm opacity-90 font-medium">
                 <span id="total-count">0</span> Cards
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main class="flex-grow flex flex-col items-center justify-start py-6 px-4 w-full max-w-4xl mx-auto space-y-6">
 
-        <!-- Controls Area -->
-        <div class="w-full bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+        <div class="w-full bg-white p-5 rounded-xl shadow-sm border border-slate-200">
             <div class="flex flex-col md:flex-row justify-between items-center gap-4">
                 
-                <!-- Category Selector -->
                 <div class="w-full md:w-auto flex-grow">
                     <label for="category-select" class="block text-sm font-medium text-slate-700 mb-1 font-heading">เลือกหมวดหมู่</label>
-                    <select id="category-select" class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition-colors">
-                        <option value="all">ทั้งหมด (All Categories)</option>
-                        <!-- Options will be populated by JS -->
-                    </select>
+                    <div class="relative">
+                        <select id="category-select" class="appearance-none w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors pr-8">
+                            <option value="all">ทั้งหมด (All Categories)</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-700">
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Action Buttons -->
                 <div class="flex items-end gap-2 w-full md:w-auto">
-                    <button onclick="shuffleCards()" class="flex-1 md:flex-none px-4 py-2.5 bg-amber-500 hover:bg-amber-600 text-white rounded-lg transition shadow-sm flex items-center justify-center gap-2">
+                    <button id="btn-shuffle" class="flex-1 md:flex-none px-4 py-2.5 bg-amber-500 hover:bg-amber-600 text-white rounded-lg transition shadow-sm flex items-center justify-center gap-2 font-medium">
                         <i class="fa-solid fa-shuffle"></i> <span>สุ่ม</span>
                     </button>
-                    <button onclick="resetProgress()" class="flex-1 md:flex-none px-4 py-2.5 bg-slate-500 hover:bg-slate-600 text-white rounded-lg transition shadow-sm flex items-center justify-center gap-2" title="รีเซ็ตคำที่จำได้แล้ว">
+                    <button id="btn-reset" class="flex-1 md:flex-none px-4 py-2.5 bg-slate-500 hover:bg-slate-600 text-white rounded-lg transition shadow-sm flex items-center justify-center gap-2 font-medium" title="รีเซ็ตคำที่จำได้แล้ว">
                         <i class="fa-solid fa-rotate-right"></i> <span>รีเซ็ต</span>
                     </button>
                 </div>
             </div>
 
-            <!-- Progress Bar -->
-            <div class="mt-4">
-                <div class="flex justify-between text-xs text-slate-500 mb-1">
+            <div class="mt-5">
+                <div class="flex justify-between text-xs text-slate-500 mb-1 font-medium">
                     <span>ความคืบหน้า</span>
-                    <span id="progress-text">1 / 100</span>
+                    <span id="progress-text">0 / 0</span>
                 </div>
-                <div class="w-full bg-slate-200 rounded-full h-2.5">
-                    <div id="progress-bar" class="bg-indigo-600 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+                <div class="w-full bg-slate-200 rounded-full h-2.5 overflow-hidden">
+                    <div id="progress-bar" class="bg-indigo-600 h-2.5 rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
                 </div>
             </div>
         </div>
 
-        <!-- Flashcard Area -->
         <div class="perspective-1000 w-full max-w-md aspect-[4/5] md:aspect-[4/3]">
-            <div id="flashcard" class="card-container" onclick="flipCard()">
+            <div id="flashcard" class="card-container group cursor-pointer">
                 
-                <!-- Front Side -->
-                <div class="card-face card-front relative group">
-                    <div class="absolute top-4 right-4 text-slate-300 group-hover:text-indigo-400 transition">
+                <div class="card-face card-front absolute inset-0 group">
+                    <div class="absolute top-4 right-4 text-slate-300 group-hover:text-indigo-400 transition-colors duration-300">
                         <i class="fa-solid fa-rotate text-2xl"></i>
                     </div>
-                    <span id="card-category" class="absolute top-4 left-4 px-2 py-1 bg-indigo-100 text-indigo-700 text-xs rounded-md font-heading font-semibold tracking-wide uppercase">
+                    <span id="card-category" class="absolute top-4 left-4 px-3 py-1 bg-indigo-50 text-indigo-700 text-xs rounded-full font-heading font-semibold tracking-wide uppercase border border-indigo-100">
                         Category
                     </span>
                     
-                    <div class="flex flex-col items-center w-full">
-                        <p class="text-xs text-slate-400 font-bold tracking-widest uppercase mb-4">Question</p>
-                        <!-- Changed font size to accommodate sentences -->
-                        <h2 id="card-vocab" class="text-2xl md:text-3xl font-bold text-slate-800 mb-2 font-heading text-center break-words w-full px-2 italic leading-relaxed">
-                            Sentence
+                    <div class="flex flex-col items-center w-full px-4">
+                        <p class="text-xs text-slate-400 font-bold tracking-widest uppercase mb-6">Question</p>
+                        <h2 id="card-front-text" class="text-2xl md:text-3xl font-bold text-slate-800 mb-2 font-heading text-center break-words w-full italic leading-relaxed">
+                            Loading...
                         </h2>
-                        <p class="text-slate-400 text-sm mt-4">(แตะเพื่อดูคำศัพท์และคำแปล)</p>
+                        <p class="text-slate-400 text-sm mt-8 animate-pulse font-light">(แตะเพื่อดูเฉลย)</p>
                     </div>
                 </div>
 
-                <!-- Back Side -->
-                <div class="card-face card-back relative overflow-y-auto">
-                    <div class="absolute top-4 right-4 text-slate-400">
-                        <i class="fa-solid fa-rotate text-xl"></i>
-                    </div>
+                <div class="card-face card-back absolute inset-0 overflow-hidden">
+                    <i class="fa-solid fa-quote-right absolute bottom-[-20px] right-[-20px] text-9xl text-indigo-500/5 rotate-12 pointer-events-none"></i>
+                    
+                    <div class="w-full flex flex-col items-center justify-center h-full z-10">
+                        <p class="text-xs text-indigo-500 font-bold tracking-widest uppercase mb-2">Answer</p>
+                        
+                        <div class="text-center mb-4">
+                            <h3 id="card-vocab-back" class="text-3xl font-bold text-indigo-700 mb-1 font-heading">Vocab</h3>
+                            <p id="card-meaning" class="text-xl text-slate-700 font-medium">Meaning</p>
+                        </div>
 
-                    <div class="w-full flex flex-col items-center justify-center h-full">
-                        <p class="text-xs text-indigo-500 font-bold tracking-widest uppercase mb-1">Answer</p>
-                        <h3 id="card-vocab-back" class="text-3xl font-bold text-indigo-700 mb-1 font-heading">
-                            Vocabulary
-                        </h3>
-                        <p id="card-meaning" class="text-xl text-slate-800 mb-4 font-semibold border-b-2 border-indigo-200 pb-2">
-                            ความหมาย
-                        </p>
-
-                        <div class="w-full bg-white/60 p-4 rounded-xl text-left space-y-3 shadow-inner">
+                        <div class="w-full bg-white/70 backdrop-blur-sm p-4 rounded-xl text-left space-y-2 shadow-sm border border-indigo-100/50">
                             <div>
-                                <p class="text-xs text-slate-500 uppercase font-bold tracking-wider mb-1">แปลประโยค</p>
-                                <p id="card-ex-th" class="text-lg text-slate-800 font-medium">
-                                    ประโยคตัวอย่างภาษาไทย
+                                <p id="card-ex-th" class="text-lg text-slate-800 font-medium leading-relaxed">
+                                    ตัวอย่างประโยคภาษาไทย
                                 </p>
                             </div>
-                            <!-- Optional: Show English sentence again small for reference -->
                             <div class="pt-2 border-t border-slate-200/50">
                                 <p id="card-ex-en" class="text-sm text-slate-500 italic">
                                     "English Sentence example."
@@ -123,25 +109,24 @@
             </div>
         </div>
 
-        <!-- Navigation Controls -->
         <div class="flex justify-center items-center gap-4 w-full max-w-md">
-            <button onclick="prevCard()" class="p-4 bg-white hover:bg-slate-50 text-slate-700 rounded-full shadow-md border border-slate-200 transition active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed" id="btn-prev">
+            <button id="btn-prev" class="p-4 bg-white hover:bg-slate-50 text-slate-700 rounded-full shadow-md border border-slate-200 transition-transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100">
                 <i class="fa-solid fa-arrow-left text-xl"></i>
             </button>
             
-            <button onclick="markAsKnown()" class="flex-grow py-3 px-6 bg-green-500 hover:bg-green-600 text-white rounded-xl shadow-md transition active:scale-95 font-heading font-semibold flex items-center justify-center gap-2">
-                <i class="fa-solid fa-check"></i> จำได้แล้ว
+            <button id="btn-known" class="flex-grow py-3 px-6 bg-green-500 hover:bg-green-600 text-white rounded-xl shadow-md transition-transform active:scale-95 font-heading font-semibold flex items-center justify-center gap-2">
+                <i class="fa-solid fa-check-circle"></i> <span>จำได้แล้ว</span>
             </button>
 
-            <button onclick="nextCard()" class="p-4 bg-white hover:bg-slate-50 text-slate-700 rounded-full shadow-md border border-slate-200 transition active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed" id="btn-next">
+            <button id="btn-next" class="p-4 bg-white hover:bg-slate-50 text-slate-700 rounded-full shadow-md border border-slate-200 transition-transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100">
                 <i class="fa-solid fa-arrow-right text-xl"></i>
             </button>
         </div>
 
     </main>
 
-    <footer class="bg-white border-t py-4 text-center text-slate-500 text-sm mt-auto">
-        <p>สร้างจากไฟล์ข้อมูลของคุณ | Vocab Flashcard App</p>
+    <footer class="bg-white border-t py-6 text-center text-slate-500 text-sm mt-auto">
+        <p>Vocab Flashcard App</p>
     </footer>
 
     <script src="script.js"></script>

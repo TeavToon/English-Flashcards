@@ -1,5 +1,4 @@
-// ข้อมูลดิบจากไฟล์ของผู้ใช้
-const rawDataContent = `หมวดผู้คน
+const RAW_DATA_CONTENT = `หมวดผู้คน
 Aunt (n.) ป้า , น้า , อา
 Is that lady your aunt?
 ผู้หญิงท่านนั้นคือคุณป้า ของคุณใช่ไหมครับ
@@ -2016,248 +2015,306 @@ Way (n.) ทาง, วิธี
 Could you show me the way on the map?
 รบกวนช่วยชี้ทางในแผนที่ให้ผมหน่อยได้ไหมครับ`;
 
-// ตัวแปรสำหรับเก็บข้อมูลที่ Parse แล้ว
-let flashcards = [];
-let categories = new Set();
-let currentCategoryCards = [];
-let currentIndex = 0;
-let isFlipped = false;
-let knownCards = new Set();
+class FlashcardApp {
+  constructor(rawData) {
+    this.allCards = [];
+    this.categories = new Set();
+    this.activeCards = [];
+    this.currentIndex = 0;
+    this.isFlipped = false;
 
-// ฟังก์ชัน Parse ข้อมูลดิบ
-function parseData(text) {
-    const lines = text.split('\n');
-    let currentCategory = "";
+    // State for Persistence
+    this.knownCards = new Set(
+      JSON.parse(localStorage.getItem("knownCards") || "[]")
+    );
+    this.currentCategory = localStorage.getItem("lastCategory") || "all";
+
+    // Cache DOM Elements
+    this.ui = {
+      categorySelect: document.getElementById("category-select"),
+      totalCount: document.getElementById("total-count"),
+      cardContainer: document.getElementById("flashcard"),
+      cardCategory: document.getElementById("card-category"),
+      cardFrontText: document.getElementById("card-front-text"),
+      cardBackVocab: document.getElementById("card-vocab-back"),
+      cardMeaning: document.getElementById("card-meaning"),
+      cardExTh: document.getElementById("card-ex-th"),
+      cardExEn: document.getElementById("card-ex-en"),
+      progressText: document.getElementById("progress-text"),
+      progressBar: document.getElementById("progress-bar"),
+      btnPrev: document.getElementById("btn-prev"),
+      btnNext: document.getElementById("btn-next"),
+      btnKnown: document.getElementById("btn-known"),
+      btnShuffle: document.getElementById("btn-shuffle"),
+      btnReset: document.getElementById("btn-reset")
+    };
+
+    this.init(rawData);
+  }
+
+  init(rawData) {
+    this.parseData(rawData);
+    this.setupCategories();
+    this.setupEventListeners();
+
+    // Load initial state
+    this.ui.categorySelect.value = this.currentCategory;
+    this.filterCards(this.currentCategory);
+  }
+
+  parseData(text) {
+    const lines = text.split("\n");
+    let currentCategory = "General";
     let currentCard = null;
-    let buffer = [];
 
     lines.forEach((line) => {
-        line = line.trim();
-        if (!line) return;
+      line = line.trim();
+      if (!line) return;
 
-        if (line.startsWith("หมวด")) {
-            currentCategory = line;
-            categories.add(currentCategory);
-        } else {
-            // ตรวจสอบว่าเป็นบรรทัดคำศัพท์หรือไม่ (มีภาษาอังกฤษ และวงเล็บประเภทคำ)
-            // Regex: เริ่มต้นด้วยตัวอักษร, มีวงเล็บเปิดปิดที่มีจุดข้างใน
-            // เช่น Aunt (n.)
-            const isVocabLine = /^[A-Z][a-zA-Z\s/-]+\s*\(.+\)/.test(line);
+      if (line.startsWith("หมวด")) {
+        currentCategory = line;
+        this.categories.add(currentCategory);
+      } else {
+        // 1. เช็คว่าเป็นบรรทัดตั้งต้นการ์ดหรือไม่ (Vocab)
+        // Regex: คำศัพท์ (ชนิดคำ) ...
+        const isVocabLine = /^[A-Za-z0-9'\s/-]+\(.+\)/.test(line);
 
-            if (isVocabLine) {
-                // บันทึกการ์ดเก่าถ้ามี
-                if (currentCard) {
-                    flashcards.push(currentCard);
-                }
+        if (isVocabLine) {
+          if (currentCard) this.allCards.push(currentCard);
 
-                // เริ่มการ์ดใหม่
-                // แยกคำศัพท์และคำแปล
-                // ตัวอย่าง: Aunt (n.) ป้า , น้า , อา
-                // หาตำแหน่งวงเล็บปิดสุดท้าย
-                const lastParenIndex = line.lastIndexOf(')');
-                const vocabPart = line.substring(0, lastParenIndex + 1).trim();
-                const meaningPart = line.substring(lastParenIndex + 1).trim();
+          // แยกส่วนประกอบ: Vocab (Type) Meaning
+          const match = line.match(/^([^(]+)(\([^)]+\))\s*(.*)$/);
 
-                // แยก Vocab และ Type จาก vocabPart
-                // Aunt (n.) -> Vocab: Aunt, Type: (n.)
-                const firstParenIndex = vocabPart.indexOf('(');
-                const vocab = vocabPart.substring(0, firstParenIndex).trim();
-                const type = vocabPart.substring(firstParenIndex).trim();
+          if (match) {
+            const vocab = match[1].trim();
+            const type = match[2].trim();
+            const meaning = match[3].trim();
+            // หมายเหตุ: ถ้า Meaning มีประโยคติดมาด้วย จะถูกแก้ในรอบถัดไป หรือถ้าแยกบรรทัดก็เข้าเคสข้างล่าง
 
-                currentCard = {
-                    id: flashcards.length,
-                    category: currentCategory,
-                    vocab: vocab,
-                    type: type,
-                    meaning: meaningPart,
-                    exampleEn: "",
-                    exampleTh: ""
-                };
-                buffer = []; // Reset buffer for examples
-            } else if (currentCard) {
-                // ถ้าไม่ใช่บรรทัดศัพท์ จะเป็นประโยคตัวอย่าง
-                // บรรทัดแรกหลังศัพท์ คือ En, ที่เหลือคือ Th
-                if (!currentCard.exampleEn) {
-                    currentCard.exampleEn = line;
-                } else {
-                    // สะสมประโยคไทย (บางทีมีหลายบรรทัด)
-                    if (currentCard.exampleTh) {
-                        currentCard.exampleTh += " " + line;
-                    } else {
-                        currentCard.exampleTh = line;
-                    }
-                }
-            }
+            currentCard = {
+              id: this.allCards.length,
+              category: currentCategory,
+              vocab: vocab,
+              type: type,
+              meaning: meaning,
+              exampleEn: "",
+              exampleTh: ""
+            };
+            return; // จบบรรทัดนี้
+          }
         }
+
+        // 2. จัดการบรรทัดที่เป็น เนื้อหา (ประโยค/คำแปล/คำอธิบาย)
+        if (currentCard) {
+          // ตรวจสอบลักษณะของบรรทัด
+          const hasThai = /[\u0E00-\u0E7F]/.test(line);
+          const startsWithEng = /^[A-Za-z0-9"']/.test(line); // ขึ้นต้นด้วยอังกฤษ ตัวเลข หรือเครื่องหมายคำพูด
+          const isNote = line.startsWith("(") && line.endsWith(")");
+
+          // CASE A: บรรทัดผสม (Mixed Line) -> "English Sentence. ประโยคไทย"
+          if (startsWithEng && hasThai) {
+            // หาจุดเริ่มต้นของภาษาไทย
+            const thaiMatch = line.match(/[\u0E00-\u0E7F]/);
+            if (thaiMatch) {
+              const splitIndex = thaiMatch.index;
+              // ตัดแบ่งครึ่ง
+              const enPart = line.substring(0, splitIndex).trim();
+              const thPart = line.substring(splitIndex).trim();
+
+              if (!currentCard.exampleEn) currentCard.exampleEn = enPart;
+              if (!currentCard.exampleTh) currentCard.exampleTh = thPart;
+            }
+          }
+          // CASE B: ภาษาอังกฤษล้วน (Pure English) -> เป็นโจทย์
+          else if (startsWithEng && !hasThai && !isNote) {
+            if (!currentCard.exampleEn) {
+              currentCard.exampleEn = line;
+            } else {
+              // ถ้ามีโจทย์อยู่แล้ว อาจเป็นโจทย์ยาวต่อกัน
+              currentCard.exampleEn += " " + line;
+            }
+          }
+          // CASE C: ภาษาไทยล้วน หรือ วงเล็บ (Thai / Note)
+          else {
+            // ถ้ามีโจทย์ภาษาอังกฤษรออยู่แล้ว -> อันนี้คือคำแปล (ExampleTh)
+            if (currentCard.exampleEn) {
+              if (!currentCard.exampleTh) currentCard.exampleTh = line;
+              else currentCard.exampleTh += " " + line;
+            }
+            // ถ้ายังไม่มีโจทย์ -> อันนี้คือส่วนขยายความหมาย (Meaning Extension)
+            else {
+              currentCard.meaning += " " + line;
+            }
+          }
+        }
+      }
+    });
+    // อย่าลืมบันทึกการ์ดใบสุดท้าย
+    if (currentCard) this.allCards.push(currentCard);
+  }
+
+  setupCategories() {
+    this.categories.forEach((cat) => {
+      const option = document.createElement("option");
+      option.value = cat;
+      option.textContent = cat;
+      this.ui.categorySelect.appendChild(option);
+    });
+  }
+
+  setupEventListeners() {
+    this.ui.categorySelect.addEventListener("change", (e) => {
+      this.currentCategory = e.target.value;
+      localStorage.setItem("lastCategory", this.currentCategory);
+      this.filterCards(this.currentCategory);
     });
 
-    // ดันการ์ดใบสุดท้าย
-    if (currentCard) {
-        flashcards.push(currentCard);
-    }
-}
-
-// เริ่มต้นระบบ
-function initApp() {
-    parseData(rawDataContent);
-
-    // Populate Category Dropdown
-    const select = document.getElementById('category-select');
-    categories.forEach(cat => {
-        const option = document.createElement('option');
-        option.value = cat;
-        option.textContent = cat;
-        select.appendChild(option);
+    this.ui.btnNext.addEventListener("click", () => this.navigate(1));
+    this.ui.btnPrev.addEventListener("click", () => this.navigate(-1));
+    this.ui.cardContainer.addEventListener("click", () => this.flipCard());
+    this.ui.btnShuffle.addEventListener("click", () => this.shuffleCards());
+    this.ui.btnKnown.addEventListener("click", (e) => {
+      e.stopPropagation();
+      this.markAsKnown();
     });
+    this.ui.btnReset.addEventListener("click", () => this.resetProgress());
 
-    // Event Listeners
-    select.addEventListener('change', (e) => {
-        filterCards(e.target.value);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") this.navigate(1);
+      if (e.key === "ArrowLeft") this.navigate(-1);
+      if (e.key === " " || e.key === "Enter") {
+        e.preventDefault();
+        this.flipCard();
+      }
     });
+  }
 
-    document.addEventListener('keydown', (e) => {
-        if (e.key === "ArrowRight") nextCard();
-        if (e.key === "ArrowLeft") prevCard();
-        if (e.key === " " || e.key === "Enter") flipCard();
-    });
-
-    // Start with all cards
-    filterCards('all');
-}
-
-// กรองการ์ดตามหมวดหมู่
-function filterCards(category) {
-    if (category === 'all') {
-        currentCategoryCards = flashcards.filter(c => !knownCards.has(c.id));
+  filterCards(category) {
+    if (category === "all") {
+      this.activeCards = this.allCards.filter(
+        (c) => !this.knownCards.has(c.id)
+      );
     } else {
-        currentCategoryCards = flashcards.filter(c => c.category === category && !knownCards.has(c.id));
+      this.activeCards = this.allCards.filter(
+        (c) => c.category === category && !this.knownCards.has(c.id)
+      );
     }
 
-    document.getElementById('total-count').innerText = currentCategoryCards.length;
-    currentIndex = 0;
-    resetCardState();
-    updateCardDisplay();
-}
+    this.currentIndex = 0;
+    this.resetCardState();
+    this.updateDisplay();
+  }
 
-// สุ่มการ์ด
-function shuffleCards() {
-    for (let i = currentCategoryCards.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [currentCategoryCards[i], currentCategoryCards[j]] = [currentCategoryCards[j], currentCategoryCards[i]];
-    }
-    currentIndex = 0;
-    resetCardState();
-    updateCardDisplay();
-}
+  updateDisplay() {
+    const count = this.activeCards.length;
+    this.ui.totalCount.innerText = count;
 
-// อัปเดตหน้าจอแสดงผล
-function updateCardDisplay() {
-    const container = document.getElementById('flashcard');
-    const btnNext = document.getElementById('btn-next');
-    const btnPrev = document.getElementById('btn-prev');
-
-    if (currentCategoryCards.length === 0) {
-        // กรณีไม่มีการ์ดเหลือเลย
-        document.getElementById('card-vocab').innerText = "เก่งมาก!";
-        document.getElementById('card-category').innerText = "Completed";
-        document.getElementById('card-vocab-back').innerText = "จำได้หมดแล้ว";
-        document.getElementById('card-meaning').innerText = "คุณจำศัพท์ในหมวดนี้ได้หมดแล้ว";
-        document.getElementById('card-ex-en').innerText = "";
-        document.getElementById('card-ex-th').innerText = "กดปุ่ม 'รีเซ็ต' เพื่อเริ่มใหม่";
-        btnNext.disabled = true;
-        btnPrev.disabled = true;
-        return;
+    if (count === 0) {
+      this.showEmptyState();
+      return;
     }
 
-    const card = currentCategoryCards[currentIndex];
+    const card = this.activeCards[this.currentIndex];
 
-    // Front
-    document.getElementById('card-category').innerText = card.category;
-    // Use Example EN as the main question. If empty, fallback to vocab (though most have examples).
-    // Logic: Show Sentence
-    document.getElementById('card-vocab').innerText = card.exampleEn ? `"${card.exampleEn}"` : card.vocab;
+    // Update Content
+    this.ui.cardCategory.innerText = card.category;
+
+    // Front: ถ้ามี exampleEn ให้โชว์ ถ้าไม่มีให้โชว์ vocab
+    this.ui.cardFrontText.innerText = card.exampleEn
+      ? `"${card.exampleEn}"`
+      : card.vocab;
 
     // Back
-    // Show Vocab + Meaning + Thai Sentence
-    document.getElementById('card-vocab-back').innerText = `${card.vocab} ${card.type}`;
-    document.getElementById('card-meaning').innerText = card.meaning;
-    // Show Thai sentence
-    document.getElementById('card-ex-th').innerText = card.exampleTh || "-";
-    // Show English sentence small for reference
-    document.getElementById('card-ex-en').innerText = card.exampleEn ? `"${card.exampleEn}"` : "-";
+    this.ui.cardBackVocab.innerText = `${card.vocab} ${card.type}`;
+    this.ui.cardMeaning.innerText = card.meaning;
+    this.ui.cardExTh.innerText = card.exampleTh || "-";
+    this.ui.cardExEn.innerText = card.exampleEn ? `"${card.exampleEn}"` : "-";
 
-    // Update Progress
-    document.getElementById('progress-text').innerText = `${currentIndex + 1} / ${currentCategoryCards.length}`;
-    const progressPercent = ((currentIndex + 1) / currentCategoryCards.length) * 100;
-    document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+    // Progress
+    this.ui.progressText.innerText = `${this.currentIndex + 1} / ${count}`;
+    const progressPercent = ((this.currentIndex + 1) / count) * 100;
+    this.ui.progressBar.style.width = `${progressPercent}%`;
 
-    // Button states
-    btnPrev.disabled = currentIndex === 0;
-    btnNext.disabled = currentIndex === currentCategoryCards.length - 1;
-}
+    // Buttons
+    this.ui.btnPrev.disabled = this.currentIndex === 0;
+    this.ui.btnNext.disabled = this.currentIndex === count - 1;
+    this.ui.btnKnown.disabled = false;
+  }
 
-// พลิกการ์ด
-function flipCard() {
-    if (currentCategoryCards.length === 0) return;
-    const card = document.getElementById('flashcard');
-    isFlipped = !isFlipped;
-    if (isFlipped) {
-        card.classList.add('flipped');
-    } else {
-        card.classList.remove('flipped');
+  showEmptyState() {
+    this.ui.cardCategory.innerText = "Completed";
+    this.ui.cardFrontText.innerText = "🎉 ยอดเยี่ยม!";
+    this.ui.cardBackVocab.innerText = "หมดแล้ว";
+    this.ui.cardMeaning.innerText = "คุณเรียนรู้ครบทุกคำในหมวดนี้แล้ว";
+    this.ui.cardExTh.innerText =
+      "กดปุ่ม 'รีเซ็ต' หรือเลือกหมวดอื่นเพื่อเริ่มใหม่";
+    this.ui.cardExEn.innerText = "";
+    this.ui.progressText.innerText = "0 / 0";
+    this.ui.progressBar.style.width = "100%";
+    this.ui.btnPrev.disabled = true;
+    this.ui.btnNext.disabled = true;
+    this.ui.btnKnown.disabled = true;
+  }
+
+  resetCardState() {
+    this.isFlipped = false;
+    this.ui.cardContainer.classList.remove("flipped");
+  }
+
+  flipCard() {
+    if (this.activeCards.length === 0) return;
+    this.isFlipped = !this.isFlipped;
+    this.ui.cardContainer.classList.toggle("flipped", this.isFlipped);
+  }
+
+  navigate(direction) {
+    if (this.activeCards.length === 0) return;
+    const newIndex = this.currentIndex + direction;
+    if (newIndex >= 0 && newIndex < this.activeCards.length) {
+      this.currentIndex = newIndex;
+      this.resetCardState();
+      setTimeout(() => this.updateDisplay(), 200);
     }
-}
+  }
 
-function resetCardState() {
-    isFlipped = false;
-    document.getElementById('flashcard').classList.remove('flipped');
-}
-
-function nextCard() {
-    if (currentIndex < currentCategoryCards.length - 1) {
-        currentIndex++;
-        resetCardState();
-        setTimeout(updateCardDisplay, 200); // รอ animation นิดนึงถ้ามีการเปลี่ยน
+  markAsKnown() {
+    if (this.activeCards.length === 0) return;
+    const card = this.activeCards[this.currentIndex];
+    this.knownCards.add(card.id);
+    localStorage.setItem("knownCards", JSON.stringify([...this.knownCards]));
+    this.activeCards.splice(this.currentIndex, 1);
+    if (this.currentIndex >= this.activeCards.length) {
+      this.currentIndex = Math.max(0, this.activeCards.length - 1);
     }
-}
+    this.resetCardState();
+    setTimeout(() => this.updateDisplay(), 200);
+  }
 
-function prevCard() {
-    if (currentIndex > 0) {
-        currentIndex--;
-        resetCardState();
-        setTimeout(updateCardDisplay, 200);
+  shuffleCards() {
+    for (let i = this.activeCards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [this.activeCards[i], this.activeCards[j]] = [
+        this.activeCards[j],
+        this.activeCards[i]
+      ];
     }
-}
+    this.currentIndex = 0;
+    this.resetCardState();
+    this.updateDisplay();
+  }
 
-// ฟังก์ชัน "จำได้แล้ว"
-function markAsKnown() {
-    if (currentCategoryCards.length === 0) return;
-
-    const cardId = currentCategoryCards[currentIndex].id;
-    knownCards.add(cardId);
-
-    // เอามันออกจากลิสต์ปัจจุบัน
-    currentCategoryCards.splice(currentIndex, 1);
-
-    // ปรับ index
-    if (currentIndex >= currentCategoryCards.length) {
-        currentIndex = Math.max(0, currentCategoryCards.length - 1);
+  resetProgress() {
+    if (confirm("ต้องการล้างประวัติคำที่จำได้แล้วทั้งหมดใช่ไหม?")) {
+      this.knownCards.clear();
+      localStorage.removeItem("knownCards");
+      this.filterCards(this.ui.categorySelect.value);
+      alert("รีเซ็ตเรียบร้อยแล้ว!");
     }
-
-    document.getElementById('total-count').innerText = currentCategoryCards.length;
-    resetCardState();
-    updateCardDisplay();
+  }
 }
 
-// รีเซ็ตความจำ
-function resetProgress() {
-    if (confirm("คุณต้องการรีเซ็ตคำที่จำได้แล้วทั้งหมดหรือไม่?")) {
-        knownCards.clear();
-        const select = document.getElementById('category-select');
-        filterCards(select.value);
-        alert("รีเซ็ตเรียบร้อยแล้ว!");
-    }
-}
-
-// เริ่มต้น
-initApp();
+document.addEventListener("DOMContentLoaded", () => {
+  const contentToUse =
+    typeof rawDataContent !== "undefined" ? rawDataContent : RAW_DATA_CONTENT;
+  new FlashcardApp(contentToUse);
+});
