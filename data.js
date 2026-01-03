@@ -449,7 +449,7 @@ Are we allowed to have a picnic in this park?
 หมวดเกี่ยวกับอาหาร
 Thirsty (adj.) กระหายน้ำ , หิวน้ำ
 I am thirsty. Is there a vending machine nearby?
-ผมหิวน้ำ จังเลย แถวนี้มีตู้กดน้ำ ไหมครับ?
+ผมหิวน้ำจังเลย แถวนี้มีตู้กดน้ำไหมครับ?
 
 Cook (v.) ทำอาหาร
 Did you cook this yourself? / I can cook simple meals.
@@ -585,7 +585,8 @@ This exercise is difficult. / Where can I exercise?
 แบบฝึกหัดนี้ยากครับ / ผมจะไปออกกำลังกายที่ไหนได้บ้างครับ?
 
 Lesson (n.) บทเรียน
-The lesson is quite easy. บทเรียนนี้ค่อนข้างง่ายนะครับ
+The lesson is quite easy.
+บทเรียนนี้ค่อนข้างง่ายนะครับ
 
 
 
@@ -597,7 +598,6 @@ The dialogue in this movie is very fast.
 Letter (n.) จดหมาย, ตัวอักษร
 I want to send this letter. / Do I need to write in capital letters?
 ผมต้องการส่งจดหมายฉบับนี้ครับ / ผมต้องเขียนเป็นตัวพิมพ์ใหญ่ไหมครับ?
-(ใช้ถามเจ้าหน้าที่เพื่อความแน่ใจ เวลาเขียนใบตม.)
 
 Meaning (n.) ความหมาย
 What is the meaning of this word?
@@ -624,15 +624,11 @@ Can we talk for a minute? / Who should I talk to if I have a problem?
 หมวดความคิด
 Decide (v.) ตัดสินใจ
 I haven't decided what to order yet.
-ผมยังตัดสินใจไม่ได้เลยว่าจะสั่งอะไรดีครับ (ใช้บอก
-พนักงานเสิร์ฟเพื่อให้เขารอก่อน หรือให้เขาแนะนำเมนู)
+ผมยังตัดสินใจไม่ได้เลยว่าจะสั่งอะไรดีครับ
 
 Guess (v.) เดา
-Can you guess the answer?
-คุณพอจะเดาคำตอบได้ไหมครับ
-
-I guess we are lost.
-ผมเดาว่าพวกเราหลงทางกันแล้วล่ะครับ
+Can you guess the answer? / I guess we are lost.
+คุณพอจะเดาคำตอบได้ไหมครับ? / ผมเดาว่าพวกเราหลงทางกันแล้วล่ะครับ
 
 Hope (v.) หวัง
 I hope to see you again someday.
@@ -643,8 +639,8 @@ I can't imagine how expensive it is.
 ผมจินตนาการไม่ออกเลยว่ามันจะแพงขนาดไหน
 
 Learn (v.) เรียนรู้
-It is never too late to learn.
-ไม่มีคำว่าสายเกินไปสำหรับการเรียนรู้นะครับ
+It is never too late to learn. / I want to learn more about this place.
+ไม่มีคำว่าสายเกินไปสำหรับการเรียนรู้นะครับ / ผมอยากเรียนรู้เกี่ยวกับสถานที่นี้ให้มากขึ้นครับ
 
 
 
@@ -657,11 +653,9 @@ Island (n.) เกาะ
 How long does the boat take to get to the island?
 นั่งเรือไปที่เกาะใช้เวลานานเท่าไหร่ครับ?
 
-Land (n.) แผ่นดิน, ทางบก
-We prefer to travel by land.
-พวกเราขอเลือกเดินทางทางบกดีกว่าครับ (ใช้บอกเอเจนซี่
-ทัวร์ กรณีไม่อยากนั่งเครื่องบินหรือเรือ อยากนั่งรถไฟหรือรถ
-บัสแทน)
+Land (n., v.) แผ่นดิน/ทางบก, ลงจอด
+We prefer to travel by land. / What time does the plane land?
+พวกเราขอเลือกเดินทางทางบกดีกว่าครับ / เครื่องบินจะลงจอดกี่โมงครับ?
 
 Plant (n.) พืช, ต้นไม้
 What kind of plant is this?
@@ -669,22 +663,19 @@ What kind of plant is this?
 
 River (n.) แม่น้ำ
 I would like a room with a river view.
-ผมขอห้องพักวิวแม่น้ำ ครับ
+ผมขอห้องพักวิวแม่น้ำครับ
 
 Sea (n.) ทะเล
 How far is the hotel from the sea?
 โรงแรมอยู่ไกลจากทะเลแค่ไหนครับ?
-(ใช้ถามตำแหน่งที่ตั้งเพื่อดูว่าเดินไปหาดได้ไหม)
 
 Sky (n.) ท้องฟ้า
 The sky is getting dark; it might rain soon.
-ท้องฟ้า เริ่มมืดแล้ว ฝนน่าจะตกเร็วๆ นี้นะครับ
-(ใช้เตือนเพื่อนร่วมทริปให้เตรียมร่มหรือหาที่หลบฝน)
+ท้องฟ้าเริ่มมืดแล้ว ฝนน่าจะตกเร็วๆ นี้นะครับ
 
 Space (n.) อวกาศ, พื้นที่ว่าง
 Do you have enough space in your luggage?
-ในกระเป๋า เดินทางของคุณมีที่ว่างพอไหมครับ? (ใช้ถาม
-เพื่อนเวลาซื้อของฝากเยอะๆ แล้วกลัวใส่กระเป๋า ไม่หมด)
+ในกระเป๋าเดินทางของคุณมีที่ว่างพอไหมครับ?
 
 
 
@@ -705,32 +696,33 @@ The weather is nice today.
 
 หมวดวัน
 Monday (n.) วันจันทร์
-Most museums are closed on Mondays.
-พิพิธภัณฑ์ส่วนใหญ่จะปิดทำการในวันจันทร์นะครับ
+Most museums are closed on Mondays. / I arrive on Monday.
+พิพิธภัณฑ์ส่วนใหญ่จะปิดทำการในวันจันทร์นะครับ / ผมจะมาถึงในวันจันทร์ครับ
 
 Tuesday (n.) วันอังคาร
-I will let you know by Tuesday.
-ผมจะแจ้งให้คุณทราบภายในวันอังคารนะครับ
+I will let you know by Tuesday. / Is the zoo open on Tuesday?
+ผมจะแจ้งให้คุณทราบภายในวันอังคารนะครับ / สวนสัตว์เปิดวันอังคารไหมครับ?
 
 Wednesday (n.) วันพุธ
 Is the market open on Wednesdays?
-ตลาดเปิดขายในวันพุธไหมครับ
+ตลาดเปิดขายในวันพุธไหมครับ?
 
 Thursday (n.) วันพฤหัสบดี
 My flight is next Thursday.
-เที่ยวบินของผมคือวันพฤหัสบดีหน้า ครับ
+เที่ยวบินของผมคือวันพฤหัสบดีหน้าครับ
 
 Friday (n.) วันศุกร์
-Do you have plans for Friday night?
-คืนวันศุกร์คุณมีแผนจะไปไหนหรือยังครับ
+Do you have plans for Friday night? / The party is on Friday.
+คืนวันศุกร์คุณมีแผนจะไปไหนหรือยังครับ? / งานปาร์ตี้มีวันศุกร์ครับ
 
 Saturday (n.) วันเสาร์
-We are fully booked on Saturday.
-วันเสาร์เราถูกจองเต็มแล้วครับ
+Is it crowded on Saturday? / I want to book a table for Saturday.
+วันเสาร์คนเยอะไหมครับ? / ผมอยากจะจองโต๊ะสำหรับวันเสาร์ครับ
+(แก้จาก "ร้านเต็ม" เป็น "ขอจอง")
 
 Sunday (n.) วันอาทิตย์
-Parking is free on Sundays.
-วันอาทิตย์จอดรถฟรีนะครับ
+Parking is free on Sundays. / We leave on Sunday.
+วันอาทิตย์จอดรถฟรีนะครับ / พวกเราจะเดินทางกลับวันอาทิตย์ครับ
 
 
 
@@ -819,7 +811,7 @@ Just a minute, please.
 
 Month (n.) เดือน
 See you next month.
-เจอกันเดือนหน้า นะครับ
+เจอกันเดือนหน้านะครับ
 
 O'clock (adv.) ...นาฬิกา (บอกเวลาตรง)
 It is ten o'clock.
@@ -849,88 +841,99 @@ Happy New Year!
 
 หมวดช่วงเวลา
 Afternoon (n.) ตอนบ่าย
-Good afternoon. สวัสดีตอนบ่ายครับ
+Good afternoon.
+สวัสดีตอนบ่ายครับ
 
 Birthday (n.) วันเกิด
-Happy birthday! สุขสันต์วันเกิดนะครับ
+Happy birthday! / It is my birthday today.
+สุขสันต์วันเกิดนะครับ / วันนี้วันเกิดผมครับ (เผื่อได้ส่วนลดหรือเค้กฟรี)
 
 Evening (n.) ตอนเย็น
-Good evening. สวัสดีตอนเย็นครับ
+Good evening.
+สวัสดีตอนเย็นครับ
 
 Holiday (n.) วันหยุด
-I am on holiday. ผมอยู่ในช่วงวันหยุดครับ
+I am on holiday. / Is today a public holiday?
+ผมอยู่ในช่วงวันหยุดครับ / วันนี้เป็นวันหยุดราชการไหมครับ? (ถามเผื่อร้านปิด)
 
 Midnight (n.) เที่ยงคืน
-The shop closes at midnight. ร้านปิดตอนเที่ยงคืนครับ
+The shop closes at midnight. / Does the train run after midnight?
+ร้านปิดตอนเที่ยงคืนครับ / รถไฟวิ่งหลังเที่ยงคืนไหมครับ?
 
 Moment (n.) ชั่วครู่, ขณะ
-One moment, please. กรุณารอสักครู่นะครับ
+One moment, please. / I will be back in a moment.
+กรุณารอสักครู่นะครับ / เดี๋ยวผมกลับมาในอีกสักครู่นะครับ
 
 Morning (n.) ตอนเช้า
-Good morning. สวัสดีตอนเช้าครับ
+Good morning.
+สวัสดีตอนเช้าครับ
 
 Night (n.) กลางคืน
-Good night. ราตรีสวัสดิ์ครับ (ฝันดีครับ)
+Good night. / It is a beautiful night.
+ราตรีสวัสดิ์ครับ / คืนนี้บรรยากาศดีจังเลยครับ
 
 Today (adv., n.) วันนี้
-Are you busy today? วันนี้คุณยุ่งไหมครับ
+Are you busy today? / What is the plan for today?
+วันนี้คุณยุ่งไหมครับ? / แผนสำหรับวันนี้คืออะไรครับ?
 
 Tomorrow (adv., n.) พรุ่งนี้
-See you tomorrow. เจอกันพรุ่งนี้นะครับ
+See you tomorrow. / I am leaving tomorrow.
+เจอกันพรุ่งนี้นะครับ / ผมจะเดินทางกลับพรุ่งนี้ครับ
 
 Tonight (adv., n.) คืนนี้
-Are you free tonight? คืนนี้คุณว่างไหมครับ
+Are you free tonight? / Let's go out tonight.
+คืนนี้คุณว่างไหมครับ? / คืนนี้ออกไปเที่ยวกันเถอะครับ
 
 Week (n.) สัปดาห์, อาทิตย์
-I have a busy week. สัปดาห์นี้ผมยุ่งมากครับ
+I have a busy week. / I am staying for a week.
+สัปดาห์นี้ผมยุ่งมากครับ / ผมจะพักอยู่ที่นี่หนึ่งสัปดาห์ครับ
 
 Weekend (n.) สุดสัปดาห์ (เสาร์-อาทิตย์)
-Have a good weekend.
-ขอให้มีความสุขในวันหยุดสุดสัปดาห์นะครับ
+Have a good weekend. / What are you doing this weekend?
+ขอให้มีความสุขในวันหยุดสุดสัปดาห์นะครับ / สุดสัปดาห์นี้คุณทำอะไรครับ?
 
 Yesterday (adv., n.) เมื่อวาน
-I saw him yesterday.
-ผมเจอเขาเมื่อวานครับ
+I saw him yesterday. / I arrived yesterday.
+ผมเจอเขาเมื่อวานครับ / ผมเพิ่งมาถึงเมื่อวานครับ
 
 
 
 หมวดกริยาวิเศษณ์บอกเวลา
 Ago (adv.) ที่ผ่านมา, ล่วงมาแล้ว
-I arrived two days ago. ผมมาถึงเมื่อสองวันที่แล้วครับ
+I arrived two days ago. / It happened a long time ago.
+ผมมาถึงเมื่อสองวันที่แล้วครับ / มันเกิดขึ้นนานมาแล้วครับ
 
 Always (adv.) สม่ำเสมอ, ตลอด
-I always drink coffee. ผมดื่มกาแฟเป็นประจำครับ
+I always drink coffee. / Does it always rain here?
+ผมดื่มกาแฟเป็นประจำครับ / ฝนตกที่นี่ตลอดเลยไหมครับ?
 
 Early (adj., adv.) เช้า, ก่อนเวลา
-You are early today. วันนี้คุณมาเช้านะครับ
+I woke up early today. / Can we check in early?
+วันนี้ผมตื่นเช้าครับ / พวกเราขอเช็คอินก่อนเวลาได้ไหมครับ?
 
-Ever (adv.) เคย
-Have you ever been here? คุณเคยมาที่นี่ไหมครับ
+Ever (adv.) เคย, ตลอดกาล
+Have you ever been here? / Best trip ever!
+คุณเคยมาที่นี่ไหมครับ? / ทริปที่ดีที่สุดตลอดกาลเลย!
 
 Late (adj., adv.) สาย, ช้า, ดึก
-Sorry I am late. ขอโทษที่ผมมาสายครับ
+Sorry I am late. / The train is late. / It is getting late.
+ขอโทษที่ผมมาสายครับ / รถไฟมาช้าครับ / ฟ้าเริ่มมืด (ดึก) แล้วครับ
 
 Later (adv.) ภายหลัง, เดี๋ยว...
-See you later. ไว้เจอกันใหม่นะครับ
+See you later. / Maybe later.
+ไว้เจอกันใหม่นะครับ / เอาไว้ทีหลังดีกว่าครับ (ใช้ปฏิเสธคนขายของแบบสุภาพ)
 
 Never (adv.) ไม่เคย
-I never eat meat. ผมไม่เคยทานเนื้อสัตว์ครับ
+I never eat meat. / I have never been here before.
+ผมไม่เคยทานเนื้อสัตว์ครับ / ผมไม่เคยมาที่นี่มาก่อนครับ
 
-Then (adv.) ตอนนั้น, หลังจากนั้น
-Turn left, and then go straight.
-เลี้ยวซ้าย แล้วหลังจากนั้นก็ตรงไปเลยครับ
-
-Okay, then I will take it.
-โอเคครับ งั้นผมเอาอันนี้ครับ
-(ใช้พูดปิดการขาย หรือตกลงซื้อ)
+Then (adv.) ตอนนั้น, หลังจากนั้น, งั้น...
+So, turn left, and then go straight? / Okay, then I will take it.
+งั้นเลี้ยวซ้าย แล้วหลังจากนั้นก็ตรงไปใช่ไหมครับ? (ทวนเส้นทาง) / โอเคครับ งั้นผมเอาอันนี้ครับ
 
 Usually (adv.) โดยปกติ
-I usually wake up at six.
-ปกติผมตื่นนอนตอนหกโมงครับ
-
-How long does it usually take?
-ปกติใช้เวลานานแค่ไหนครับ
-(ใช้ถามระยะเวลาเดินทางหรือรอคิว)
+I usually wake up at six. / How long does it usually take?
+ปกติผมตื่นนอนตอนหกโมงครับ / ปกติใช้เวลานานแค่ไหนครับ?
 
 
 
@@ -941,7 +944,7 @@ This is my first visit.
 
 Second (det./number) ลำดับที่สอง
 Turn right at the second traffic light.
-เลี้ยวขวาตรงไฟแดงที่สองนะครับ
+เลี้ยวขวาตรงไฟแดงที่สองนะครับ (ใช้บอกทางแท็กซี่)
 
 Third (det./number) ลำดับที่สาม
 Take the third turning on the right.
@@ -952,32 +955,27 @@ Today is the fourth of July.
 วันนี้วันที่สี่กรกฎาคมครับ
 
 Fifth (det./number) ลำดับที่ห้า
-He finished in fifth place.
-เขาเข้าเส้นชัยเป็นลำดับที่ห้าครับ
+He finished in fifth place. / My room is on the fifth floor.
+เขาเข้าเส้นชัยเป็นลำดับที่ห้าครับ / ห้องของผมอยู่ชั้นห้าครับ
 
 
 
 หมวดเงินตรา / การวัด
-Bill (n.) บิล, ใบแจ้งหนี้ , ธนบัตร
-Can I have the bill, please?
-ขอเก็บเงินด้วยครับ (ขอบิลด้วยครับ)
+Bill (n.) บิล/ใบแจ้งหนี้, ธนบัตร
+Can I have the bill, please? / Do you accept large bills?
+ขอเก็บเงินด้วยครับ / คุณรับธนบัตรใบใหญ่ (แบงก์ใหญ่) ไหมครับ?
 
 Cent (n.) เซนต์ (หน่วยเงินย่อย)
 I don't have any cents.
 ผมไม่มีเหรียญย่อย (เซนต์) เลยครับ
-(ใช้บอกเวลาพนักงานถามหาเศษเหรียญ)
 
-Pound (n.) ปอนด์ (เงิน หรือ น้ำ หนัก)
-How much is it in pounds?
-คิดเป็นเงินปอนด์ราคาเท่าไหร่ครับ
+Pound (n.) ปอนด์ (เงิน หรือ น้ำหนัก)
+How much is it in pounds? / My bag weighs 20 pounds.
+คิดเป็นเงินปอนด์ราคาเท่าไหร่ครับ? / กระเป๋าของผมหนัก 20 ปอนด์ครับ
 
 Quarter (n.) หนึ่งในสี่, 15 นาที, เหรียญ 25 เซนต์
-It is a quarter past ten.
-ตอนนี้สิบโมงสิบห้านาทีแล้วครับ
-
-I need a quarter for the cart.
-ผมต้องใช้เหรียญควอเตอร์สำหรับรถเข็นครับ (ใช้ในสนาม
-บินหรือซูเปอร์มาร์เก็ตที่ต้องหยอดเหรียญมัดจำรถเข็น)
+Cut it into quarters, please. / It is a quarter past ten. / I need a quarter for the cart.
+รบกวนตัดแบ่งเป็นสี่ส่วนให้หน่อยครับ / ตอนนี้สิบโมงสิบห้าครับ / ผมต้องใช้เหรียญควอเตอร์สำหรับรถเข็นครับ
 
 
 
@@ -988,11 +986,11 @@ The weather has become quite cold.
 
 Begin (v.) เริ่มต้น
 What time does the tour begin?
-ทัวร์เริ่มกี่โมงครับ (ใช้ถามไกด์หรือเคาน์เ ตอร์ทัวร์)
+ทัวร์เริ่มกี่โมงครับ?
 
-Break (v., n.) ทำแตก, แลกเงิน(ย่อย)
-Can you break a large bill?
-คุณพอจะแตกแบงก์ใหญ่ให้หน่อยได้ไหมครับ
+Break (v., n.) ทำแตก/พัง, พัก(เบรก), แลกเงิน(ย่อย), ฝ่าฝืน(กฎ)
+I broke the glass. / Let's take a break. / Can you break a 1,000 baht bill? / I did not mean to break the rules.
+ผมทำแก้วแตกครับ / พักกันก่อนเถอะครับ / คุณช่วยแตกแบงก์พันให้หน่อยได้ไหมครับ? / ผมไม่ได้ตั้งใจจะฝ่าฝืนกฎนะครับ
 
 Bring (v.) นำมา, พามา
 Could you bring me the menu, please?
@@ -1000,75 +998,83 @@ Could you bring me the menu, please?
 
 Build (v.) สร้าง
 When was this castle built?
-ปราสาทแห่งนี้สร้างขึ้นเมื่อไหร่ครับ
+ปราสาทแห่งนี้สร้างขึ้นเมื่อไหร่ครับ?
 
 Call (v., n.) โทรหา, เรียก
-Please call a taxi for me.
-รบกวนช่วยเรียกแท็กซี่ให้ผมหน่อยครับ
-(ใช้บอกพนักงานโรงแรมหรือรปภ.)
+I will call you later. / Please call a taxi for me.
+เดี๋ยวผมโทรหานะครับ / รบกวนช่วยเรียกแท็กซี่ให้ผมหน่อยครับ
 
 Carry (v.) ถือ, แบก, หิ้ว
 Can I carry this bag onto the plane?
-ผมหิ้วกระเป๋า ใบนี้ขึ้นเครื่องได้ไหมครับ
+ผมหิ้วกระเป๋าใบนี้ขึ้นเครื่องได้ไหมครับ?
 
 Catch (v.) จับ, ขึ้นรถทัน
-I need to catch the bus. ผมต้องรีบไปขึ้นรถบัสครับ
+Did you catch that? / I need to catch the bus.
+คุณฟัง (จับใจความ) ทันไหมครับ? / ผมต้องรีบไปขึ้นรถบัสครับ
 
 Choose (v.) เลือก
-"It is hard to choose; everything looks delicious."
+It is hard to choose; everything looks delicious.
 เลือกยากจังเลยครับ น่าทานไปหมดทุกอย่างเลย
 
 Compare (v.) เปรียบเทียบ
-Please compare the prices.
-ลองเปรียบเทียบราคาดูนะครับ
+I want to compare the prices first.
+ผมขอเปรียบเทียบราคาก่อนนะครับ
 
-Complete (adj., v.) สมบูรณ์,  ทำให้เสร็จ
-Please complete the form.
-กรุณากรอกแบบฟอร์มให้ครบถ้วนนะครับ
+Complete (adj., v.) สมบูรณ์, ทำให้เสร็จ
+I have completed the form.
+ผมกรอกแบบฟอร์มเสร็จเรียบร้อยแล้วครับ
 
 Cost (n., v.) ราคา, มีราคา
-How much does it cost? ราคาเท่าไหร่ครับ
+How much does it cost?
+ราคาเท่าไหร่ครับ?
 
 Cut (v.) ตัด
-Please cut the cake. เชิญตัดเค้กได้เลยครับ
+Can you cut it in half?
+คุณช่วยตัดแบ่งครึ่งได้ไหมครับ?
 
 Describe (v.) บรรยาย, อธิบายลักษณะ
 Can you describe him?
-คุณช่วยบรรยายลักษณะของเขาหน่อยได้ไหมครับ
+คุณช่วยบรรยายลักษณะของเขาหน่อยได้ไหมครับ?
 
 Discuss (v.) หารือ, อภิปราย
-We need to discuss this. เราต้องหารือเรื่องนีกันนะครับ
+We need to discuss this.
+เราต้องหารือเรื่องนี้กันนะครับ
 
-Enjoy (v.) เพลิดเพลิน, สนุก กับ
-Enjoy your meal. ทานให้อร่อยนะครับ
+Enjoy (v.) เพลิดเพลิน, สนุกกับ
+I really enjoyed the meal.
+ผมเพลิดเพลิน(อร่อย)กับมื้ออาหารมากครับ
 
 Explain (v.) อธิบาย
 Can you explain it to me?
-ช่วยอธิบายให้ผมฟังหน่อยได้ไหมครับ
+ช่วยอธิบายให้ผมฟังหน่อยได้ไหมครับ?
 
 Fall (v.) ตก, ล้ม
 Be careful not to fall.
 ระวังล้มนะครับ
 
 Fill (v.) เติม
-Please fill the glass.
-รบกวนเติมน้ำ ให้เต็มแก้วนะครับ
+Could you fill my water bottle, please?
+รบกวนช่วยเติมน้ำใส่ขวดให้ผมหน่อยได้ไหมครับ?
 
 Form (n., v.) แบบฟอร์ม
 Do I need to fill out this form?
-ผมต้องกรอกแบบฟอร์มนี้ไหมครับ
+ผมต้องกรอกแบบฟอร์มนี้ไหมครับ?
 
 Get (v.) ได้รับ, เอา, ไปถึง, เข้าใจ
-I get it now. ผมเข้าใจแล้วครับ
+I got your message. / Can I get a coffee? / How do I get there? / I get it now.
+ผมได้รับข้อความของคุณแล้วครับ / ผมขอกาแฟแก้วหนึ่งครับ / ผมจะเดินทางไปที่นั่นได้อย่างไรครับ? / ผมเข้าใจแล้วครับ
 
 Grow (v.) เติบโต, ปลูก
-Is this grown locally? อันนี้ปลูกแถวนี้หรือเปล่าครับ
+Is this grown locally?
+อันนี้ปลูกในท้องถิ่นหรือเปล่าครับ?
 
 Happen (v.) เกิดขึ้น
-What happened? เกิดอะไรขึ้นครับ
+What happened?
+เกิดอะไรขึ้นครับ?
 
 Hear (v.) ได้ยิน
-Can you hear me? คุณได้ยินผมไหมครับ
+Can you hear me?
+คุณได้ยินผมไหมครับ?
 
 Improve (v.) ปรับปรุง, พัฒนา
 I want to improve my English.
@@ -1076,99 +1082,107 @@ I want to improve my English.
 
 Include (v.) รวม
 Does the price include breakfast?
-ราคานี้รวมอาหารเช้าด้วยไหมครับ
+ราคานี้รวมอาหารเช้าด้วยไหมครับ?
 
 Introduce (v.) แนะนำ (ตัว/ให้รู้จัก)
 Let me introduce myself.
-ขออนุญ าตแนะนำตัวนะครับ
+ขออนุญาตแนะนำตัวนะครับ
 
 Join (v.) เข้าร่วม
 Would you like to join us?
-คุณอยากมาร่วมกับเราไหมครับ
+คุณอยากมาร่วมกับเราไหมครับ?
 
 Keep (v.) เก็บ, รักษา
 Please keep it a secret.
 รบกวนเก็บเป็นความลับนะครับ
 
 Laugh (v., n.) หัวเราะ
-She is laughing while watching the comedy show.
-เธอกำลังหัวเราะขณะดูรายการตลก
+She is laughing while watching the show.
+เธอกำลังหัวเราะขณะดูโชว์ครับ
 
-Let (v.) อนุญ าต, ขอให้ (เช่น Let's)
+Let (v.) อนุญาต, ขอให้ (เช่น Let's)
 Let me check the map.
-ขอผมเช็คแผนที่แป๊บ นะครับ
+ขอผมเช็คแผนที่แป๊บนะครับ
 
-Lie (v.) โกหก (หรือ นอนลง)
-I need to lie down for a bit.
-ผมขอตัวไปนอนพักสักหน่อยนะครับ
+Lie (v.) โกหก, นอนลง
+Don't lie to me. / I need to lie down for a bit.
+อย่าโกหกผมนะครับ / ผมขอตัวไปนอนพักสักหน่อยนะครับ
 
 Lose (v.) แพ้, ทำหาย
-I lost my room key.
-ผมทำกุญแจห้องหายครับ
+I do not want to lose. / I lost my room key.
+ผมไม่อยากแพ้ครับ / ผมทำกุญแจห้องหายครับ
 
 Match (n., v.) การแข่งขัน, เข้ากัน
-The colors match well. สีเข้ากันดีนะครับ
+Did you watch the match? / The colors match well.
+คุณได้ดูการแข่งขันไหมครับ? / สีเข้ากันดีนะครับ
 
 Mean (v.) หมายความว่า
-What does this mean? อันนี้หมายความว่าอะไรครับ
+What does this mean?
+อันนี้หมายความว่าอะไรครับ?
 
 Miss (v.) คิดถึง, พลาด (รถ/โอกาส)
-I miss you. ผมคิดถึงคุณครับ
+I miss you. / We missed the bus.
+ผมคิดถึงคุณครับ / พวกเราตกรถบัสครับ
 
 Move (v.) ย้าย, ขยับ
 Can I move to that table?
-ผมขอย้ายไปนั่งโต๊ะนั้นได้ไหมครับ
+ผมขอย้ายไปนั่งโต๊ะนั้นได้ไหมครับ?
 
 Order (n., v.) สั่ง (อาหาร/ของ)
 I would like to order, please.
 ขอสั่งอาหารหน่อยครับ
 
 Paint (v., n.) ทาสี, วาดภาพ
-I will paint the room blue. ผมจะทาสีห้องเป็นสีฟ้า นะครับ
+I like to paint.
+ผมชอบวาดภาพระบายสีครับ
 
 Park (n., v.) สวนสาธารณะ, จอดรถ
-Can I park here?
-ผมจอดรถตรงนี้ได้ไหมครับ
+Let's go to the park. / Can I park here?
+ไปสวนสาธารณะกันเถอะครับ / ผมจอดรถตรงนี้ได้ไหมครับ?
 
 Plan (n., v.) วางแผน
-What is your plan? แผนของคุณคืออะไรครับ
+What is your plan?
+แผนของคุณคืออะไรครับ?
 
 Post (n., v.) ส่งไปรษณีย์
-I need to post a letter. ผมต้องไปส่งจดหมายครับ
+I need to post a letter.
+ผมต้องไปส่งจดหมายครับ
 
 Practise / Practice (v., n.) ฝึกฝน
 I want to practice my English.
 ผมอยากฝึกภาษาอังกฤษครับ
 
 Prefer (v.) ชอบมากกว่า
-I prefer tea to coffee. ผมชอบชามากกว่ากาแฟครับ
+I prefer tea to coffee.
+ผมชอบชามากกว่ากาแฟครับ
 
 Prepare (v.) เตรียม
 I need a few minutes to prepare.
-ขอเวลาผมเตรียมตัวแป๊บ นะครับ
+ขอเวลาผมเตรียมตัวแป๊บนะครับ
 
 Put (v.) วาง, ใส่
 Where can I put my luggage?
-ผมวางกระเป๋า เดินทางไว้ตรงไหนได้บ้างครับ
+ผมวางกระเป๋าเดินทางไว้ตรงไหนได้บ้างครับ?
 
 Repeat (v.) พูดซ้ำ, ทำซ้ำ
 Can you repeat that, please?
-รบกวนพูดซ้ำอีกทีได้ไหมครับ
+รบกวนพูดซ้ำอีกทีได้ไหมครับ?
 
 Report (n., v.) รายงาน, แจ้งความ
 I need to report a lost passport.
 ผมต้องการแจ้งความเรื่องพาสปอร์ตหายครับ
 
 See (v.) เห็น, เข้าใจ, พบ
-I see what you mean. ผมเข้าใจที่คุณพูดครับ
+I see the mountain. / I see what you mean. / See you later.
+ผมเห็นภูเขาครับ / ผมเข้าใจที่คุณพูดครับ / ไว้เจอกันใหม่นะครับ
 
 Shop (n., v.) ร้านค้า, ซื้อของ
-Where is a good place to shop around here?
-แถวนี้มีที่ไหนน่าเดินซื้อของบ้างครับ
+The shop is closed. / Where is a good place to shop?
+ร้านปิดครับ / แถวนี้มีที่ไหนน่าเดินซื้อของบ้างครับ?
 
 Show (v., n.) แสดง, ให้ดู
 Can you show me on the map?
-ช่วยชี้ให้ดูในแผนที่หน่อยได้ไหมครับ
+ช่วยชี้ให้ดูในแผนที่หน่อยได้ไหมครับ?
 
 Spend (v.) ใช้ (เงิน/เวลา)
 I don't want to spend too much money.
@@ -1176,350 +1190,404 @@ I don't want to spend too much money.
 
 Take (v.) พาไป, เอาไป, ใช้เวลา
 Can you take me to this address?
-ช่วยไปส่งผมตามที่อยู่นี้หน่อยได้ไหมครับ
+ช่วยไปส่งผมตามที่อยู่นี้หน่อยได้ไหมครับ?
 
 Tell (v.) บอก, เล่า
 Could you tell me the way?
-ช่วยบอกทางผมหน่อยได้ไหมครับ
+ช่วยบอกทางผมหน่อยได้ไหมครับ?
 
 Try (v.) ลอง, พยายาม
-Can I try this on? ผมขอลองใส่ตัวนี้ได้ไหมครับ
+Can I try this on?
+ผมขอลองใส่ตัวนี้ได้ไหมครับ?
 
-Turn (v., n.) เลี้ยว, หมุน
-Please turn left here. เลี้ยวซ้ายตรงนี้เลยครับ
+Turn (v., n.) เลี้ยว, รอบ(คิว)
+Please turn left here. / Is it my turn?
+เลี้ยวซ้ายตรงนี้เลยครับ / ถึงคิวผมหรือยังครับ?
 
 Worry (v.) กังวล
-Don't worry, it's okay. ไม่ต้องกังวลครับ ไม่เป็นไร
+Don't worry, it's okay.
+ไม่ต้องกังวลครับ ไม่เป็นไร
 
 
 
 หมวดความรู้สึก
 Afraid (adj.) กลัว, เกรงว่า
-I'm afraid I don't understand.
-ผมเกรงว่าผมจะไม่เข้าใจน่ะครับ
+I am afraid of snakes. / I am afraid I don't understand.
+ผมกลัวงูครับ / ผมเกรงว่าผมจะไม่เข้าใจน่ะครับ
 
 Angry (adj.) โกรธ, โมโห
-Please don't be angry. อย่าโกรธเลยนะครับ
+Please don't be angry.
+อย่าโกรธเลยนะครับ
 
 Bored (adj.) เบื่อ (รู้สึกเบื่อ)
 Are you bored with the movie?
-คุณเบื่อหนังเรื่องนี้หรือเปล่าครับ
+คุณเบื่อหนังเรื่องนี้หรือเปล่าครับ?
 
 Boring (adj.) น่าเบื่อ
-The lecture was not boring.
-การบรรยายไม่น่าเบื่อเลยครับ
+The tour was not boring.
+การทัวร์ครั้งนี้ไม่น่าเบื่อเลยครับ
 
 Excited (adj.) ตื่นเต้น (รู้สึกตื่นเต้น)
-I am excited about the news.
-ผมตื่นเต้นกับข่าวนี้มากครับ
+I am excited about the trip.
+ผมตื่นเต้นกับการเที่ยวครั้งนี้มากครับ
 
 Exciting (adj.) น่าตื่นเต้น
 It is an exciting opportunity.
 เป็นโอกาสที่น่าตื่นเต้นมากครับ
 
 Famous (adj.) มีชื่อเสียง
-He is a famous actor. เขาเป็นนักแสดงที่มีชื่อเสียงครับ
+He is a famous actor.
+เขาเป็นนักแสดงที่มีชื่อเสียงครับ
 
 Interested (adj.) สนใจ (รู้สึกสนใจ)
-Are you interested in art? คุณสนใจศิลปะไหมครับ
+Are you interested in art?
+คุณสนใจศิลปะไหมครับ?
 
 Interesting (adj.) น่าสนใจ
 That is an interesting idea.
 นั่นเป็นความคิดที่น่าสนใจครับ
 
 Sorry (adj., exclam.) เสียใจ, ขอโทษ
-I am sorry for being late. ขอโทษที่ผมมาสายนะครับ
+I am sorry for being late. / Sorry!
+ผมเสียใจ(ขอโทษ)ที่มาสายครับ / ขอโทษครับ!
 
 Terrible (adj.) แย่มาก, เลวร้าย
-The traffic today is terrible. วันนี้รถติดแย่มากเลยครับ
+The traffic today is terrible.
+วันนี้รถติดแย่มากเลยครับ
 
 Tired (adj.) เหนื่อย
-You look a little tired.
-คุณดูเหนื่อยๆ นะครับ (แสดงความห่วงใย)
+I am very tired. / You look a little tired.
+ผมเหนื่อยมากครับ / คุณดูเหนื่อยๆ นะครับ (แสดงความห่วงใย)
 
 Wonderful (adj.) ยอดเยี่ยม, มหัศจรรย์
-Have a wonderful trip.
-ขอให้เป็นการเดินทางที่ยอดเยี่ยมนะครับ
+The view is wonderful.
+วิวสวยยอดเยี่ยมมากครับ
 
 Worried (adj.) กังวล
-Please don't be worried. ไม่ต้องกังวลนะครับ
+I am worried about the time. / Please don't be worried.
+ผมกังวลเรื่องเวลาครับ / ไม่ต้องกังวลนะครับ
 
 
 
 หมวดคุณสมบัติ
 Best (adj.) ดีที่สุด
 What is the best way to get there?
-เดินทางไปที่นั่นวิธีไหนดีที่สุดครับ
+เดินทางไปที่นั่นวิธีไหนดีที่สุดครับ?
 
 Better (adj.) ดีกว่า
-This one looks better. อันนี้ดูดีกว่านะครับ
+This one looks better.
+อันนี้ดูดีกว่านะครับ
 
 Cheap (adj.) ราคาถูก
-It is very cheap. ราคาถูกมากเลยครับ
+It is very cheap.
+ราคาถูกมากเลยครับ
 
 Clear (adj.) ชัดเจน, ใส
-Is the explanation clear? คำอธิบายชัดเจนไหมครับ
-Everything is clear, thank you.
-ทุกอย่างชัดเจนครับ ขอบคุณครับ
+The map is not clear. / The water is very clear.
+แผนที่ไม่ค่อยชัดเจนเลยครับ / น้ำใสมากเลยครับ
 
 Dark (adj.) มืด
-It is getting dark. ฟ้า เริ่มมืดแล้วครับ
+It is getting dark.
+ฟ้าเริ่มมืดแล้วครับ
 
 Dear (adj.) แพง (ภาษาเก่า), เป็นที่รัก
-He is a dear friend. เขาเป็นเพื่อนรักของผมครับ
+The food here is quite dear. / He is a dear friend.
+อาหารที่นี่ราคาค่อนข้างแพงครับ / เขาเป็นเพื่อนรักของผมครับ
 
 Different (adj.) แตกต่าง
-They are very different. พวกมันแตกต่างกันมากครับ
+They are very different.
+พวกมันแตกต่างกันมากครับ
 
 Difficult (adj.) ยาก
-Is it difficult? มันยากไหมครับ
+Is it difficult?
+มันยากไหมครับ?
 
 Extra (adj.) พิเศษ, เพิ่มเติม
 Is there an extra charge?
-มีค่าใช้จ่ายเพิ่มเติมไหมครับ
+มีค่าใช้จ่ายเพิ่มเติมไหมครับ?
 
 Fantastic (adj.) ยอดเยี่ยม, มหัศจรรย์
-That sounds fantastic. ฟังดูยอดเยี่ยมมากครับ
+That sounds fantastic.
+ฟังดูยอดเยี่ยมมากครับ
 
-Fat (adj.) อ้วน (คน), ไขมัน (อาหาร)
-This cat is very fat. แมวตัวนี้อ้วนจังครับ
+Fat (adj.) อ้วน (คน/สัตว์), ไขมัน (อาหาร)
+This cat is very fat. / Does this meat have a lot of fat?
+แมวตัวนี้อ้วนจังครับ / เนื้อชิ้นนี้มีไขมันเยอะไหมครับ?
 
-Fine (adj.) สบายดี, ดี, ค่าปรับ
-I am fine, thank you. ผมสบายดีครับ ขอบคุณครับ
+Fine (adj.) สบายดี/ดี, ค่าปรับ
+I am fine, thank you. / The weather is fine. / Do I have to pay a fine?
+ผมสบายดี ขอบคุณครับ / อากาศดีครับ / ผมต้องเสียค่าปรับไหมครับ?
 
 Free (adj.) ฟรี, ว่าง, อิสระ
-Are you free tomorrow? พรุ่งนี้คุณว่างไหมครับ
+Is the Wi-Fi free? / Are you free tomorrow? / I want to be free.
+ไวไฟฟรีไหมครับ? / พรุ่งนี้คุณว่างไหมครับ? / ผมอยากมีอิสระครับ
 
 Friendly (adj.) เป็นมิตร
-The staff are very friendly. พนักงานเป็นมิตรมากครับ
+The staff are very friendly.
+พนักงานเป็นมิตรมากครับ
 
 Full (adj.) เต็ม, อิ่ม
-I am full. ผมอิ่มแล้วครับ
+The bus is full. / I am full.
+รถบัสเต็มแล้วครับ / ผมอิ่มแล้วครับ
 
 Hard (adj., adv.) ยาก, แข็ง, หนัก
-He works very hard. เขาทำงานหนักมากครับ
+This question is hard. / The bed is too hard. / He works very hard.
+คำถามนี้ยากครับ / เตียงแข็งเกินไปครับ / เขาทำงานหนักมากครับ
 
 Heavy (adj.) หนัก
-This bag is heavy. กระเป๋า ใบนี้หนักนะครับ
+This bag is heavy.
+กระเป๋าใบนี้หนักนะครับ
 
-Kind (adj.) ใจดี (ถ้าเป็น n. แปลว่า ประเภท)
-You are very kind. คุณใจดีมากครับ
+Kind (adj.) ใจดี
+You are very kind.
+คุณใจดีมากครับ
 
 Light (adj.) เบา, สว่าง, อ่อน (สี)
-This box is very light. กล่องนี้เบามากครับ
+This box is very light. / It is light outside. / I like light blue.
+กล่องนี้เบามากครับ / ข้างนอกสว่างแล้วครับ / ผมชอบสีฟ้าอ่อนครับ
 
 Local (adj.) ท้องถิ่น
-I like local food. ผมชอบอาหารท้องถิ่นครับ
+I like local food.
+ผมชอบอาหารท้องถิ่นครับ
 
 Long (adj., adv.) ยาว, นาน
-It is a long story. เรื่องมันยาวครับ
+The queue is very long. / It is a long story.
+คิวจองยาวมากครับ / เรื่องมันยาวครับ
 
 Negative (adj.) เชิงลบ, ปฏิเสธ
-The result is negative. ผลเป็นลบครับ
+The result is negative.
+ผลเป็นลบครับ
 
 Nice (adj.) ดี, น่ารัก, นิสัยดี
-It is a nice day. วันนี้อากาศดีนะครับ
+It is a nice day.
+วันนี้อากาศดีนะครับ
 
 Only (adj., adv.) เท่านั้น, เดียว
-Cash only, please. รับเฉพาะเงินสดนะครับ
+I have only cash.
+ผมมีแต่เงินสดครับ
 
 Opposite (adj., n., prep., adv.) ตรงข้าม
-It is opposite the bank. อยู่ตรงข้ามธนาคารครับ
+Is it opposite the bank?
+มันอยู่ตรงข้ามธนาคารใช่ไหมครับ?
 
 Poor (adj.) ยากจน, น่าสงสาร, คุณภาพแย่
-The signal is poor here. สัญญาณตรงนี้ไม่ค่อยดีเลยครับ
+He is poor. / The poor dog is hungry. / The signal is poor here.
+เขาฐานะยากจนครับ / เจ้าหมาที่น่าสงสารกำลังหิวครับ / สัญญาณตรงนี้ไม่ค่อยดีเลยครับ
 
 Positive (adj.) เชิงบวก
-Please stay positive. มองโลกในแง่บวกไว้นะครับ
+I try to stay positive.
+ผมพยายามมองโลกในแง่บวกครับ
 
 Possible (adj.) เป็นไปได้
-Is it possible? มันเป็นไปได้ไหมครับ
+Is it possible?
+มันเป็นไปได้ไหมครับ?
 
 Pretty (adj., adv.) สวย, ค่อนข้าง
-It is pretty good. มันค่อนข้างดีเลยครับ
+She is very pretty. / It is pretty good.
+เธอสวยมากครับ / มันค่อนข้างดีเลยครับ
 
 Quick (adj.) เร็ว, ไว
-Have a quick look. ลองดูผ่านๆ (ดูเร็วๆ) หน่อยนะครับ
+I need a quick meal.
+ผมต้องการมื้อเร่งด่วน (กินเร็วๆ) ครับ
 
 Quiet (adj.) เงียบ
-Please be quiet. รบกวนเงียบหน่อยนะครับ
+I want a quiet room.
+ผมอยากได้ห้องเงียบๆ ครับ
 
 Real (adj.) จริง, แท้
-Is this real leather? อันนี้หนังแท้ไหมครับ
+Is this real leather?
+อันนี้หนังแท้ไหมครับ?
 
 Rich (adj.) รวย, เข้มข้น (รสชาติ)
-The sauce is very rich. ซอสรสชาติเข้มข้นมากครับ
+He is a rich man. / The sauce is very rich.
+เขาเป็นคนรวยครับ / ซอสรสชาติเข้มข้นมากครับ
 
 Right (adj., adv., n.) ถูกต้อง, ขวา, สิทธิ
-You are right. คุณพูดถูกครับ
+Am I right? / Is it on the right? / I know my rights.
+ผมพูดถูกไหมครับ? / มันอยู่ทางขวาใช่ไหมครับ? / ผมรู้สิทธิของผมครับ
 
 Same (adj., pron., adv.) เหมือนกัน
-I feel the same. ผมก็รู้สึกเหมือนกันครับ
+I feel the same.
+ผมก็รู้สึกเหมือนกันครับ
 
 Similar (adj.) คล้ายกัน
-They look similar. ดูคล้ายกันเลยนะครับ
+They look similar.
+ดูคล้ายกันเลยนะครับ
 
 Tall (adj.) สูง
-He is very tall. เขาสูงมากเลยครับ
+He is very tall.
+เขาสูงมากเลยครับ
 
 Useful (adj.) มีประโยชน์
-This information is useful. ข้อมูลนี้มีประโยชน์ค รับ
+This information is useful.
+ข้อมูลนี้มีประโยชน์ครับ
 
 Warm (adj.) อบอุ่น
-It is warm today. วันนี้อากาศอบอุ่นนะครับ
+It is warm today.
+วันนี้อากาศอบอุ่นนะครับ
 
 
 
 หมวดคำนำหน้านามและคำบ่งชี้ต่างๆ
 Another (det., pron.) อีกอัน, อื่น
-Can I have another glass? ผมขออีกแก้วได้ไหมครับ
+Can I have another glass?
+ผมขออีกแก้วได้ไหมครับ?
 
 Any (det., pron.) บ้าง, ใดๆ, เลย
-Do you have any rooms available?
-มีห้องว่างบ้างไหมครับ
+Do you have any rooms available? / I do not have any questions.
+มีห้องว่างบ้างไหมครับ? / ผมไม่มีคำถามอะไรเลยครับ
 
 Both (det., pron.) ทั้งสอง, ทั้งคู่
-I will take both. ผมเอาทั้งสองอันเลยครับ
+I will take both.
+ผมเอาทั้งสองอันเลยครับ
 
 Each (det., pron., adv.) แต่ละ, ละ
-How much is each? ราคาอันละเท่าไหร่ครับ
+How much is each?
+ราคาอันละเท่าไหร่ครับ?
 
 Every (det.) ทุกๆ
-I exercise every day. ผมออกกำลังกายทุกวันครับ
+I exercise every day.
+ผมออกกำลังกายทุกวันครับ
 
-Few (det., adj., pron.) น้อ ย, สองสาม...
+Few (det., adj., pron.) น้อย, สองสาม... (ใช้กับนามนับได้)
 I have a few minutes.
 ผมพอมีเวลาสักสองสามนาทีครับ
 
-Last (det.) สุดท้าย, ล่าสุด
-What time is the last train?
-รถไฟเที่ยวสุดท้ายกี่โมงครับ
+Last (det.) สุดท้าย, ที่แล้ว (ล่าสุด)
+What time is the last train? / I visited Thailand last year.
+รถไฟเที่ยวสุดท้ายกี่โมงครับ? / ผมมาเที่ยวเมืองไทยปีที่แล้วครับ
 
 Many (det., pron.) มาก (ใช้กับนามนับได้)
-There are many people here. ที่นี่คนเยอะมากเลยครับ
+There are many people here.
+ที่นี่คนเยอะมากเลยครับ
 
 More (det., pron., adv.) มากกว่า, เพิ่มอีก
-Can I have some more water?
-ขอน้ำ เพิ่มหน่อยได้ไหมครับ
+This hotel is more expensive. / Can I have some more water?
+โรงแรมนี้แพงกว่าครับ / ขอน้ำเพิ่มหน่อยได้ไหมครับ?
 
 Most (det., pron., adv.) ส่วนใหญ่, ที่สุด
-Which dish is the most popular?
-เมนูไหนนิยมที่สุดครั
+Most shops are open today. / Which dish is the most popular?
+ร้านค้าส่วนใหญ่เปิดวันนี้ครับ / เมนูไหนนิยมที่สุดครับ?
 
 Much (det., pron., adv.) มาก (ใช้กับนามนับไม่ได้)
-Thank you very much. ขอบคุณมากครับ
+I do not have much time. / Thank you very much.
+ผมมีเวลาไม่มากครับ / ขอบคุณมากครับ
 
 Other (adj., pron.) อื่นๆ
-Do you have any other ideas?
-คุณมีความคิดเห็นอื่นๆ อีกไหมครับ
+Do you have any other colors?
+คุณมีสีอื่นๆ อีกไหมครับ?
+(ปรับแก้ให้เหมาะกับการซื้อของ)
 
 Same (adj., pron., adv.) เหมือนกัน, เดียวกัน
 I will have the same, please.
-ผมขอแบบเดียวกันครับ (ใช้เวลาสั่งอาหารตามคนอื่น)
+ผมขอแบบเดียวกันครับ
 
 Some (det., pron.) บ้าง, บาง
 Can I have some tissues?
-ผมขอทิชชู่หน่อยได้ไหมครับ
+ผมขอทิชชู่หน่อยได้ไหมครับ?
 
 Such (det., pron.) เช่นนั้น, มากขนาดนั้น
 It is such a nice day.
-วันนี้อากาศดีจริงๆ ครับ
+วันนี้อากาศดีจริงๆ (ดีมากขนาดนั้น) ครับ
 
 That (det., pron., conj.) นั่น, นั้น
 That looks great.
 นั่นดูยอดเยี่ยมมากครับ
 
-This (det., pron.) นี่ , นี้
+This (det., pron.) นี่, นี้
 Is this seat free?
-ที่นั่งตรงนี้ว่างไหมครับ
+ที่นั่งตรงนี้ว่างไหมครับ?
 
-These (det., pron.) เหล่านี้ , พวกนี้  (พหูพจน์ข อง This)
+These (det., pron.) เหล่านี้, พวกนี้ (พหูพจน์ของ This)
 These bags are heavy.
-กระเป๋า พวกนี้หนักนะครับ
+กระเป๋าพวกนี้หนักนะครับ
 
-Those (det., pron.) เหล่านั้น, พวกนั้น (พหูพจน์ข อง That)
+Those (det., pron.) เหล่านั้น, พวกนั้น (พหูพจน์ของ That)
 How much are those?
-ของพวกนั้นราคาเท่าไหร่ครับ
+ของพวกนั้นราคาเท่าไหร่ครับ?
 
 
 
 หมวดคำบุพบทและคำระบุตำแหน่ง
 About (prep., adv.) เกี่ยวกับ, ประมาณ
-What is this book about? หนังสือเล่มนี้เกี่ยวกับอะไรครับ
+What is this book about? / It takes about ten minutes to walk there.
+หนังสือเล่มนี้เกี่ยวกับอะไรครับ? / เดินไปที่นั่นใช้เวลาประมาณสิบนาทีครับ
 
 Above (prep., adv.) เหนือ, ข้างบน
-Please look at the picture above.
-กรุณาดูรูปภาพด้านบนนะครับ
+Is there a room above this floor?
+มีห้องพักที่อยู่เหนือชั้นนี้ขึ้นไปไหมครับ?
 
-Across (prep., adv.) ข้าม, ฝั่ งตรงข้าม
+Across (prep., adv.) ข้าม, ฝั่งตรงข้าม
 The bank is across the street.
-ธนาคารอยู่ฝั่ งตรงข้ามถนนครับ
+ธนาคารอยู่ฝั่งตรงข้ามถนนครับ
 
 After (prep.) หลังจาก
-Let's meet after lunch. เจอกันหลังมื้อเที่ยงนะครับ
+Let's meet after lunch.
+เจอกันหลังมื้อเที่ยงนะครับ
 
 Around (prep., adv.) รอบๆ, ประมาณ
-Is there an ATM around here?
-แถวนี้มีตู้เอทีเอ็มไหมครับ
+Is there an ATM around here? / I will arrive around 9 AM.
+แถวนี้ (รอบๆ นี้) มีตู้เอทีเอ็มไหมครับ? / ผมจะไปถึงประมาณเก้าโมงเช้าครับ
 
 As (prep.) ในฐานะ, เหมือนกับ
-I work as a teacher. ผมทำงานในฐานะครูครับ
+I am here as a tourist. / It looks exactly the same as the picture.
+ผมมาที่นี่ในฐานะนักท่องเที่ยวครับ / มันดูเหมือนในรูปเปี๊ยบเลยครับ
 
 At (prep.) ที่, เวลา
-I will wait for you at the entrance.
-เดี๋ยวผมจะรอคุณอยู่ที่ทางเข้านะครับ
+I will wait for you at the entrance. / See you at 8 o'clock.
+เดี๋ยวผมจะรอคุณอยู่ที่ทางเข้านะครับ / เจอกันตอนแปดโมงนะครับ
 
 Before (prep.) ก่อน
-We should get to the airport two hours before
-departure.
-พวกเราควรไปถึงสนามบินก่อนเวลาเครื่องออกสองชั่วโมงนะ
-ครับ (ใช้เตือนเพื่อนร่วมทริปเพื่อกันตกเครื่อง)
+We should get to the airport two hours before departure.
+พวกเราควรไปถึงสนามบินก่อนเวลาเครื่องออกสองชั่วโมงนะครับ
 
 Behind (prep., adv.) ข้างหลัง
 Is there a garden behind the hotel?
 มีสวนอยู่ด้านหลังโรงแรมไหมครับ?
 
 Below (adv., prep.) ข้างล่าง, ต่ำกว่า
-Please verify your signature below.
-รบกวนตรวจสอบลายเซ็นของคุณด้านล่างด้วยครับ
+Is the restaurant below this floor? / The temperature is below 20 degrees.
+ร้านอาหารอยู่ชั้นล่าง (ต่ำกว่าชั้นนี้) ใช่ไหมครับ? / อุณหภูมิต่ำกว่า 20 องศาครับ
 
 Between (prep.) ระหว่าง
 What is the difference between these two rooms?
 ห้องพักสองห้องนี้แตกต่างกันตรงไหนครับ?
 
-Down (adv., prep.) ลง, ไปตาม(ถนน), ลดลง
-Go down this street and turn left.
-เดินตรงไปตามถนนเส้นนี้แล้วเลี้ยวซ้ายนะครับ
+Down (adv., prep.) ลง, ไปตาม (ถนน), ลดลง/เบาลง
+I am going down to the lobby. / Go down this street. / Can you turn the music down?
+ผมกำลังลงไปที่ล็อบบี้ครับ / เดินไปตามถนนเส้นนี้ครับ / ช่วยเบาเสียงเพลงหน่อยได้ไหมครับ?
 
 During (prep.) ระหว่าง (ช่วงเวลา)
 Is it safe to walk around here during the night?
 แถวนี้เดินเที่ยวช่วงกลางคืนปลอดภัยไหมครับ?
 
 For (prep.) สำหรับ, เป็นเวลา
-I would like to rent a car for three days.
-ผมต้องการเช่ารถสักสามวันครับ
+This gift is for you. / I would like to rent a car for three days.
+ของขวัญชิ้นนี้สำหรับคุณครับ / ผมต้องการเช่ารถสักสามวันครับ
 
 From (prep.) จาก
 How long does it take to get here from the airport?
 เดินทางจากสนามบินมาที่นี่ใช้เวลานานแค่ไหนครับ?
 
 In (prep., adv.) ใน, ในช่วง
-Do you have this shirt in a larger size?
-คุณมีเสื้อตัวนี้ในไซส์ที่ใหญ่กว่านี้ไหมครับ?
+I am in the hotel room. / See you in the morning.
+ผมอยู่ในห้องพักครับ / เจอกันในช่วงเช้านะครับ
 
 Into (prep.) เข้าไปใน
-Please insert your card into the slot.
-รบกวนเสียบบัตรเข้าไปในช่องด้วยนะครับ
+Can I go into this room?
+ผมเข้าไปในห้องนี้ได้ไหมครับ?
 
 Like (prep.) เหมือน, เช่น
 I am looking for a local restaurant like this one.
 ผมกำลังมองหาร้านอาหารท้องถิ่นแบบร้านนี้ครับ
 
 Near (prep., adj., adv.) ใกล้
-Is there a bank near here? แถวนี้มีธนาคารไหมครับ
+Is there a bank near here?
+แถวนี้มีธนาคารไหมครับ?
 
 Next (adj., adv.) ถัดไป
-See you next week. เจอกันสัปดาห์หน้า นะครับ
+See you next week.
+เจอกันสัปดาห์หน้านะครับ
 
 Next to (prep.) ติดกับ, ถัดจาก
 Is there a convenience store next to the hotel?
@@ -1529,111 +1597,116 @@ Of (prep.) ของ, แห่ง
 Could you take a picture of us, please?
 รบกวนช่วยถ่ายรูปให้พวกเราหน่อยได้ไหมครับ?
 
-Off (adv., prep.) ออกจาก, ลง(รถ), ปิด
-Please drop me off at the corner.
-รบกวนช่วยจอดส่งผมตรงหัวมุมด้วยนะครับ
+Off (adv., prep.) ออกจาก, ลง (รถ), ปิด
+We need to get off at the next station. / Please take off your shoes. / Did you turn off the air conditioner?
+พวกเราต้องลงรถที่สถานีหน้าครับ / กรุณาถอดรองเท้าด้วยนะครับ / คุณปิดแอร์หรือยังครับ?
 
-On (prep., adv.) บน, เปิด(เครื่องใช้ไฟฟ้า )
-Is the tax included on the menu price?
-ภาษีรวมอยู่ในราคาเมนูแล้วหรือยังครับ?
+On (prep., adv.) บน, เปิด (เครื่องใช้ไฟฟ้า)
+I left my key on the table. / Can I turn on the TV?
+ผมลืมกุญแจไว้บนโต๊ะครับ / ผมขอเปิดทีวีได้ไหมครับ?
 
 Out (adv./prep.) ออก, หมด
-I would like to check out now.
-ผมต้องการเช็คเอาท์ตอนนี้เลยครับ
+I want to go out tonight. / We are out of water.
+คืนนี้ผมอยากออกไปเที่ยวข้างนอกครับ / น้ำดื่มพวกเราหมดแล้วครับ
 
 Outside (adv.) ข้างนอก
-Please wait outside. รบกวนรอข้างนอกสักครู่นะครับ
+Can we sit outside?
+พวกเราขอนั่งข้างนอกได้ไหมครับ?
 
-Over (prep., adv.) เหนือ, ข้าม, เกิน, จบ
-We walked over the bridge to get to the market.
-พวกเราเดินข้ามสะพานเพื่อไปที่ตลาดครับ
+Over (prep., adv.) เหนือ/ข้าม, เกิน, จบ
+We walked over the bridge. / It costs over 500 baht. / The show is over.
+พวกเราเดินข้ามสะพานมาครับ / ราคามันเกิน 500 บาทครับ / การแสดงจบแล้วครับ
 
 Past (adj., n., prep.) ผ่าน, อดีต
-Walk past the cinema. เดินผ่านโรงหนังไปนะครับ
+Did we walk past the hotel?
+พวกเราเดินผ่านโรงแรมมาแล้วหรือเปล่าครับ?
 
 Through (prep., adv.) ผ่าน (ทะลุ), ตลอด
-Go through that door. เดินผ่านประตูบานนั้นไปเลยครับ
+Can I walk through here?
+ผมขอเดินผ่าน (ทะลุ) ตรงนี้ได้ไหมครับ?
 
 To (prep.) ถึง, ไปยัง
-I am going to the market. ผมกำลังจะไปตลาดครับ
+I am going to the market.
+ผมกำลังจะไปตลาดครับ
 
-Under (prep., adv.) ใต้, ข้างล่าง, ต่ำกว่า
-Please stow your bag under the seat in front of you.
-รบกวนเก็บกระเป๋า ไว้ใต้ที่นั่งด้านหน้า ด้วยนะครับ
+Under (prep., adv.) ใต้, ข้างล่าง
+Is my bag under the seat?
+กระเป๋าผมอยู่ใต้ที่นั่งใช่ไหมครับ?
 
 Up (adv., prep.) ขึ้น, ข้างบน
-Let's go up. ขึ้นไปข้างบนกันเถอะครับ
+Let's go up.
+ขึ้นไปข้างบนกันเถอะครับ
 
 With (prep.) กับ, ด้วย
 Would you like to come with me?
-คุณอยากไปกับผมไหมครับ
+คุณอยากไปกับผมไหมครับ?
 
 Without (prep.) ปราศจาก, โดยไม่มี
 Coffee without sugar, please.
-ขอกาแฟไม่ใส่น้ำ ตาลนะครับ
+ขอกาแฟไม่ใส่น้ำตาลนะครับ
 
 Away (adv.) ออกไป, ห่างออกไป
 How far away is the city center?
-ตัวเมืองอยู่ห่างออกไปไกลแค่ไหนครับ
+ตัวเมืองอยู่ห่างออกไปไกลแค่ไหนครับ?
 
 Downstairs (adv.) ชั้นล่าง
 I will meet you downstairs in the lobby.
 เดี๋ยวผมลงไปเจอคุณชั้นล่างตรงล็อบบี้นะครับ
 
 Far (adv.) ไกล
-Is it far from here? มันไกลจากที่นี่ไหมครับ
+Is it far from here?
+มันไกลจากที่นี่ไหมครับ?
 
-Here (adv.) ที่นี่ , ตรงนี้
+Here (adv.) ที่นี่, ตรงนี้
 Can I leave my luggage here for a few hours?
-ผมขอฝากกระเป๋า เดินทางไว้ตรงนี้สักสองสามชั่วโมงได้ไหม
-ครับ
+ผมขอฝากกระเป๋าเดินทางไว้ตรงนี้สักสองสามชั่วโมงได้ไหมครับ?
 
 Inside (prep., adv.) ข้างใน
-It is cool inside. ข้างในอากาศเย็นสบายครับ
+It is cool inside.
+ข้างในอากาศเย็นสบายครับ
 
 There (adv.) ที่นั่น, ตรงนั้น
 Can we sit over there by the window?
-พวกเราขอนั่งตรงโน้น  ริมหน้า ต่างได้ไหมครับ
+พวกเราขอนั่งตรงโน้นริมหน้าต่างได้ไหมครับ?
 
 Upstairs (adv.) ชั้นบน
 Is the swimming pool upstairs?
-สระว่ายน้ำ อยู่ชั้นบนใช่ไหมครับ
+สระว่ายน้ำอยู่ชั้นบนใช่ไหมครับ?
 
 
 
-หมวดคำเชื่อมและคำกริยาวิเศษณ์ข ยายความ
+หมวดคำเชื่อมและคำกริยาวิเศษณ์ขยายความ
 So (adv., conj.) ดังนั้น, มาก
-It was raining, so I took a taxi.
-ฝนตก ผมเลยนั่งแท็กซี่มาครับ
+It was raining, so I took a taxi. / It is so hot today.
+ฝนตกผมเลยนั่งแท็กซี่มาครับ / วันนี้อากาศร้อนมากครับ
 
-Than (conj.) กว่า (เปรียบเทียบ)
-This one is better than that one. อันนี้ดีกว่าอันนั้นครับ
+Than (conj.) กว่า
+This one is better than that one.
+อันนี้ดีกว่าอันนั้นครับ
 
 Until (conj./prep.) จนกระทั่ง, จนถึง
 Can I leave my luggage here until check-in time?
-ผมขอฝากกระเป๋า เดินทางไว้ที่นี่จนกว่าจะถึงเวลาเช็คอินได้
-ไหมครับ
+ผมขอฝากกระเป๋าเดินทางไว้ที่นี่จนกว่าจะถึงเวลาเช็คอินได้ไหมครับ?
 
 While (conj.) ในขณะที่, ระหว่างที่
 Could you watch my bag while I go to the restroom?
-รบกวนช่วยดูกระเป๋า ให้ผมหน่อยระหว่างที่ผมไปเข้าห้องน้ำ
-ได้ไหมครับ
+รบกวนช่วยดูกระเป๋าให้ผมหน่อยระหว่างที่ผมไปเข้าห้องน้ำได้ไหมครับ?
 
 However (adv.) อย่างไรก็ตาม
 It is raining; however, we must go.
-ฝนตก แต่อย่างไรก็ตามเราต้องไปครับ
+ฝนตกแต่อย่างไรก็ตามเราต้องไปครับ
 
 Also (adv.) ด้วย, เช่นกัน, อีกด้วย
 I speak Thai, and also English.
-ผมพูดภาษาไทย และภาษาอังกฤษด้วยครับ
+ผมพูดภาษาไทยและภาษาอังกฤษด้วยครับ
 
 Even (adv.) แม้แต่, แม้กระทั่ง
-This shop is open even on Sundays.
-ร้านนี้เปิดแม้กระทั่งวันอาทิตย์เลยครับ
+This city is beautiful, even in the rain.
+เมืองนี้สวยนะครับแม้กระทั่งตอนฝนตก
 
 Just (adv.) เพิ่งจะ, แค่
-I am just looking, thank you.
-ผมแค่ขอเดินดูเฉยๆ ขอบคุณครับ
+I just arrived at the hotel. / I am just looking, thank you.
+ผมเพิ่งมาถึงโรงแรมครับ / ผมแค่ขอเดินดูเฉยๆ ขอบคุณครับ
 
 Maybe (adv.) อาจจะ, บางที
 Maybe we can come back later.
@@ -1641,13 +1714,13 @@ Maybe we can come back later.
 
 Only (adj., adv.) เท่านั้น, เพียงแค่
 Do you accept credit cards, or is it cash only?
-รับบัตรเครดิตไหมครับ หรือว่ารับเฉพาะเงินสด
+รับบัตรเครดิตไหมครับหรือว่ารับเฉพาะเงินสด?
 
-Perhaps (adv.) บางที (สุภาพกว่า Maybe)
+Perhaps (adv.) บางที (สุภาพ)
 Perhaps there is a misunderstanding.
 บางทีอาจจะมีการเข้าใจผิดกันก็ได้ครับ
 
-Probably (adv.) น่าจะ, คงจะ (มีความเป็นไปได้สูงกว่า Maybe)
+Probably (adv.) น่าจะ, คงจะ
 We will probably arrive a bit late.
 พวกเราน่าจะไปถึงช้าหน่อยนะครับ
 
@@ -1660,8 +1733,8 @@ I really appreciate your help.
 ผมซาบซึ้งในความช่วยเหลือของคุณจริงๆ ครับ
 
 Well (adv., adj., exclam.) ดี, สบายดี, ก็... (คำอุทาน)
-I hope you are well.
-หวังว่าคุณคงสบายดีนะครับ
+I do not speak English very well. / I hope you are well. / Well, let me think.
+ผมพูดภาษาอังกฤษไม่ค่อยเก่งครับ / หวังว่าคุณคงสบายดีนะครับ / เอ้อ ขอผมคิดดูก่อนนะครับ
 
 
 
@@ -1683,8 +1756,8 @@ Shall we take a taxi or walk? / I shall be at the hotel by 6 PM.
 เราจะนั่งแท็กซี่หรือเดินไปกันดีครับ? / ผมจะไปถึงโรงแรมตอน 6 โมงเย็นครับ (ทางการ)
 
 Would (modal v.) จะ, อยากจะ, รบกวน...ไหม (ใช้ขอร้อง)
-Would you mind taking a photo for us?
-รบกวนช่วยถ่ายรูปให้พวกเราหน่อยได้ไหมครับ?
+Would you mind taking a photo for us? / I would like a glass of water, please. / That would be great.
+รบกวนช่วยถ่ายรูปให้พวกเราหน่อยได้ไหมครับ? / ผมขอน้ำเปล่าแก้วหนึ่งครับ (ใช้สั่งอาหาร/ของ แบบสุภาพ) / นั่นน่าจะดีมากเลยครับ (ใช้ตอบรับข้อเสนอ)
 
 
 
