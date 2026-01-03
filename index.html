@@ -69,7 +69,7 @@
                         Category
                     </span>
 
-                    <div class="absolute top-6 right-6 flex gap-2 z-30" onclick="event.stopPropagation()">
+                    <div id="front-audio-btns" class="absolute top-6 right-6 flex gap-2 z-30" onclick="event.stopPropagation()">
                         <button id="btn-audio-front-slow" class="w-10 h-10 flex items-center justify-center bg-indigo-50 text-indigo-600 rounded-full hover:bg-indigo-100 transition shadow-sm border border-indigo-200" title="ฟังช้าๆ">
                             <span class="text-xs font-bold">0.5x</span>
                         </button>
@@ -79,15 +79,21 @@
                     </div>
                     
                     <div class="flex flex-col items-center w-full px-8 justify-center h-full text-center">
-                        <p class="text-sm text-slate-400 font-bold tracking-[0.2em] uppercase mb-8">Question</p>
+                        <p id="question-label" class="text-sm text-slate-400 font-bold tracking-[0.2em] uppercase mb-8">Question</p>
                         
                         <h2 id="card-front-text" class="text-3xl md:text-5xl font-bold text-slate-800 mb-8 font-heading break-words w-full leading-snug">
                             Loading...
                         </h2>
 
-                        <p class="text-slate-400 text-base mt-4 animate-pulse font-light flex items-center gap-2">
+                        <p id="tap-hint" class="text-slate-400 text-base mt-4 animate-pulse font-light flex items-center gap-2">
                             <i class="fa-solid fa-arrow-rotate-left"></i> แตะเพื่อดูเฉลย
                         </p>
+
+                        <div id="next-category-area" class="mt-2 hidden w-full px-4">
+                            <button id="btn-next-category" class="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl shadow-lg transition transform hover:-translate-y-1 font-bold text-xl flex items-center justify-center gap-3" onclick="event.stopPropagation()">
+                                <span>ไปหมวดถัดไป</span> <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -107,7 +113,6 @@
                         
                         <div class="text-center mb-6 w-full">
                             <h3 id="card-vocab-back" class="text-4xl md:text-5xl font-bold text-indigo-700 mb-4 font-heading">Vocab</h3>
-                            
                             <p id="card-meaning" class="text-2xl md:text-4xl text-slate-800 font-semibold leading-relaxed py-2">
                                 Meaning
                             </p>
@@ -127,12 +132,6 @@
                                     <i class="fa-solid fa-volume-high text-lg"></i>
                                 </button>
                             </div>
-                        </div>
-
-                        <div id="next-category-area" class="mt-6 hidden w-full">
-                            <button id="btn-next-category" class="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl shadow-lg transition transform hover:-translate-y-1 font-bold text-xl flex items-center justify-center gap-3" onclick="event.stopPropagation()">
-                                <span>ไปหมวดถัดไป</span> <i class="fa-solid fa-arrow-right"></i>
-                            </button>
                         </div>
                     </div>
                 </div>

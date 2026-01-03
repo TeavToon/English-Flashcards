@@ -1,21 +1,19 @@
 // script.js
-import { RAW_DATA } from './data.js'; 
+import { RAW_DATA } from './data.js';
 import { parseFlashcardData } from './parser.js';
 
 class FlashcardApp {
   constructor(rawData) {
     this.allCards = [];
     this.categories = new Set();
-    this.categoryList = []; // เก็บรายชื่อหมวดหมู่แบบ Array เพื่อให้หาลำดับถัดไปได้
+    this.categoryList = [];
     this.activeCards = [];
     this.currentIndex = 0;
     this.isFlipped = false;
 
-    // Load ข้อมูลจาก LocalStorage
     this.knownCards = new Set(JSON.parse(localStorage.getItem("knownCards") || "[]"));
     this.currentCategory = localStorage.getItem("lastCategory") || "all";
 
-    // Bind UI Elements
     this.ui = {
       categorySelect: document.getElementById("category-select"),
       totalCount: document.getElementById("total-count"),
@@ -39,9 +37,12 @@ class FlashcardApp {
       btnAudioBackNormal: document.getElementById("btn-audio-back-normal"),
       btnAudioSentNormal: document.getElementById("btn-audio-sent-normal"),
       
-      // เพิ่มส่วนนี้: พื้นที่ปุ่มไปหมวดถัดไป
+      // Elements for Empty State
       nextCategoryArea: document.getElementById("next-category-area"),
       btnNextCategory: document.getElementById("btn-next-category"),
+      frontAudioBtns: document.getElementById("front-audio-btns"),
+      tapHint: document.getElementById("tap-hint"),
+      questionLabel: document.getElementById("question-label"),
     };
 
     this.init(rawData);
@@ -49,14 +50,10 @@ class FlashcardApp {
 
   init(rawData) {
     parseFlashcardData(rawData, this.categories, this.allCards);
-    
-    // แปลง Set เป็น Array เพื่อใช้หา Next Category
     this.categoryList = Array.from(this.categories); 
-    
     this.setupCategories();
     this.setupEventListeners();
     
-    // ตรวจสอบว่าหมวดปัจจุบันถูกต้องไหม
     if (this.categoryList.includes(this.currentCategory) || this.currentCategory === 'all') {
         this.ui.categorySelect.value = this.currentCategory;
     } else {
@@ -91,13 +88,11 @@ class FlashcardApp {
     });
     this.ui.btnReset.addEventListener("click", () => this.resetProgress());
     
-    // ปุ่มไปหมวดถัดไป
     this.ui.btnNextCategory.addEventListener("click", (e) => {
         e.stopPropagation();
         this.goToNextCategory();
     });
 
-    // Keyboard Shortcuts
     document.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight") this.navigate(1);
       if (e.key === "ArrowLeft") this.navigate(-1);
@@ -107,7 +102,6 @@ class FlashcardApp {
       }
     });
 
-    // ปุ่มเสียง
     this.ui.btnAudioFrontNormal.addEventListener("click", (e) => { e.stopPropagation(); this.playCurrentCardAudio(1.0, 'front'); });
     this.ui.btnAudioFrontSlow.addEventListener("click", (e) => { e.stopPropagation(); this.playCurrentCardAudio(0.5, 'front'); });
     this.ui.btnAudioBackNormal.addEventListener("click", (e) => { e.stopPropagation(); this.playCurrentCardAudio(1.0, 'vocab'); });
@@ -125,21 +119,17 @@ class FlashcardApp {
     if (this.activeCards.length === 0) return;
     const card = this.activeCards[this.currentIndex];
     let textToSpeak = "";
-    
     if (type === 'front') textToSpeak = card.exampleEn ? card.exampleEn : card.vocab;
     else if (type === 'vocab') textToSpeak = card.vocab;
     else if (type === 'sentence') textToSpeak = card.exampleEn;
-
     if (textToSpeak) this.speak(textToSpeak, rate);
   }
 
   speak(text, rate) {
     if (!window.speechSynthesis) return;
-
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
     
-    // Logic เลือกเสียงผู้หญิง
     let voices = window.speechSynthesis.getVoices();
     const femaleVoiceNames = ['Google US English', 'Microsoft Zira', 'Samantha', 'Google UK English Female', 'Karen', 'Tessa'];
     let selectedVoice = voices.find(v => 
@@ -152,7 +142,6 @@ class FlashcardApp {
     if (selectedVoice) utterance.voice = selectedVoice;
     utterance.lang = 'en-US';
     utterance.rate = rate;
-    
     window.speechSynthesis.speak(utterance);
   }
 
@@ -170,12 +159,17 @@ class FlashcardApp {
   updateDisplay() {
     const count = this.activeCards.length;
     this.ui.totalCount.innerText = count;
-    this.ui.nextCategoryArea.classList.add('hidden'); // ซ่อนปุ่ม Next Category ไว้ก่อน
+    
+    // รีเซ็ต UI ให้เป็นปกติก่อน (แสดงปุ่มเสียง, ซ่อนปุ่ม Next Category)
+    this.ui.nextCategoryArea.classList.add('hidden');
+    this.ui.frontAudioBtns.style.opacity = '1';
+    this.ui.frontAudioBtns.style.pointerEvents = 'auto';
+    this.ui.tapHint.style.opacity = '1';
+    this.ui.questionLabel.innerText = "Question";
 
     if (count === 0) { this.showEmptyState(); return; }
     
     const card = this.activeCards[this.currentIndex];
-    
     this.ui.cardCategory.innerText = card.category;
     this.ui.cardFrontText.innerText = card.exampleEn ? `"${card.exampleEn}"` : card.vocab;
     this.ui.cardBackVocab.innerText = `${card.vocab} ${card.type}`;
@@ -196,12 +190,16 @@ class FlashcardApp {
   }
 
   showEmptyState() {
+    // ปรับข้อความและซ่อน Element รกๆ ด้านหน้า
     this.ui.cardCategory.innerText = "Completed";
-    this.ui.cardFrontText.innerText = "🎉 ยอดเยี่ยม!";
-    this.ui.cardBackVocab.innerText = "หมดแล้ว";
-    this.ui.cardMeaning.innerText = "คุณเรียนรู้ครบทุกคำในหมวดนี้แล้ว";
-    this.ui.cardExTh.innerText = "กดปุ่ม 'รีเซ็ต' หรือเลือกหมวดอื่น";
-    this.ui.cardExEn.innerText = "";
+    this.ui.cardFrontText.innerHTML = "🎉 ยอดเยี่ยม!<br><span class='text-lg font-normal text-slate-500 block mt-4'>คุณเรียนรู้ครบทุกคำในหมวดนี้แล้ว</span>";
+    this.ui.questionLabel.innerText = "Finish";
+    
+    // ซ่อนปุ่มเสียงและคำแนะนำ
+    this.ui.frontAudioBtns.style.opacity = '0';
+    this.ui.frontAudioBtns.style.pointerEvents = 'none';
+    this.ui.tapHint.style.opacity = '0';
+
     this.ui.progressText.innerText = "0 / 0";
     this.ui.progressBar.style.width = "100%";
     
@@ -209,10 +207,9 @@ class FlashcardApp {
     this.ui.btnNext.disabled = true;
     this.ui.btnKnown.disabled = true;
 
-    // ตรวจสอบว่ามีหมวดถัดไปให้ไปต่อไหม
+    // ตรวจสอบและแสดงปุ่ม Next Category
     const currentCatIndex = this.categoryList.indexOf(this.currentCategory);
     if (this.currentCategory !== 'all' && currentCatIndex !== -1 && currentCatIndex < this.categoryList.length - 1) {
-        // ถ้าไม่ใช่หมวดสุดท้าย ให้โชว์ปุ่มไปต่อ
         this.ui.nextCategoryArea.classList.remove('hidden');
         this.ui.btnNextCategory.innerHTML = `<span>ไป ${this.categoryList[currentCatIndex + 1]}</span> <i class="fa-solid fa-arrow-right"></i>`;
     }
@@ -273,23 +270,18 @@ class FlashcardApp {
 
   resetProgress() {
     if (confirm("ต้องการล้างประวัติทั้งหมด และกลับไปเริ่มที่ 'หมวดผู้คน' ใช่ไหม?")) {
-      // 1. ล้างความจำ
       this.knownCards.clear();
       localStorage.removeItem("knownCards");
-      
-      // 2. บังคับเปลี่ยนไปหมวด "หมวดผู้คน" (หรือหมวดแรกถ้าหาไม่เจอ)
       const targetCategory = "หมวดผู้คน";
       if (this.categoryList.includes(targetCategory)) {
           this.ui.categorySelect.value = targetCategory;
           this.changeCategory(targetCategory);
       } else if (this.categoryList.length > 0) {
-          // ถ้าไม่มีหมวดผู้คน (เช่น ข้อมูลเปลี่ยน) ให้ไปหมวดแรก
           this.ui.categorySelect.value = this.categoryList[0];
           this.changeCategory(this.categoryList[0]);
       } else {
           this.changeCategory('all');
       }
-
       alert("รีเซ็ตเรียบร้อยแล้ว!");
     }
   }
