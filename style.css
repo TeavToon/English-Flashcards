@@ -9,7 +9,7 @@ h1, h2, h3, .font-heading {
     font-family: 'Kanit', sans-serif;
 }
 
-/* --- 3D Flip Card Styles --- */
+/* 3D Flip Card Core */
 .perspective-1000 {
     perspective: 1000px;
 }
@@ -32,29 +32,22 @@ h1, h2, h3, .font-heading {
     height: 100%;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
-    border-radius: 1rem;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
+    border-radius: 1.5rem; /* โค้งมนมากขึ้น */
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
 }
 
 .card-front {
     background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-    border: 1px solid #e2e8f0;
 }
 
 .card-back {
-    background: linear-gradient(135deg, #e0e7ff 0%, #f0f9ff 100%);
+    background: linear-gradient(135deg, #eef2ff 0%, #f9fafb 100%);
     transform: rotateY(180deg);
-    border: 1px solid #c7d2fe;
 }
 
-/* ปรับแต่ง Scrollbar กรณีเนื้อหายาวเกิน */
+/* Scrollbar Styling */
 .card-back::-webkit-scrollbar {
-    width: 4px;
+    width: 6px;
 }
 .card-back::-webkit-scrollbar-track {
     background: transparent;
