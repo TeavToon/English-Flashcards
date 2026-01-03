@@ -1931,3 +1931,6 @@ It is a difficult situation.
 Way (n.) ทาง, วิธี
 Could you show me the way on the map? / Is there a way to get a discount?
 รบกวนช่วยชี้ทางในแผนที่ให้ผมหน่อยได้ไหมครับ? / มีวิธีที่จะได้ส่วนลดไหมครับ?`;
+
+// เพิ่มบรรทัดนี้ที่ล่างสุดของไฟล์ data.js
+export const RAW_DATA = RAW_DATA_CONTENT;
