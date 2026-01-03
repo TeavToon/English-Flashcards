@@ -4,6 +4,32 @@ export function parseFlashcardData(text, categoriesSet, allCardsArray) {
     let currentCategory = "General";
     let currentCard = null;
 
+    // ฟังก์ชันช่วยดันการ์ดเข้า Array (รองรับการแยกประโยคด้วย / )
+    const pushWithSplit = (card) => {
+        if (!card) return;
+
+        // ถ้ามีเครื่องหมาย / ในประโยคภาษาอังกฤษ ให้แยกเป็นหลายการ์ด
+        if (card.exampleEn && card.exampleEn.includes("/")) {
+            // แยกประโยคด้วย / และตัดช่องว่างหน้าหลัง
+            const enParts = card.exampleEn.split("/").map(s => s.trim()).filter(s => s);
+            const thParts = card.exampleTh ? card.exampleTh.split("/").map(s => s.trim()) : [];
+
+            // วนลูปสร้างการ์ดตามจำนวนประโยค
+            enParts.forEach((en, i) => {
+                const newCard = { ...card }; // คัดลอกข้อมูลเดิม (Vocab, Meaning)
+                newCard.id = allCardsArray.length; // ให้ ID ใหม่
+                newCard.exampleEn = en; // ใส่ประโยคย่อยที่แยกมา
+                newCard.exampleTh = thParts[i] || ""; // ใส่คำแปลย่อย (ถ้ามี)
+                
+                allCardsArray.push(newCard);
+            });
+        } else {
+            // กรณีปกติ (ไม่มี /) ก็บันทึกการ์ดใบเดียว
+            card.id = allCardsArray.length;
+            allCardsArray.push(card);
+        }
+    };
+
     lines.forEach((line) => {
         line = line.trim();
         if (!line) return;
@@ -15,18 +41,20 @@ export function parseFlashcardData(text, categoriesSet, allCardsArray) {
             const isVocabLine = /^[A-Za-z0-9'\s/-]+\(.+\)/.test(line);
 
             if (isVocabLine) {
-                if (currentCard) allCardsArray.push(currentCard);
-                const match = line.match(/^([^(]+)(\([^)]+\))\s*(.*)$/);
+                // บันทึกการ์ดใบเก่า (เรียกใช้ฟังก์ชันแยกการ์ด)
+                if (currentCard) pushWithSplit(currentCard);
 
+                const match = line.match(/^([^(]+)(\([^)]+\))\s*(.*)$/);
                 if (match) {
                     const vocab = match[1].trim();
                     const type = match[2].trim();
                     const rawContent = match[3].trim();
+                    
                     let meaning = rawContent;
                     let exampleEn = "";
                     let exampleTh = "";
 
-                    // Smart Splitter Logic
+                    // Smart Splitter Logic (สำหรับแยก Meaning กับ Example ในบรรทัดเดียวกัน)
                     const hasThai = /[\u0E00-\u0E7F]/.test(rawContent);
                     if (hasThai) {
                         let splitIndex = -1;
@@ -54,7 +82,7 @@ export function parseFlashcardData(text, categoriesSet, allCardsArray) {
                     }
 
                     currentCard = {
-                        id: allCardsArray.length,
+                        // id จะถูกใส่ตอน pushWithSplit
                         category: currentCategory,
                         vocab: vocab,
                         type: type,
@@ -81,12 +109,13 @@ export function parseFlashcardData(text, categoriesSet, allCardsArray) {
                         if (!currentCard.exampleTh) currentCard.exampleTh = thPart;
                     }
                 } else if (startsWithEng && !hasThai && !isNote) {
+                    // ถ้ามีโจทย์อยู่แล้ว ให้ต่อด้วย / (เผื่อผู้ใช้ขึ้นบรรทัดใหม่แทนการเขียนติดกัน)
                     if (!currentCard.exampleEn) currentCard.exampleEn = line;
-                    else currentCard.exampleEn += " " + line;
+                    else currentCard.exampleEn += " / " + line; // *** เพิ่ม / อัตโนมัติถ้าขึ้นบรรทัดใหม่
                 } else {
                     if (currentCard.exampleEn) {
                         if (!currentCard.exampleTh) currentCard.exampleTh = line;
-                        else currentCard.exampleTh += " " + line;
+                        else currentCard.exampleTh += " / " + line; // *** เพิ่ม / อัตโนมัติ
                     } else {
                         currentCard.meaning += " " + line;
                     }
@@ -94,5 +123,7 @@ export function parseFlashcardData(text, categoriesSet, allCardsArray) {
             }
         }
     });
-    if (currentCard) allCardsArray.push(currentCard);
+
+    // บันทึกการ์ดใบสุดท้าย
+    if (currentCard) pushWithSplit(currentCard);
 }
