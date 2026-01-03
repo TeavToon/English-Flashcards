@@ -9,7 +9,7 @@ h1, h2, h3, .font-heading {
     font-family: 'Kanit', sans-serif;
 }
 
-/* 3D Flip Card Core */
+/* --- 3D Flip Card Styles --- */
 .perspective-1000 {
     perspective: 1000px;
 }
@@ -52,7 +52,7 @@ h1, h2, h3, .font-heading {
     border: 1px solid #c7d2fe;
 }
 
-/* Scrollbar styling for content overflow */
+/* ปรับแต่ง Scrollbar กรณีเนื้อหายาวเกิน */
 .card-back::-webkit-scrollbar {
     width: 4px;
 }
