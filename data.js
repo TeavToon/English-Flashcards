@@ -113,13 +113,21 @@ Boss (n.) เจ้านาย, หัวหน้า
 Are you the boss?
 คุณเป็นเจ้านาย (เจ้าของร้าน)ใช่ไหมครับ?
 
+Boss (n.) เจ้านาย, หัวหน้า
+Is the boss here?
+เจ้านายอยู่ที่นี่ไหมครับ
+
 Manager (n.) ผู้จัดการ
 Could I speak to the manager, please?
 ผมขอเรียนสาย (หรือขอพบ) ผู้จัดการหน่อยได้ไหมครับ?
 
-Model (n.) นางแบบ, นายแบบ
-Is she a famous model?
-เธอคือนางแบบที่มีชื่อเสียงใช่ไหมครับ?
+Manager (n.) ผู้จัดการ
+Can I see the manager?
+ผมขอพบผู้จัดการได้ไหมครับ
+
+Model (n.) นางแบบ/นายแบบ, รุ่น (สินค้า), แบบจำลอง
+Is she a model? / Do you have the new model? / This model car is cool.
+เธอเป็นนางแบบใช่ไหมครับ / คุณมีรุ่นใหม่ไหมครับ / รถโมเดลคันนี้เจ๋งครับ
 
 Police (n.) ตำรวจ
 Where is the nearest police station?
@@ -127,8 +135,8 @@ Where is the nearest police station?
 (ถามทางเมื่อเกิดเหตุฉุกเฉิน)
 
 Worker (n.) คนงาน, พนักงาน
-Can I ask that worker for directions?
-ผมขอถามทางพี่คนงานคนนั้นได้ไหมครับ
+Is he a worker here?
+เขาเป็นพนักงานที่นี่ใช่ไหมครับ
 
 
 
@@ -2015,4 +2023,5 @@ It is a difficult situation.
 
 Way (n.) ทาง, วิธี
 Could you show me the way on the map?
+
 รบกวนช่วยชี้ทางในแผนที่ให้ผมหน่อยได้ไหมครับ`;
