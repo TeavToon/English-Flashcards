@@ -30,9 +30,9 @@ h1, h2, h3, .font-heading {
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden; /* Safari */
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    border-radius: 1.5rem; /* โค้งมนมาตรฐาน */
+    border-radius: 1.5rem;
     box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
 }
 
@@ -45,7 +45,7 @@ h1, h2, h3, .font-heading {
     transform: rotateY(180deg);
 }
 
-/* --- Scrollbar Styling --- */
+/* --- Scrollbar Styling (Default for Desktop) --- */
 .card-back::-webkit-scrollbar {
     width: 6px;
 }
@@ -58,165 +58,157 @@ h1, h2, h3, .font-heading {
 }
 
 /* --- Fix Ghost Click & Unclickable Buttons --- */
-/* ป้องกันการกดทะลุ และทำให้กดปุ่มด้านหลังได้เมื่อการ์ดพลิก */
-.card-front {
-    pointer-events: auto;
-}
-.card-back {
-    pointer-events: none;
-}
+.card-front { pointer-events: auto; }
+.card-back { pointer-events: none; }
+.card-container.flipped .card-front { pointer-events: none; }
+.card-container.flipped .card-back { pointer-events: auto; }
 
-.card-container.flipped .card-front {
-    pointer-events: none;
-}
-.card-container.flipped .card-back {
-    pointer-events: auto;
-}
 
-/* --- Mobile Support for Small Screens (<= 375px) --- */
+/* =========================================
+   📱 MOBILE RESPONSIVE TWEAKS
+   ========================================= */
+
+/* --- Step 1: หน้าจอ 375px ลงมา (iPhone SE, Mini, etc.) --- */
+/* ปรับตัวอักษรให้ใหญ่ขึ้นแบบพอดี (Bigger Fonts) */
 @media screen and (max-width: 375px) {
     
-    /* 1. Navbar Adjustments */
+    /* Navbar & Layout */
     main {
-        padding-top: 1rem !important;
-        padding-bottom: 1rem !important;
-        gap: 1rem !important;
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+        gap: 0.75rem !important;
     }
-    
-    nav .px-4 {
-        padding-left: 0.75rem !important;
-        padding-right: 0.75rem !important;
-    }
-    nav .font-heading.text-2xl { font-size: 1.1rem !important; }
-    nav .fa-layer-group { font-size: 1.1rem !important; }
-
-    /* ปรับกล่องนับจำนวนการ์ด */
+    nav .font-heading.text-2xl { font-size: 1.2rem !important; }
     nav .bg-indigo-700 {
         font-size: 0.75rem !important;
         padding: 0.25rem 0.6rem !important;
-        border-radius: 0.375rem !important;
-        line-height: 1 !important;
     }
 
-    /* 2. Controls & Inputs */
-    #category-select {
-        font-size: 0.9rem !important;
-        padding: 0.5rem !important;
-    }
-    
-    #btn-shuffle, #btn-reset {
-        padding: 0.5rem 0.75rem !important;
-        font-size: 0.85rem !important;
-    }
-
-    /* 3. Card Adjustments (Optimized) */
+    /* Card Layout */
     .card-face {
         padding: 1rem 0.75rem !important;
         border-radius: 1rem !important;
     }
-    
-    /* ตำแหน่งป้ายหมวดหมู่ */
+
+    /* Elements Position */
     #card-category {
         top: 0.75rem !important;
         left: 0.75rem !important;
-        font-size: 0.65rem !important;
-        padding: 0.25rem 0.5rem !important;
+        font-size: 0.7rem !important;
+        padding: 0.2rem 0.5rem !important;
     }
-    
-    /* ตำแหน่งและขนาดปุ่มเสียง */
     #front-audio-btns, #back-audio-btns {
         top: 0.75rem !important;
         right: 0.75rem !important;
-        gap: 0.25rem !important;
     }
     #front-audio-btns button, #back-audio-btns button {
         width: 2rem !important;
         height: 2rem !important;
     }
-    #front-audio-btns button i, #back-audio-btns button i {
-        font-size: 0.85rem !important;
-    }
-    #front-audio-btns button span, #back-audio-btns button span {
-        font-size: 0.6rem !important;
-    }
 
-    /* เนื้อหาหน้าการ์ด (Front) */
+    /* Front Card Typography (Bigger) */
     #question-label {
-        font-size: 0.7rem !important;
-        margin-bottom: 1rem !important;
-        letter-spacing: 0.1em !important;
+        font-size: 0.75rem !important;
+        margin-bottom: 0.5rem !important;
     }
     #card-front-text {
-        font-size: 1.6rem !important;
-        line-height: 1.2 !important;
-        margin-bottom: 1rem !important;
-        padding: 0 0.5rem !important;
+        font-size: 2.25rem !important; /* ใหญ่ขึ้นจาก 1.6 -> 2.25 */
+        line-height: 1.1 !important;
+        margin-bottom: 0.75rem !important;
     }
     #tap-hint {
-        font-size: 0.8rem !important;
+        font-size: 0.85rem !important;
         margin-top: 0.5rem !important;
     }
 
-    /* เนื้อหาหลังการ์ด (Back) */
+    /* Back Card Typography (Bigger) */
     .card-back {
-        padding-top: 3.5rem !important;
-    }
-    .card-back p.text-indigo-400 { /* ป้าย ANSWER */
-        font-size: 0.7rem !important;
-        margin-bottom: 0.5rem !important;
+        padding-top: 3.25rem !important; /* ลดที่ว่างด้านบนลงนิดหน่อยเพื่อให้เนื้อหาขึ้นไปได้อีก */
     }
     #card-vocab-back {
-        font-size: 1.5rem !important;
+        font-size: 2rem !important; /* ใหญ่ขึ้นจาก 1.5 -> 2.0 */
         margin-bottom: 0.25rem !important;
     }
     #card-meaning {
-        font-size: 1.1rem !important;
+        font-size: 1.3rem !important; /* ใหญ่ขึ้น */
         line-height: 1.3 !important;
-        padding-bottom: 0.5rem !important;
+        padding-bottom: 0.25rem !important;
     }
 
-    /* กล่องตัวอย่างประโยค */
+    /* Example Box */
     .card-back .bg-white {
-        padding: 0.75rem !important;
-        margin-top: 0 !important;
-        width: 100% !important;
+        padding: 0.75rem 0.5rem !important; /* ลด padding ข้างในกล่องขาวเพื่อให้ตัวหนังสือมีที่ขยาย */
     }
     #card-ex-th {
-        font-size: 0.95rem !important;
+        font-size: 1.05rem !important; /* ใหญ่ขึ้น */
         line-height: 1.3 !important;
-        margin-bottom: 0.5rem !important;
+        margin-bottom: 0.4rem !important;
     }
     #card-ex-en {
-        font-size: 0.85rem !important;
+        font-size: 1rem !important; /* ใหญ่ขึ้น */
         line-height: 1.3 !important;
     }
-    #btn-audio-sent-normal {
-        width: 1.75rem !important;
-        height: 1.75rem !important;
-    }
-    #btn-audio-sent-normal i {
-        font-size: 0.9rem !important;
-    }
 
-    /* 4. Bottom Buttons */
-    #btn-prev, #btn-known, #btn-next {
-        gap: 0.5rem !important;
-    }
-    
+    /* Bottom Buttons */
     #btn-prev, #btn-next {
-        padding: 0.5rem !important;
         width: 2.75rem !important;
         height: 2.75rem !important;
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
-    #btn-prev i, #btn-next i { font-size: 0.9rem !important; }
+}
 
-    #btn-known {
-        padding: 0.5rem 0.75rem !important;
-        font-size: 0.95rem !important;
+
+/* --- Step 2: หน้าจอ 320px ลงมา (Smallest Screens) --- */
+/* เอา Scrollbar ออก + ขยายตัวอักษรให้สุดขอบ */
+@media screen and (max-width: 320px) {
+    
+    /* ซ่อน Scrollbar (แต่ยังเลื่อนได้) */
+    .card-back {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+    .card-back::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+
+    /* บีบ Padding ให้แคบลง เพื่อให้ตัวอักษรขยายออกด้านข้างได้อีก */
+    .card-face {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+
+    /* Front Card (Maximize Size) */
+    #card-front-text {
+        font-size: 2.4rem !important; /* ใหญ่สุดๆ */
+        margin-bottom: 0.5rem !important;
+    }
+
+    /* Back Card (Maximize Size) */
+    #card-vocab-back {
+        font-size: 2.2rem !important;
+    }
+    #card-meaning {
+        font-size: 1.4rem !important;
+    }
+    
+    /* ปรับกล่องตัวอย่างให้ชิดขอบสุดๆ */
+    .card-back .bg-white {
+        padding: 0.5rem !important;
         border-radius: 0.75rem !important;
     }
-    #btn-known i { font-size: 1.1rem !important; }
+    #card-ex-th {
+        font-size: 1.1rem !important;
+    }
+    #card-ex-en {
+        font-size: 1rem !important;
+    }
+
+    /* ปรับปุ่มล่างให้เล็กนิดนึงกันล้น */
+    #btn-known {
+        padding: 0.5rem !important;
+        font-size: 0.9rem !important;
+    }
+    #btn-prev, #btn-next {
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+    }
 }
