@@ -9,7 +9,7 @@ h1, h2, h3, .font-heading {
     font-family: 'Kanit', sans-serif;
 }
 
-/* 3D Flip Card Core */
+/* --- 3D Flip Card Core --- */
 .perspective-1000 {
     perspective: 1000px;
 }
@@ -32,7 +32,7 @@ h1, h2, h3, .font-heading {
     height: 100%;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
-    border-radius: 1.5rem; /* โค้งมนมากขึ้น */
+    border-radius: 1.5rem; /* โค้งมนมาตรฐาน */
     box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
 }
 
@@ -45,7 +45,7 @@ h1, h2, h3, .font-heading {
     transform: rotateY(180deg);
 }
 
-/* Scrollbar Styling */
+/* --- Scrollbar Styling --- */
 .card-back::-webkit-scrollbar {
     width: 6px;
 }
@@ -58,8 +58,7 @@ h1, h2, h3, .font-heading {
 }
 
 /* --- Fix Ghost Click & Unclickable Buttons --- */
-
-/* ค่าเริ่มต้น: ให้กดด้านหน้าได้ แต่ห้ามกดด้านหลัง (กันการกดทะลุจากด้านหน้าไปโดนปุ่มด้านหลัง) */
+/* ป้องกันการกดทะลุ และทำให้กดปุ่มด้านหลังได้เมื่อการ์ดพลิก */
 .card-front {
     pointer-events: auto;
 }
@@ -67,7 +66,6 @@ h1, h2, h3, .font-heading {
     pointer-events: none;
 }
 
-/* เมื่อการ์ดพลิก (.flipped): สลับกัน คือห้ามกดด้านหน้า (ที่หันหนีไปแล้ว) และให้กดด้านหลังได้ */
 .card-container.flipped .card-front {
     pointer-events: none;
 }
@@ -77,84 +75,148 @@ h1, h2, h3, .font-heading {
 
 /* --- Mobile Support for Small Screens (<= 375px) --- */
 @media screen and (max-width: 375px) {
-    /* ลดระยะห่างของขอบจอหลัก */
+    
+    /* 1. Navbar Adjustments */
     main {
         padding-top: 1rem !important;
         padding-bottom: 1rem !important;
         gap: 1rem !important;
     }
+    
+    nav .px-4 {
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+    }
+    nav .font-heading.text-2xl { font-size: 1.1rem !important; }
+    nav .fa-layer-group { font-size: 1.1rem !important; }
 
-    /* ปรับขนาดส่วนเลือกหมวดหมู่ */
+    /* ปรับกล่องนับจำนวนการ์ด */
+    nav .bg-indigo-700 {
+        font-size: 0.75rem !important;
+        padding: 0.25rem 0.6rem !important;
+        border-radius: 0.375rem !important;
+        line-height: 1 !important;
+    }
+
+    /* 2. Controls & Inputs */
     #category-select {
         font-size: 0.9rem !important;
         padding: 0.5rem !important;
     }
     
-    /* ปรับปุ่ม Reset/Shuffle ด้านบนให้เล็กลง */
     #btn-shuffle, #btn-reset {
-        padding: 0.5rem 1rem !important;
+        padding: 0.5rem 0.75rem !important;
+        font-size: 0.85rem !important;
+    }
+
+    /* 3. Card Adjustments (Optimized) */
+    .card-face {
+        padding: 1rem 0.75rem !important;
+        border-radius: 1rem !important;
+    }
+    
+    /* ตำแหน่งป้ายหมวดหมู่ */
+    #card-category {
+        top: 0.75rem !important;
+        left: 0.75rem !important;
+        font-size: 0.65rem !important;
+        padding: 0.25rem 0.5rem !important;
+    }
+    
+    /* ตำแหน่งและขนาดปุ่มเสียง */
+    #front-audio-btns, #back-audio-btns {
+        top: 0.75rem !important;
+        right: 0.75rem !important;
+        gap: 0.25rem !important;
+    }
+    #front-audio-btns button, #back-audio-btns button {
+        width: 2rem !important;
+        height: 2rem !important;
+    }
+    #front-audio-btns button i, #back-audio-btns button i {
+        font-size: 0.85rem !important;
+    }
+    #front-audio-btns button span, #back-audio-btns button span {
+        font-size: 0.6rem !important;
+    }
+
+    /* เนื้อหาหน้าการ์ด (Front) */
+    #question-label {
+        font-size: 0.7rem !important;
+        margin-bottom: 1rem !important;
+        letter-spacing: 0.1em !important;
+    }
+    #card-front-text {
+        font-size: 1.6rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 1rem !important;
+        padding: 0 0.5rem !important;
+    }
+    #tap-hint {
+        font-size: 0.8rem !important;
+        margin-top: 0.5rem !important;
+    }
+
+    /* เนื้อหาหลังการ์ด (Back) */
+    .card-back {
+        padding-top: 3.5rem !important;
+    }
+    .card-back p.text-indigo-400 { /* ป้าย ANSWER */
+        font-size: 0.7rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    #card-vocab-back {
+        font-size: 1.5rem !important;
+        margin-bottom: 0.25rem !important;
+    }
+    #card-meaning {
+        font-size: 1.1rem !important;
+        line-height: 1.3 !important;
+        padding-bottom: 0.5rem !important;
+    }
+
+    /* กล่องตัวอย่างประโยค */
+    .card-back .bg-white {
+        padding: 0.75rem !important;
+        margin-top: 0 !important;
+        width: 100% !important;
+    }
+    #card-ex-th {
+        font-size: 0.95rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 0.5rem !important;
+    }
+    #card-ex-en {
+        font-size: 0.85rem !important;
+        line-height: 1.3 !important;
+    }
+    #btn-audio-sent-normal {
+        width: 1.75rem !important;
+        height: 1.75rem !important;
+    }
+    #btn-audio-sent-normal i {
         font-size: 0.9rem !important;
     }
 
-    /* --- ปรับแต่งตัวการ์ด (สำคัญ) --- */
-    /* ลด Padding ภายในการ์ด */
-    .card-face {
-        padding-left: 1rem !important;
-        padding-right: 1rem !important;
-    }
-    
-    /* ขยับป้ายหมวดหมู่และปุ่มเสียงไม่ให้ชิดขอบเกินไป */
-    #card-category, #front-audio-btns, #back-audio-btns {
-        top: 1rem !important;
-    }
-    #card-category { left: 1rem !important; font-size: 0.75rem !important; }
-    #front-audio-btns, #back-audio-btns { right: 1rem !important; }
-
-    /* ลดขนาดตัวอักษรหน้าการ์ด */
-    #card-front-text {
-        font-size: 1.75rem !important; /* จากเดิม 3xl-5xl */
-        margin-bottom: 1rem !important;
-    }
-
-    /* ลดขนาดตัวอักษรหลังการ์ด */
-    #card-vocab-back { font-size: 2rem !important; }
-    #card-meaning { font-size: 1.25rem !important; }
-    #card-ex-th { font-size: 1rem !important; }
-    #card-ex-en { font-size: 0.9rem !important; }
-
-    /* ปรับกล่องข้อความตัวอย่างด้านหลัง */
-    .card-back .bg-white {
-        padding: 0.75rem !important;
-    }
-
-    /* --- ปรับปุ่มควบคุมด้านล่าง (Prev/Known/Next) --- */
-    /* ลดระยะห่างระหว่างปุ่ม */
+    /* 4. Bottom Buttons */
     #btn-prev, #btn-known, #btn-next {
         gap: 0.5rem !important;
     }
     
-    /* ปุ่มลูกศรซ้าย-ขวา */
     #btn-prev, #btn-next {
-        padding: 0.75rem !important; /* ลดจาก p-5 */
-        width: 3rem !important;
-        height: 3rem !important;
+        padding: 0.5rem !important;
+        width: 2.75rem !important;
+        height: 2.75rem !important;
         display: flex;
         align-items: center;
         justify-content: center;
     }
-    #btn-prev i, #btn-next i {
-        font-size: 1rem !important; /* ลดขนาดไอคอน */
-    }
+    #btn-prev i, #btn-next i { font-size: 0.9rem !important; }
 
-    /* ปุ่ม "จำได้แล้ว" ตรงกลาง */
     #btn-known {
-        padding: 0.75rem 1rem !important; /* ลดจาก py-4 px-8 */
-        font-size: 1rem !important;
+        padding: 0.5rem 0.75rem !important;
+        font-size: 0.95rem !important;
+        border-radius: 0.75rem !important;
     }
-    #btn-known span {
-        font-size: 0.9rem !important;
-    }
-    #btn-known i {
-        font-size: 1.2rem !important;
-    }
+    #btn-known i { font-size: 1.1rem !important; }
 }
