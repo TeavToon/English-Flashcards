@@ -56,3 +56,105 @@ h1, h2, h3, .font-heading {
     background-color: #cbd5e1;
     border-radius: 20px;
 }
+
+/* --- Fix Ghost Click & Unclickable Buttons --- */
+
+/* ค่าเริ่มต้น: ให้กดด้านหน้าได้ แต่ห้ามกดด้านหลัง (กันการกดทะลุจากด้านหน้าไปโดนปุ่มด้านหลัง) */
+.card-front {
+    pointer-events: auto;
+}
+.card-back {
+    pointer-events: none;
+}
+
+/* เมื่อการ์ดพลิก (.flipped): สลับกัน คือห้ามกดด้านหน้า (ที่หันหนีไปแล้ว) และให้กดด้านหลังได้ */
+.card-container.flipped .card-front {
+    pointer-events: none;
+}
+.card-container.flipped .card-back {
+    pointer-events: auto;
+}
+
+/* --- Mobile Support for Small Screens (<= 375px) --- */
+@media screen and (max-width: 375px) {
+    /* ลดระยะห่างของขอบจอหลัก */
+    main {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+        gap: 1rem !important;
+    }
+
+    /* ปรับขนาดส่วนเลือกหมวดหมู่ */
+    #category-select {
+        font-size: 0.9rem !important;
+        padding: 0.5rem !important;
+    }
+    
+    /* ปรับปุ่ม Reset/Shuffle ด้านบนให้เล็กลง */
+    #btn-shuffle, #btn-reset {
+        padding: 0.5rem 1rem !important;
+        font-size: 0.9rem !important;
+    }
+
+    /* --- ปรับแต่งตัวการ์ด (สำคัญ) --- */
+    /* ลด Padding ภายในการ์ด */
+    .card-face {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    
+    /* ขยับป้ายหมวดหมู่และปุ่มเสียงไม่ให้ชิดขอบเกินไป */
+    #card-category, #front-audio-btns, #back-audio-btns {
+        top: 1rem !important;
+    }
+    #card-category { left: 1rem !important; font-size: 0.75rem !important; }
+    #front-audio-btns, #back-audio-btns { right: 1rem !important; }
+
+    /* ลดขนาดตัวอักษรหน้าการ์ด */
+    #card-front-text {
+        font-size: 1.75rem !important; /* จากเดิม 3xl-5xl */
+        margin-bottom: 1rem !important;
+    }
+
+    /* ลดขนาดตัวอักษรหลังการ์ด */
+    #card-vocab-back { font-size: 2rem !important; }
+    #card-meaning { font-size: 1.25rem !important; }
+    #card-ex-th { font-size: 1rem !important; }
+    #card-ex-en { font-size: 0.9rem !important; }
+
+    /* ปรับกล่องข้อความตัวอย่างด้านหลัง */
+    .card-back .bg-white {
+        padding: 0.75rem !important;
+    }
+
+    /* --- ปรับปุ่มควบคุมด้านล่าง (Prev/Known/Next) --- */
+    /* ลดระยะห่างระหว่างปุ่ม */
+    #btn-prev, #btn-known, #btn-next {
+        gap: 0.5rem !important;
+    }
+    
+    /* ปุ่มลูกศรซ้าย-ขวา */
+    #btn-prev, #btn-next {
+        padding: 0.75rem !important; /* ลดจาก p-5 */
+        width: 3rem !important;
+        height: 3rem !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #btn-prev i, #btn-next i {
+        font-size: 1rem !important; /* ลดขนาดไอคอน */
+    }
+
+    /* ปุ่ม "จำได้แล้ว" ตรงกลาง */
+    #btn-known {
+        padding: 0.75rem 1rem !important; /* ลดจาก py-4 px-8 */
+        font-size: 1rem !important;
+    }
+    #btn-known span {
+        font-size: 0.9rem !important;
+    }
+    #btn-known i {
+        font-size: 1.2rem !important;
+    }
+}
