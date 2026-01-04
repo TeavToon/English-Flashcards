@@ -1,206 +1,132 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&family=Sarabun:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&family=Sarabun:wght@300;400;500;600&display=swap');
 
-/* --- 1. Global Typography & Reset --- */
+/* --- 1. Global Reset & Variables --- */
+:root {
+    --primary: #4f46e5; /* indigo-600 */
+    --card-radius: 1.5rem;
+    --nav-height: 72px;
+}
+
 body {
     font-family: 'Sarabun', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden; /* ป้องกันการเลื่อนซ้ายขวาโดยไม่ตั้งใจ */
+    /* ป้องกันการเด้งของ Scroll ใน iOS */
+    -webkit-overflow-scrolling: touch; 
 }
 
 h1, h2, h3, .font-heading {
     font-family: 'Kanit', sans-serif;
 }
 
-/* --- 2. 3D Flip Card System (The Core) --- */
+/* --- 2. The 3D Stage (พื้นที่วางการ์ด) --- */
 .perspective-1000 {
     perspective: 1000px;
+    /* ล้างค่า Aspect Ratio เดิมของ Tailwind เพื่อให้ CSS ควบคุม */
+    aspect-ratio: auto !important; 
+    height: 60vh; /* ความสูงมาตรฐานสัมพันธ์กับจอ */
+    max-height: 600px;
+    min-height: 400px;
+    width: 100%;
+    max-width: 500px; /* จำกัดความกว้างไม่ให้บานเกินไปใน iPad */
+    margin: 0 auto;
 }
 
+/* --- 3. The Card Container --- */
 .card-container {
-    transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
-    transform-style: preserve-3d;
     position: relative;
     width: 100%;
     height: 100%;
-    will-change: transform; /* Performance Optimization */
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); /* เอฟเฟกต์เด้งดึ๋งเล็กน้อย (Spring) */
+    transform-style: preserve-3d;
+    cursor: pointer;
 }
 
 .card-container.flipped {
     transform: rotateY(180deg);
 }
 
+/* --- 4. Card Faces (หัวใจสำคัญ) --- */
 .card-face {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    border-radius: 1.5rem;
-    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1), 0 4px 10px -5px rgba(0, 0, 0, 0.05); /* Soft Shadow */
-    overflow: hidden; /* คลิปเนื้อหาที่เกินขอบโค้ง */
+    border-radius: var(--card-radius);
+    /* เงาแบบ Soft Shadow ทันสมัย */
+    box-shadow: 
+        0 4px 6px -1px rgba(0, 0, 0, 0.05),
+        0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background: white;
+    
+    /* Flexbox จัดกึ่งกลางอัตโนมัติ */
+    display: flex;
+    flex-direction: column;
 }
 
+/* ด้านหน้า */
 .card-front {
-    background: linear-gradient(145deg, #ffffff 0%, #f1f5f9 100%);
     z-index: 2;
+    background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+    justify-content: center; /* เนื้อหาอยู่ตรงกลางเป๊ะ */
+    align-items: center;
+    padding: 2rem;
 }
 
+/* ด้านหลัง */
 .card-back {
-    background: linear-gradient(145deg, #eff6ff 0%, #f8fafc 100%);
     transform: rotateY(180deg);
     z-index: 1;
+    background: linear-gradient(145deg, #f0f9ff 0%, #e0f2fe 100%);
+    
+    /* ด้านหลังต้อง Scroll ได้ถ้าเนื้อหาเยอะ */
+    justify-content: flex-start; 
+    align-items: center;
+    overflow-y: auto; /* Scroll แนวตั้ง */
+    padding: 4rem 1.5rem 2rem 1.5rem; /* เว้นด้านบนเยอะหน่อยหนีปุ่มลำโพง */
 }
 
-/* --- 3. Interaction & Ghost Click Fix (Crucial UX) --- */
-/* ป้องกันการกดทะลุ และทำให้กดปุ่มด้านหลังได้เมื่อการ์ดพลิก */
+/* --- 5. Fluid Typography (แก้ปัญหาตัวหนังสือล้น/เล็กเกิน) --- */
+/* เราจะ Override Class ของ Tailwind ด้วย ID เพื่อความแน่นอน */
+
+#card-front-text {
+    /* 📱 มือถือ: 2.5rem | 🖥️ จอใหญ่: 4rem */
+    font-size: clamp(2.5rem, 8vw, 4.5rem) !important;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+
+#card-vocab-back {
+    font-size: clamp(2rem, 6vw, 3rem) !important;
+}
+
+#card-meaning {
+    font-size: clamp(1.25rem, 4vw, 1.75rem) !important;
+    line-height: 1.5;
+}
+
+#card-ex-th {
+    font-size: clamp(1rem, 3vw, 1.25rem) !important;
+}
+
+#card-ex-en {
+    font-size: clamp(0.9rem, 3vw, 1.15rem) !important;
+}
+
+/* --- 6. Interaction Logic (แก้บั๊กกดทะลุ) --- */
 .card-front { pointer-events: auto; }
 .card-back { pointer-events: none; }
 
 .card-container.flipped .card-front { pointer-events: none; }
 .card-container.flipped .card-back { pointer-events: auto; }
 
-/* --- 4. Custom Scrollbar (Desktop/Tablet) --- */
-/* ออกแบบให้ดู Modern ไม่รกสายตา */
+/* --- 7. Custom Scrollbar (สวยงาม) --- */
 .card-back::-webkit-scrollbar {
     width: 6px;
 }
 .card-back::-webkit-scrollbar-track {
-    background: rgba(0,0,0,0.02);
+    background: transparent;
 }
 .card-back::-webkit-scrollbar-thumb {
     background-color: #cbd5e1;
     border-radius: 20px;
-    transition: background-color 0.2s;
-}
-.card-back::-webkit-scrollbar-thumb:hover {
-    background-color: #94a3b8;
-}
-
-/* =========================================
-   📱 RESPONSIVE DESIGN SYSTEM
-   ========================================= */
-
-/* --- Level 1: Standard Mobile (<= 480px) --- */
-/* ปรับจูนทั่วไปสำหรับมือถือส่วนใหญ่ */
-@media screen and (max-width: 480px) {
-    main {
-        padding-top: 1rem !important;
-        padding-bottom: 1rem !important;
-        gap: 1rem !important;
-    }
-
-    /* Navbar Compact */
-    nav .px-4 { padding-left: 1rem !important; padding-right: 1rem !important; }
-    
-    /* Card Adjustments */
-    .card-face { border-radius: 1.25rem !important; }
-    
-    /* Typography Scaling */
-    #card-front-text { font-size: 2rem !important; padding: 0 1rem; }
-    #card-vocab-back { font-size: 2.25rem !important; }
-    #card-meaning { font-size: 1.25rem !important; }
-}
-
-/* --- Level 2: Compact Mobile (<= 375px) --- */
-/* iPhone SE, Mini, Older Androids */
-@media screen and (max-width: 375px) {
-    
-    /* 1. Navbar: Compact Layout */
-    nav .font-heading.text-2xl { font-size: 1.1rem !important; }
-    nav .fa-layer-group { font-size: 1.1rem !important; }
-    nav .bg-indigo-700 {
-        font-size: 0.75rem !important;
-        padding: 0.25rem 0.6rem !important;
-        line-height: 1 !important;
-    }
-
-    /* 2. Controls & Inputs */
-    #category-select { font-size: 0.9rem !important; padding: 0.5rem !important; }
-    #btn-shuffle, #btn-reset { padding: 0.5rem 0.75rem !important; font-size: 0.85rem !important; }
-
-    /* 3. Card Typography & Layout Maximization */
-    .card-face { padding: 1rem 0.75rem !important; }
-    
-    /* Elements Positioning */
-    #card-category { top: 0.75rem !important; left: 0.75rem !important; font-size: 0.65rem !important; }
-    #front-audio-btns, #back-audio-btns { top: 0.75rem !important; right: 0.75rem !important; }
-    
-    /* Audio Buttons Sizing */
-    #front-audio-btns button, #back-audio-btns button {
-        width: 2rem !important; height: 2rem !important;
-    }
-    #front-audio-btns button i, #back-audio-btns button i { font-size: 0.85rem !important; }
-
-    /* Front Content */
-    #question-label { font-size: 0.7rem !important; margin-bottom: 0.5rem !important; letter-spacing: 0.1em !important; }
-    #card-front-text { 
-        font-size: 2.25rem !important; /* ใหญ่เต็มตา */
-        line-height: 1.15 !important;
-        margin-bottom: 0.75rem !important;
-    }
-    #tap-hint { font-size: 0.8rem !important; margin-top: 0.5rem !important; }
-
-    /* Back Content */
-    .card-back { padding-top: 3.5rem !important; } /* หลบปุ่มเสียง */
-    #card-vocab-back { font-size: 2rem !important; margin-bottom: 0.25rem !important; }
-    #card-meaning { font-size: 1.3rem !important; padding-bottom: 0.5rem !important; }
-
-    /* Example Box */
-    .card-back .bg-white { width: 100% !important; padding: 0.75rem 0.5rem !important; }
-    #card-ex-th { font-size: 1.05rem !important; line-height: 1.35 !important; }
-    #card-ex-en { font-size: 1rem !important; line-height: 1.35 !important; }
-
-    /* 4. Bottom Navigation Buttons */
-    #btn-prev, #btn-next { width: 2.75rem !important; height: 2.75rem !important; padding: 0 !important;}
-    #btn-known { padding: 0.5rem 0.75rem !important; font-size: 0.95rem !important; }
-}
-
-/* --- Level 3: Tiny Mobile (<= 320px) --- */
-/* iPhone 5/SE1, Galaxy Fold Cover - Extreme Optimization */
-@media screen and (max-width: 320px) {
-    
-    /* 1. Hide Scrollbar (Clean Look) */
-    .card-back {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-    .card-back::-webkit-scrollbar { display: none; }
-
-    /* 2. Layout Restructuring (Flex Reset) */
-    /* ล้าง Padding เดิม เพื่อใช้พื้นที่ขอบถึงขอบ */
-    .card-back > div.flex {
-        padding: 0 !important; 
-        padding-bottom: 0.5rem !important;
-        justify-content: flex-start !important; /* เรียงเนื้อหาลงมา */
-    }
-
-    .card-face {
-        padding-left: 0.5rem !important;
-        padding-right: 0.5rem !important;
-    }
-
-    /* 3. Typography Maxed Out */
-    #card-front-text { font-size: 2.4rem !important; margin-bottom: 0.5rem !important; }
-    #card-vocab-back { font-size: 2.2rem !important; }
-    #card-meaning { font-size: 1.4rem !important; }
-
-    /* 4. Sticky Bottom Example Box (Design Hero) */
-    .card-back .bg-white {
-        width: 100% !important;
-        margin-top: auto !important; /* ดันลงล่างสุด */
-        margin-bottom: 0 !important;
-        border: 1px solid #e2e8f0 !important; /* ใส่ขอบแทนเงาให้ดูคม */
-        box-shadow: none !important;
-        border-radius: 1rem !important;
-        padding: 0.75rem 0.5rem !important;
-    }
-    
-    /* ปรับปรุงให้อ่านง่ายในพื้นที่จำกัด */
-    #card-ex-th { font-size: 1.1rem !important; margin-bottom: 0.25rem !important; }
-    #card-ex-en { font-size: 0.95rem !important; }
-    
-    /* 5. Compact Bottom Controls */
-    #btn-known { font-size: 0.9rem !important; padding: 0.5rem !important; }
-    #btn-prev, #btn-next { width: 2.5rem !important; height: 2.5rem !important; }
 }
