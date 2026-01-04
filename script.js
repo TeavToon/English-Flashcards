@@ -41,6 +41,7 @@ class FlashcardApp {
       nextCategoryArea: document.getElementById("next-category-area"),
       btnNextCategory: document.getElementById("btn-next-category"),
       frontAudioBtns: document.getElementById("front-audio-btns"),
+      backAudioBtns: document.getElementById("back-audio-btns"),
       tapHint: document.getElementById("tap-hint"),
       questionLabel: document.getElementById("question-label"),
     };
@@ -92,6 +93,11 @@ class FlashcardApp {
         e.stopPropagation();
         this.goToNextCategory();
     });
+
+    // ป้องกันการกดทะลุสำหรับปุ่มด้านหลัง (Backup ในกรณี HTML onclick ไม่ทำงาน)
+    if (this.ui.backAudioBtns) {
+        this.ui.backAudioBtns.addEventListener("click", (e) => e.stopPropagation());
+    }
 
     document.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight") this.navigate(1);
