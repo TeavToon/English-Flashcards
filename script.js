@@ -12,11 +12,12 @@ class FlashcardApp {
     this.isFlipped = false;
     this.voices = [];
     
-    // Variables for handling drag vs click
+    // Drag detection variables
     this.isDragging = false;
     this.startX = 0;
     this.startY = 0;
 
+    // Load State
     try {
         this.knownCards = new Set(JSON.parse(localStorage.getItem("knownCards") || "[]"));
     } catch (e) {
@@ -25,17 +26,21 @@ class FlashcardApp {
     
     this.currentCategory = localStorage.getItem("lastCategory") || "all";
 
+    // Bind UI Elements
     this.ui = {
       categorySelect: document.getElementById("category-select"),
       totalCount: document.getElementById("total-count"),
       cardContainer: document.getElementById("flashcard"),
-      // ... (รายการ UI เดิมเหมือนเดิม) ...
+      
+      // Content Elements
       cardCategory: document.getElementById("card-category"),
       cardFrontText: document.getElementById("card-front-text"),
       cardBackVocab: document.getElementById("card-vocab-back"),
       cardMeaning: document.getElementById("card-meaning"),
       cardExTh: document.getElementById("card-ex-th"),
       cardExEn: document.getElementById("card-ex-en"),
+      
+      // Progress & Controls
       progressText: document.getElementById("progress-text"),
       progressBar: document.getElementById("progress-bar"),
       btnPrev: document.getElementById("btn-prev"),
@@ -43,19 +48,23 @@ class FlashcardApp {
       btnKnown: document.getElementById("btn-known"),
       btnShuffle: document.getElementById("btn-shuffle"),
       btnReset: document.getElementById("btn-reset"),
-      btnAudioFrontSlow: document.getElementById("btn-audio-front-slow"),
+      
+      // Audio Buttons
+      btnAudioFrontSlow: document.getElementById("btn-audio-front-slow"), // Hidden dummy
       btnAudioFrontNormal: document.getElementById("btn-audio-front-normal"),
       btnAudioBackSlow: document.getElementById("btn-audio-back-slow"),
       btnAudioBackNormal: document.getElementById("btn-audio-back-normal"),
       btnAudioSentNormal: document.getElementById("btn-audio-sent-normal"),
+      
+      // States & Hints
       nextCategoryArea: document.getElementById("next-category-area"),
       btnNextCategory: document.getElementById("btn-next-category"),
       frontAudioBtns: document.getElementById("front-audio-btns"),
-      backAudioBtns: document.getElementById("back-audio-btns"),
       tapHint: document.getElementById("tap-hint"),
       questionLabel: document.getElementById("question-label"),
     };
 
+    // Initialize Voice
     if (window.speechSynthesis) {
         window.speechSynthesis.onvoiceschanged = () => {
             this.voices = window.speechSynthesis.getVoices();
@@ -82,11 +91,13 @@ class FlashcardApp {
   }
   
   setupCategories() {
-    this.ui.categorySelect.innerHTML = '<option value="all">ทั้งหมด (All Categories)</option>';
+    this.ui.categorySelect.innerHTML = '<option value="all">All Categories</option>';
     this.categoryList.forEach((cat) => {
+      // ตัดคำว่า "หมวด" ออกเพื่อให้ดูสั้นกระชับใน Mobile
+      const shortCat = cat.replace('หมวด', '').trim();
       const option = document.createElement("option");
       option.value = cat;
-      option.textContent = cat;
+      option.textContent = shortCat;
       this.ui.categorySelect.appendChild(option);
     });
   }
@@ -96,43 +107,31 @@ class FlashcardApp {
     this.ui.btnNext.addEventListener("click", (e) => { e.stopPropagation(); this.navigate(1); });
     this.ui.btnPrev.addEventListener("click", (e) => { e.stopPropagation(); this.navigate(-1); });
 
-    // --- BUG FIX: Drag & Selection Handling ---
-    const handleDragStart = (x, y) => {
-        this.isDragging = false;
-        this.startX = x;
-        this.startY = y;
+    // --- Drag vs Click Logic ---
+    const handleStart = (x, y) => { this.isDragging = false; this.startX = x; this.startY = y; };
+    const handleMove = (x, y) => {
+        if (Math.abs(x - this.startX) > 10 || Math.abs(y - this.startY) > 10) this.isDragging = true;
     };
 
-    const handleDragMove = (x, y) => {
-        // ถ้าขยับเกิน 10px ถือว่ากำลังลาก/เลื่อน (ไม่ใช่ Click)
-        if (Math.abs(x - this.startX) > 10 || Math.abs(y - this.startY) > 10) {
-            this.isDragging = true;
-        }
-    };
+    this.ui.cardContainer.addEventListener("mousedown", (e) => handleStart(e.clientX, e.clientY));
+    this.ui.cardContainer.addEventListener("touchstart", (e) => handleStart(e.touches[0].clientX, e.touches[0].clientY), {passive: true});
 
-    this.ui.cardContainer.addEventListener("mousedown", (e) => handleDragStart(e.clientX, e.clientY));
-    this.ui.cardContainer.addEventListener("touchstart", (e) => handleDragStart(e.touches[0].clientX, e.touches[0].clientY));
-
-    this.ui.cardContainer.addEventListener("mousemove", (e) => handleDragMove(e.clientX, e.clientY));
-    this.ui.cardContainer.addEventListener("touchmove", (e) => handleDragMove(e.touches[0].clientX, e.touches[0].clientY));
+    this.ui.cardContainer.addEventListener("mousemove", (e) => handleMove(e.clientX, e.clientY));
+    this.ui.cardContainer.addEventListener("touchmove", (e) => handleMove(e.touches[0].clientX, e.touches[0].clientY), {passive: true});
 
     this.ui.cardContainer.addEventListener("click", (e) => {
-        // 1. ถ้าเป็นการลาก (Scroll) ไม่พลิก
-        if (this.isDragging) return;
-        // 2. ถ้ามีการเลือกข้อความ (Highlight Text) ไม่พลิก
-        if (window.getSelection().toString().length > 0) return;
-        // 3. ถ้ากดปุ่ม (เช่น ปุ่มเสียง) ไม่พลิก
-        if (e.target.closest('button')) return;
-        
+        if (this.isDragging) return; // ถ้าลากอยู่ ห้ามพลิก
+        if (e.target.closest('button')) return; // ถ้ากดปุ่ม ห้ามพลิก
         this.flipCard();
     });
-    // ------------------------------------------
 
+    // Control Buttons
     this.ui.btnShuffle.addEventListener("click", () => this.shuffleCards());
     this.ui.btnKnown.addEventListener("click", (e) => { e.stopPropagation(); this.markAsKnown(); });
     this.ui.btnReset.addEventListener("click", () => this.resetProgress());
     this.ui.btnNextCategory.addEventListener("click", (e) => { e.stopPropagation(); this.goToNextCategory(); });
 
+    // Keyboard Shortcuts
     document.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight") this.navigate(1);
       if (e.key === "ArrowLeft") this.navigate(-1);
@@ -142,20 +141,20 @@ class FlashcardApp {
       }
     });
 
-    const setupAudioBtn = (btn, rate, type) => {
+    // Audio Binding
+    const setupAudio = (btn, rate, type) => {
         if(btn) btn.addEventListener("click", (e) => { 
             e.stopPropagation(); 
             this.playCurrentCardAudio(rate, type); 
         });
     };
-    setupAudioBtn(this.ui.btnAudioFrontNormal, 1.0, 'front');
-    setupAudioBtn(this.ui.btnAudioFrontSlow, 0.5, 'front');
-    setupAudioBtn(this.ui.btnAudioBackNormal, 1.0, 'vocab');
-    setupAudioBtn(this.ui.btnAudioBackSlow, 0.5, 'vocab');
-    setupAudioBtn(this.ui.btnAudioSentNormal, 1.0, 'sentence');
+    setupAudio(this.ui.btnAudioFrontNormal, 1.0, 'front');
+    setupAudio(this.ui.btnAudioBackNormal, 1.0, 'vocab');
+    setupAudio(this.ui.btnAudioBackSlow, 0.5, 'vocab');
+    setupAudio(this.ui.btnAudioSentNormal, 1.0, 'sentence');
   }
 
-  // ... (ฟังก์ชัน changeCategory, updateDisplay และอื่นๆ เหมือนเดิม) ...
+  // --- Logic Functions ---
   changeCategory(newCategory) {
       this.currentCategory = newCategory;
       localStorage.setItem("lastCategory", this.currentCategory);
@@ -165,36 +164,22 @@ class FlashcardApp {
   playCurrentCardAudio(rate, type) {
     if (this.activeCards.length === 0) return;
     const card = this.activeCards[this.currentIndex];
-    let textToSpeak = "";
-    if (type === 'front') textToSpeak = card.exampleEn ? card.exampleEn : card.vocab;
-    else if (type === 'vocab') textToSpeak = card.vocab;
-    else if (type === 'sentence') textToSpeak = card.exampleEn;
-    if (textToSpeak) this.speak(textToSpeak, rate);
+    let text = "";
+    if (type === 'front') text = card.exampleEn ? card.exampleEn : card.vocab;
+    else if (type === 'vocab') text = card.vocab;
+    else if (type === 'sentence') text = card.exampleEn;
+    if (text) this.speak(text, rate);
   }
 
   speak(text, rate) {
     if (!window.speechSynthesis) return;
     window.speechSynthesis.cancel();
-    
     const utterance = new SpeechSynthesisUtterance(text);
-    if (this.voices.length === 0) this.voices = window.speechSynthesis.getVoices();
-
-    let voices = this.voices;
-    const femaleVoiceNames = ['Google US English', 'Microsoft Zira', 'Samantha', 'Google UK English Female', 'Karen', 'Tessa'];
     
-    // BUG FIX: Normalize language code (en_US -> en-US)
-    let selectedVoice = voices.find(v => {
-        const lang = v.lang.replace('_', '-').toLowerCase();
-        return (lang.includes('en-us') || lang.includes('en-gb')) && 
-               femaleVoiceNames.some(name => v.name.includes(name));
-    });
+    // Voice Selection (English Female Preferred)
+    let voices = this.voices.length ? this.voices : window.speechSynthesis.getVoices();
+    let selectedVoice = voices.find(v => (v.lang.includes('en-US') || v.lang.includes('en-GB')) && (v.name.includes('Google') || v.name.includes('Samantha')));
     
-    if (!selectedVoice) selectedVoice = voices.find(v => {
-        const lang = v.lang.replace('_', '-').toLowerCase();
-        return (lang.includes('en-us') || lang.includes('en-gb')) && 
-               v.name.toLowerCase().includes('female');
-    });
-
     if (selectedVoice) utterance.voice = selectedVoice;
     utterance.lang = 'en-US'; 
     utterance.rate = rate;
@@ -218,34 +203,41 @@ class FlashcardApp {
     this.ui.nextCategoryArea.classList.add('hidden');
     this.ui.frontAudioBtns.style.opacity = '1';
     this.ui.frontAudioBtns.style.pointerEvents = 'auto';
-    this.ui.tapHint.style.opacity = '1';
+    this.ui.tapHint.style.opacity = '0.6';
     this.ui.questionLabel.innerText = "Question";
 
-    if (count === 0) { this.showEmptyState(); return; }
+    // Handle Empty State
+    if (count === 0) { 
+        this.showEmptyState(); 
+        return; 
+    }
     
+    // Render Card Content
     const card = this.activeCards[this.currentIndex];
-    this.ui.cardCategory.innerText = card.category;
+    // ตัดคำว่า "หมวด" ออกจาก Badge
+    this.ui.cardCategory.innerText = card.category.replace('หมวด', '').trim();
     this.ui.cardFrontText.innerText = card.exampleEn ? `"${card.exampleEn}"` : card.vocab;
-    this.ui.cardBackVocab.innerText = `${card.vocab} ${card.type}`;
+    this.ui.cardBackVocab.innerText = `${card.vocab} ${card.type || ''}`;
     this.ui.cardMeaning.innerText = card.meaning;
     this.ui.cardExTh.innerText = card.exampleTh || "-";
     this.ui.cardExEn.innerText = card.exampleEn ? `"${card.exampleEn}"` : "-";
     
+    // Update Progress
     this.ui.progressText.innerText = `${this.currentIndex + 1} / ${count}`;
-    const progressPercent = count > 0 ? ((this.currentIndex + 1) / count) * 100 : 0;
-    this.ui.progressBar.style.width = `${progressPercent}%`;
+    const percent = ((this.currentIndex + 1) / count) * 100;
+    this.ui.progressBar.style.width = `${percent}%`;
     
+    // Button States
     this.ui.btnPrev.disabled = this.currentIndex === 0;
     this.ui.btnNext.disabled = this.currentIndex === count - 1;
     this.ui.btnKnown.disabled = false;
     
-    if (!card.exampleEn) this.ui.btnAudioSentNormal.style.display = 'none';
-    else this.ui.btnAudioSentNormal.style.display = 'block';
+    this.ui.btnAudioSentNormal.style.display = card.exampleEn ? 'flex' : 'none';
   }
 
   showEmptyState() {
     this.ui.cardCategory.innerText = "Completed";
-    this.ui.cardFrontText.innerHTML = "🎉 ยอดเยี่ยม!<br><span class='text-lg font-normal text-slate-500 block mt-4'>คุณเรียนรู้ครบทุกคำในหมวดนี้แล้ว</span>";
+    this.ui.cardFrontText.innerHTML = "🎉 <br><span class='text-base font-normal text-slate-400 block mt-4'>เก่งมาก! จำครบทุกคำแล้ว</span>";
     this.ui.questionLabel.innerText = "Finish";
     this.ui.frontAudioBtns.style.opacity = '0';
     this.ui.frontAudioBtns.style.pointerEvents = 'none';
@@ -256,6 +248,7 @@ class FlashcardApp {
     this.ui.btnNext.disabled = true;
     this.ui.btnKnown.disabled = true;
 
+    // Suggest Next Category
     let nextCatIndex = -1;
     if (this.currentCategory !== 'all') {
         const currentIdx = this.categoryList.indexOf(this.currentCategory);
@@ -266,9 +259,8 @@ class FlashcardApp {
 
     if (nextCatIndex !== -1) {
         this.ui.nextCategoryArea.classList.remove('hidden');
-        this.ui.btnNextCategory.innerHTML = `<span>ไป ${this.categoryList[nextCatIndex]}</span> <i class="fa-solid fa-arrow-right"></i>`;
-    } else {
-        this.ui.nextCategoryArea.classList.add('hidden');
+        const nextCatName = this.categoryList[nextCatIndex].replace('หมวด', '').trim();
+        this.ui.btnNextCategory.innerHTML = `<span>ไป ${nextCatName}</span> <i class="fa-solid fa-arrow-right"></i>`;
     }
   }
   
@@ -305,18 +297,23 @@ class FlashcardApp {
   markAsKnown() {
     if (this.activeCards.length === 0) return;
     const card = this.activeCards[this.currentIndex];
+    
+    // Animation Effect
+    const btn = this.ui.btnKnown;
+    btn.classList.add('scale-110', 'bg-emerald-400');
+    setTimeout(() => btn.classList.remove('scale-110', 'bg-emerald-400'), 150);
+
     this.knownCards.add(card.id);
     localStorage.setItem("knownCards", JSON.stringify([...this.knownCards]));
+    
+    // Remove from active & Update
     this.activeCards.splice(this.currentIndex, 1);
     if (this.currentIndex >= this.activeCards.length) {
       this.currentIndex = Math.max(0, this.activeCards.length - 1);
     }
+    
     this.resetCardState();
-    if (this.activeCards.length === 0) {
-        this.updateDisplay();
-    } else {
-        setTimeout(() => this.updateDisplay(), 200);
-    }
+    setTimeout(() => this.updateDisplay(), 300); // Delay นิดหน่อยให้ตาปรับทัน
   }
 
   shuffleCards() {
@@ -327,14 +324,17 @@ class FlashcardApp {
     this.currentIndex = 0;
     this.resetCardState();
     this.updateDisplay();
+    
+    // Feedback animation
+    this.ui.btnShuffle.classList.add('rotate-180');
+    setTimeout(() => this.ui.btnShuffle.classList.remove('rotate-180'), 300);
   }
 
   resetProgress() {
-    if (confirm("ต้องการล้างประวัติคำศัพท์ที่จำได้แล้วทั้งหมด ใช่หรือไม่?")) {
+    if (confirm("ล้างประวัติคำที่จำได้แล้วทั้งหมด?")) {
       this.knownCards.clear();
       localStorage.removeItem("knownCards");
       this.filterCards(this.currentCategory);
-      alert("รีเซ็ตเรียบร้อยแล้ว!");
     }
   }
 }
