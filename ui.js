@@ -70,7 +70,7 @@ export class UIManager {
         this.els.cardBackVocab.innerText = `${card.vocab} ${card.type || ''}`;
         this.els.cardMeaning.innerText = card.meaning;
         this.els.cardExTh.innerText = card.exampleTh || "-";
-        this.els.cardExEn.innerText = card.exampleEn ? `"${card.exampleEn}"` : "-";
+        this.els.cardExEn.innerText = card.exampleEn ? card.exampleEn : "-";
         this.els.btnAudioSentNormal.style.display = card.exampleEn ? 'flex' : 'none';
         
         this.els.cardContainer.classList.remove("flipped");
