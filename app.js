@@ -1,7 +1,6 @@
-// app.js
-import { RAW_DATA } from './data.js';
-import { parseFlashcardData } from './parser.js';
+import { RAW_DATA_CONTENT } from './data.js';
 import { StorageManager } from './storage.js';
+import { parseFlashcardData } from './parser.js';
 import { AudioManager } from './audio.js';
 import { SpeechRecognizer } from './recognition.js';
 import { SRSLogic } from './srs.js';
@@ -9,20 +8,17 @@ import { UIManager } from './ui.js';
 
 class App {
     constructor() {
-        // Initialize Modules
         this.storage = new StorageManager();
         this.audio = new AudioManager();
         this.mic = new SpeechRecognizer();
         this.ui = new UIManager();
 
-        // Data & State
         this.allCards = [];
         this.categories = new Set();
         this.activeCards = [];
         this.currentIndex = 0;
         this.dragState = { isDragging: false, startX: 0, startY: 0 };
 
-        // Load Settings
         const settings = this.storage.loadSettings();
         this.state = {
             isDark: settings.isDark,
@@ -36,15 +32,12 @@ class App {
     }
 
     init() {
-        // Apply Initial UI Settings
         this.ui.setTheme(this.state.isDark);
         this.ui.setReverseUI(this.state.isReversed);
 
-        // Parse Data
-        parseFlashcardData(RAW_DATA, this.categories, this.allCards);
+        parseFlashcardData(RAW_DATA_CONTENT, this.categories, this.allCards);
         this.ui.populateCategories(Array.from(this.categories));
         
-        // Restore Category Selection
         if (Array.from(this.categories).includes(this.state.currentCategory) || this.state.currentCategory === 'all') {
             this.ui.els.categorySelect.value = this.state.currentCategory;
         } else {
@@ -59,7 +52,6 @@ class App {
     setupEventListeners() {
         const { els } = this.ui;
 
-        // --- Settings ---
         els.categorySelect.addEventListener("change", (e) => {
             this.state.currentCategory = e.target.value;
             this.storage.saveLastCategory(this.state.currentCategory);
@@ -81,10 +73,9 @@ class App {
             this.state.isReversed = !this.state.isReversed;
             this.storage.saveReverseMode(this.state.isReversed);
             this.ui.setReverseUI(this.state.isReversed);
-            this.ui.renderCard(this.activeCards[this.currentIndex], this.state.isReversed, this.allCards.length, this.activeCards.length);
+            this.filterCards(); // Reload to apply
         });
 
-        // --- Card Interaction (Drag vs Click) ---
         const startDrag = (x, y) => { this.dragState = { isDragging: false, startX: x, startY: y }; };
         const moveDrag = (x, y) => {
             if (Math.abs(x - this.dragState.startX) > 10 || Math.abs(y - this.dragState.startY) > 10) 
@@ -101,27 +92,20 @@ class App {
             this.ui.flipCard();
         });
 
-        // --- SRS Actions ---
         els.btnAgain.addEventListener("click", e => { e.stopPropagation(); this.processRating('again'); });
         els.btnGood.addEventListener("click", e => { e.stopPropagation(); this.processRating('good'); });
         els.btnEasy.addEventListener("click", e => { e.stopPropagation(); this.processRating('easy'); });
 
-        // --- Audio & Mic ---
         els.btnMic.addEventListener("click", e => { e.stopPropagation(); this.handleMic(); });
         
-        // Helper to bind audio
         const bindAudio = (btn, type) => {
-            btn.addEventListener("click", e => {
-                e.stopPropagation();
-                this.playAudio(type);
-            });
+            if(btn) btn.addEventListener("click", e => { e.stopPropagation(); this.playAudio(type); });
         };
         bindAudio(els.btnAudioFrontNormal, 'front');
         bindAudio(document.getElementById("btn-audio-back-normal"), 'vocab');
         bindAudio(document.getElementById("btn-audio-back-slow"), 'vocab_slow');
         bindAudio(els.btnAudioSentNormal, 'sentence');
 
-        // --- Menu & Data ---
         els.btnMenu.addEventListener("click", e => { e.stopPropagation(); els.menuDropdown.classList.toggle("hidden"); });
         document.addEventListener("click", () => els.menuDropdown.classList.add("hidden"));
         
@@ -133,18 +117,16 @@ class App {
             if (confirm("Reset ALL progress?")) {
                 this.storage.clearAll();
                 this.state.knownCards = new Set();
-                this.state.currentCategory = Array.from(this.categories)[0]; // ไปหมวดแรก
+                this.state.currentCategory = Array.from(this.categories)[0];
                 this.storage.saveLastCategory(this.state.currentCategory);
                 this.ui.els.categorySelect.value = this.state.currentCategory;
                 this.filterCards();
             }
         });
 
-        // --- Flow ---
         els.btnNextCategory.addEventListener("click", () => this.nextCategory());
         els.btnRestartSet.addEventListener("click", () => this.restartSet());
 
-        // Keyboard
         document.addEventListener("keydown", e => {
             if (e.key === " " || e.key === "Enter") {
                 e.preventDefault();
@@ -152,8 +134,6 @@ class App {
             }
         });
     }
-
-    // --- Logic ---
 
     filterCards() {
         let filtered = this.allCards;
@@ -177,25 +157,16 @@ class App {
 
     processRating(rating) {
         if (this.activeCards.length === 0) return;
-        
         this.ui.animateSRSButton(rating);
-        
         const result = SRSLogic.handleRating(this.activeCards, this.currentIndex, rating);
-        
         if (result.action === 'remove') {
             this.state.knownCards.add(result.card.id);
             this.storage.saveKnownCards(this.state.knownCards);
         }
-        
-        // SRSLogic modifies array in place, we just need to update UI for next card
-        // Note: currentIndex might stay same if array shifted, or move if we just pushed back
-        // But renderCard expects the card object
-        
         this.currentIndex = result.nextIndex;
-        // Small delay for animation
         setTimeout(() => {
             this.ui.renderCard(this.activeCards[this.currentIndex], this.state.isReversed, this.allCards.length, this.activeCards.length);
-        }, 200);
+        }, 250);
     }
 
     playAudio(type) {
@@ -204,7 +175,7 @@ class App {
         let text = "";
         let rate = 1.0;
 
-        if (this.state.isReversed && type === 'front') return; // Don't read Thai front
+        if (this.state.isReversed && type === 'front') return;
 
         if (type === 'front') text = card.exampleEn || card.vocab;
         else if (type === 'vocab') text = card.vocab;
@@ -219,14 +190,11 @@ class App {
             alert("Mic not supported in this browser");
             return;
         }
-
-        this.ui.showMicFeedback("<span class='text-indigo-500'>Listening...</span>", true);
-        
+        this.ui.showMicFeedback("<span class='text-primary-500'>Listening...</span>", true);
         this.mic.start(
             (transcript) => {
                 const target = this.activeCards[this.currentIndex].vocab.toLowerCase().replace(/[^a-z0-9]/g, '');
                 const spoken = transcript.toLowerCase().replace(/[^a-z0-9]/g, '');
-                
                 if (spoken === target || target.includes(spoken)) {
                     this.ui.showMicFeedback(`<span class="text-green-500 font-bold"><i class="fa-solid fa-check"></i> Correct!</span>`, false);
                 } else {
@@ -234,11 +202,9 @@ class App {
                 }
             },
             (err) => {
-                this.ui.showMicFeedback("<span class='text-slate-400'>Error</span>", false);
+                this.ui.showMicFeedback("<span class='text-slate-400'>Error/No Input</span>", false);
             },
-            () => {
-                // End
-            }
+            () => {}
         );
     }
 
@@ -285,7 +251,6 @@ class App {
 
     restartSet() {
         if (confirm("Review again?")) {
-            // Unlearn active category
             const cards = this.allCards.filter(c => c.category === this.state.currentCategory);
             cards.forEach(c => this.state.knownCards.delete(c.id));
             this.storage.saveKnownCards(this.state.knownCards);

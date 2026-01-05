@@ -1,11 +1,9 @@
-// parser.js
 export function parseFlashcardData(text, categoriesSet, allCardsArray) {
     const lines = text.split("\n");
     let currentCategory = "General";
     let currentCard = null;
 
     const generateId = (vocab, exampleEn) => {
-        // ตัด Index ทิ้งไป เพื่อให้ ID อิงตามเนื้อหาเท่านั้น
         const v = vocab ? vocab.toLowerCase().replace(/[^a-z0-9]/g, '') : 'unknown';
         const e = exampleEn ? exampleEn.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 20) : 'noex';
         return `${v}-${e}`;
@@ -16,16 +14,15 @@ export function parseFlashcardData(text, categoriesSet, allCardsArray) {
         if (card.exampleEn && card.exampleEn.includes(" / ")) {
             const enParts = card.exampleEn.split(" / ").map(s => s.trim()).filter(s => s);
             const thParts = card.exampleTh ? card.exampleTh.split(" / ").map(s => s.trim()) : [];
-
             enParts.forEach((en, i) => {
                 const newCard = { ...card };
                 newCard.exampleEn = en;
                 newCard.exampleTh = thParts[i] || thParts[0] || "";
-                newCard.id = generateId(newCard.vocab, newCard.exampleEn, allCardsArray.length);
+                newCard.id = generateId(newCard.vocab, newCard.exampleEn);
                 allCardsArray.push(newCard);
             });
         } else {
-            card.id = generateId(card.vocab, card.exampleEn, allCardsArray.length);
+            card.id = generateId(card.vocab, card.exampleEn);
             allCardsArray.push(card);
         }
     };
@@ -33,33 +30,24 @@ export function parseFlashcardData(text, categoriesSet, allCardsArray) {
     lines.forEach((line) => {
         line = line.trim();
         if (!line) return;
-
-        // Fix: ชื่อหมวดซ้ำ
         if (line.includes("หมวดสรรพนาม ความเป็นเจ้าของหมวดสรรพนาม")) {
             line = "หมวดสรรพนาม ความเป็นเจ้าของ";
         }
-
         if (line.startsWith("หมวด")) {
             currentCategory = line;
             categoriesSet.add(currentCategory);
         } else {
-            // Regex จับบรรทัดศัพท์
             const isVocabLine = /^[A-Za-z][A-Za-z0-9'\s/-]*\(.+\)/.test(line);
-
             if (isVocabLine) {
                 if (currentCard) pushWithSplit(currentCard);
-
                 const match = line.match(/^([^(]+)(\([^)]+\))\s*(.*)$/);
                 if (match) {
                     const vocab = match[1].trim();
                     const type = match[2].trim();
                     const rawContent = match[3].trim();
-
                     let meaning = rawContent;
                     let exampleEn = "";
                     let exampleTh = "";
-
-                    // Smart Splitter
                     const hasThai = /[\u0E00-\u0E7F]/.test(rawContent);
                     if (hasThai) {
                         const splitMatch = rawContent.match(/([\u0E00-\u0E7F]+)\s+([A-Z"])/);
@@ -67,7 +55,6 @@ export function parseFlashcardData(text, categoriesSet, allCardsArray) {
                             const splitIndex = rawContent.indexOf(splitMatch[0]) + splitMatch[1].length;
                             meaning = rawContent.substring(0, splitIndex).trim();
                             let remaining = rawContent.substring(splitIndex).trim();
-
                             const nextThaiMatch = remaining.match(/[\u0E00-\u0E7F]/);
                             if (nextThaiMatch) {
                                 exampleEn = remaining.substring(0, nextThaiMatch.index).trim();
@@ -77,32 +64,20 @@ export function parseFlashcardData(text, categoriesSet, allCardsArray) {
                             }
                         }
                     }
-
-                    currentCard = {
-                        category: currentCategory,
-                        vocab: vocab,
-                        type: type,
-                        meaning: meaning,
-                        exampleEn: exampleEn,
-                        exampleTh: exampleTh
-                    };
+                    currentCard = { category: currentCategory, vocab: vocab, type: type, meaning: meaning, exampleEn: exampleEn, exampleTh: exampleTh };
                     return;
                 }
             }
-
-            // Context Lines Handler
             if (currentCard) {
                 const hasThai = /[\u0E00-\u0E7F]/.test(line);
                 const startsWithEng = /^[A-Za-z0-9"']/.test(line);
                 const isNote = line.startsWith("(") && line.endsWith(")");
-
                 if (startsWithEng && hasThai) {
                     const thaiMatch = line.match(/[\u0E00-\u0E7F]/);
                     if (thaiMatch) {
                         const splitIndex = thaiMatch.index;
                         const enPart = line.substring(0, splitIndex).trim();
                         const thPart = line.substring(splitIndex).trim();
-
                         if (!currentCard.exampleEn) {
                             currentCard.exampleEn = enPart;
                             currentCard.exampleTh = thPart;
@@ -115,7 +90,6 @@ export function parseFlashcardData(text, categoriesSet, allCardsArray) {
                     if (!currentCard.exampleEn) currentCard.exampleEn = line;
                     else currentCard.exampleEn += " / " + line;
                 } else if (isNote) {
-                    // BUG FIX: นำ Note (เช่น วงเล็บอธิบายเพิ่มเติม) มาต่อท้าย Meaning แทนที่จะทิ้ง
                     currentCard.meaning += " " + line;
                 } else {
                     if (currentCard.exampleEn) {
@@ -128,6 +102,5 @@ export function parseFlashcardData(text, categoriesSet, allCardsArray) {
             }
         }
     });
-
     if (currentCard) pushWithSplit(currentCard);
 }

@@ -1,4 +1,4 @@
-const RAW_DATA_CONTENT = `หมวดผู้คน
+export const RAW_DATA_CONTENT = `หมวดผู้คน
 Aunt (n.) ป้า , น้า , อา
 I want to buy a gift for my aunt.
 ผมอยากซื้อของขวัญให้คุณป้าครับ
@@ -1931,6 +1931,3 @@ It is a difficult situation.
 Way (n.) ทาง, วิธี
 Could you show me the way on the map? / Is there a way to get a discount?
 รบกวนช่วยชี้ทางในแผนที่ให้ผมหน่อยได้ไหมครับ? / มีวิธีที่จะได้ส่วนลดไหมครับ?`;
-
-// เพิ่มบรรทัดนี้ที่ล่างสุดของไฟล์ data.js
-export const RAW_DATA = RAW_DATA_CONTENT;
