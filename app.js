@@ -1,9 +1,9 @@
 import { RAW_DATA_CONTENT } from './data.js';
-import { StorageManager } from './storage.js';
-import { parseFlashcardData } from './parser.js';
-import { AudioManager } from './audio.js';
-import { SpeechRecognizer } from './recognition.js';
-import { SRSLogic } from './srs.js';
+import { StorageManager } from './logic/storage.js';
+import { parseFlashcardData } from './logic/parser.js';
+import { AudioManager } from './logic/audio.js';
+import { SpeechRecognizer } from './logic/recognition.js';
+import { SRSLogic } from './logic/srs.js';
 import { UIManager } from './ui.js';
 
 class App {
