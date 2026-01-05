@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="th" class="dark"> <head>
+<html lang="th" class="dark">
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>English Flashcards</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -11,48 +13,64 @@
             theme: { extend: {} }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&family=Sarabun:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="h-dvh w-full overflow-hidden bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-200 font-sans transition-colors duration-300">
 
-    <div class="relative z-10 flex flex-col h-full w-full mx-auto max-w-2xl bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm shadow-2xl">
-        
-        <header class="flex-none flex flex-col gap-3 px-4 py-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 z-30">
-            
+<body
+    class="h-dvh w-full overflow-hidden bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-200 font-sans transition-colors duration-300">
+
+    <div
+        class="relative z-10 flex flex-col h-full w-full mx-auto max-w-2xl bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm shadow-2xl">
+
+        <header
+            class="flex-none flex flex-col gap-3 px-4 py-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 z-30">
+
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2">
                     <div class="w-8 h-8 bg-indigo-600 text-white rounded-lg flex items-center justify-center shadow-md">
                         <i class="fa-solid fa-layer-group"></i>
                     </div>
                     <div>
-                        <h1 class="font-heading font-bold text-base leading-tight">EngFlash <span class="text-xs font-normal opacity-70 ml-1">Pro</span></h1>
+                        <h1 class="font-heading font-bold text-base leading-tight">EngFlash <span
+                                class="text-xs font-normal opacity-70 ml-1">Pro</span></h1>
                     </div>
                 </div>
 
                 <div class="flex gap-2">
-                    <button id="btn-theme" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-amber-500 transition shadow-sm">
+                    <button id="btn-theme"
+                        class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-amber-500 transition shadow-sm">
                         <i class="fa-solid fa-sun dark:hidden"></i>
                         <i class="fa-solid fa-moon hidden dark:inline"></i>
                     </button>
-                    <button id="btn-reverse" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-indigo-500 transition shadow-sm relative group" title="Reverse Mode">
+                    <button id="btn-reverse"
+                        class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-indigo-500 transition shadow-sm relative group"
+                        title="Reverse Mode">
                         <i class="fa-solid fa-repeat"></i>
-                        <span id="reverse-indicator" class="absolute top-1 right-1 w-2 h-2 bg-indigo-500 rounded-full hidden"></span>
+                        <span id="reverse-indicator"
+                            class="absolute top-1 right-1 w-2 h-2 bg-indigo-500 rounded-full hidden"></span>
                     </button>
                     <div class="relative group-menu">
-                        <button id="btn-menu" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-emerald-500 transition shadow-sm">
+                        <button id="btn-menu"
+                            class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-emerald-500 transition shadow-sm">
                             <i class="fa-solid fa-ellipsis-vertical"></i>
                         </button>
-                        <div id="menu-dropdown" class="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-100 dark:border-slate-700 p-1 hidden transform origin-top-right transition-all z-50">
-                            <button id="btn-export" class="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-xs font-medium flex items-center gap-2">
+                        <div id="menu-dropdown"
+                            class="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-100 dark:border-slate-700 p-1 hidden transform origin-top-right transition-all z-50">
+                            <button id="btn-export"
+                                class="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-xs font-medium flex items-center gap-2">
                                 <i class="fa-solid fa-download"></i> Backup Data (Export)
                             </button>
-                            <button id="btn-import" class="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-xs font-medium flex items-center gap-2">
+                            <button id="btn-import"
+                                class="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-xs font-medium flex items-center gap-2">
                                 <i class="fa-solid fa-upload"></i> Restore Data (Import)
                             </button>
                             <div class="h-px bg-slate-200 dark:bg-slate-700 my-1"></div>
-                            <button id="btn-reset" class="w-full text-left px-3 py-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/30 text-red-500 text-xs font-medium flex items-center gap-2">
+                            <button id="btn-reset"
+                                class="w-full text-left px-3 py-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/30 text-red-500 text-xs font-medium flex items-center gap-2">
                                 <i class="fa-solid fa-trash"></i> Reset All
                             </button>
                         </div>
@@ -62,21 +80,26 @@
 
             <div class="flex gap-2">
                 <div class="relative group flex-grow">
-                    <select id="category-select" class="appearance-none w-full pl-3 pr-8 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-sm font-medium focus:ring-2 focus:ring-indigo-500 cursor-pointer truncate">
+                    <select id="category-select"
+                        class="appearance-none w-full pl-3 pr-8 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-sm font-medium focus:ring-2 focus:ring-indigo-500 cursor-pointer truncate">
                         <option value="all">All Categories</option>
                     </select>
-                    <i class="fa-solid fa-chevron-down absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 pointer-events-none"></i>
+                    <i
+                        class="fa-solid fa-chevron-down absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 pointer-events-none"></i>
                 </div>
                 <div class="relative w-1/2">
-                    <input type="text" id="search-input" placeholder="Search..." class="w-full pl-8 pr-3 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 placeholder-slate-400">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i>
+                    <input type="text" id="search-input" placeholder="Search..."
+                        class="w-full pl-8 pr-3 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 placeholder-slate-400">
+                    <i
+                        class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i>
                 </div>
             </div>
         </header>
 
         <div class="flex-none px-4 pt-2">
             <div class="h-1 w-full bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
-                <div id="progress-bar" class="h-full bg-indigo-500 rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
+                <div id="progress-bar" class="h-full bg-indigo-500 rounded-full transition-all duration-500 ease-out"
+                    style="width: 0%"></div>
             </div>
             <div class="flex justify-between mt-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">
                 <span id="progress-text">0 / 0</span>
@@ -85,65 +108,90 @@
         </div>
 
         <main class="flex-grow flex flex-col items-center justify-center p-4 relative w-full overflow-hidden">
-            
+
             <div class="absolute top-2 z-0 transition-all duration-300 opacity-100" id="badge-wrapper">
-                <span id="card-category" class="px-3 py-1 bg-white/50 dark:bg-slate-800/50 backdrop-blur text-indigo-500 dark:text-indigo-400 text-[10px] font-bold uppercase tracking-wider rounded-full border border-slate-200 dark:border-slate-700">
+                <span id="card-category"
+                    class="px-3 py-1 bg-white/50 dark:bg-slate-800/50 backdrop-blur text-indigo-500 dark:text-indigo-400 text-[10px] font-bold uppercase tracking-wider rounded-full border border-slate-200 dark:border-slate-700">
                     Category
                 </span>
             </div>
 
-            <div class="perspective-container w-full max-w-sm md:max-w-xl lg:max-w-2xl h-[65vh] min-h-[500px] max-h-[700px]">
+            <div class="perspective-container w-full max-w-sm md:max-w-2xl h-[60vh] md:h-[600px] mx-auto relative z-10">
                 <div id="flashcard" class="card-container w-full h-full">
-                    
+
                     <div class="card-face card-front relative group">
                         <div class="absolute top-3 left-3 z-30">
-                            <button id="btn-mic" class="w-9 h-9 bg-slate-100 dark:bg-slate-700/50 hover:bg-indigo-50 dark:hover:bg-indigo-900/50 rounded-full flex items-center justify-center text-slate-400 hover:text-indigo-500 transition active:scale-95 shadow-sm" title="Practice Speaking">
+                            <button id="btn-mic"
+                                class="w-9 h-9 bg-slate-100 dark:bg-slate-700/50 hover:bg-indigo-50 dark:hover:bg-indigo-900/50 rounded-full flex items-center justify-center text-slate-400 hover:text-indigo-500 transition active:scale-95 shadow-sm"
+                                title="Practice Speaking">
                                 <i class="fa-solid fa-microphone"></i>
                             </button>
                         </div>
-                        
+
                         <div class="absolute top-3 right-3 z-30" onclick="event.stopPropagation()">
-                             <button id="btn-audio-front-normal" class="w-9 h-9 bg-slate-100 dark:bg-slate-700/50 hover:bg-indigo-50 dark:hover:bg-indigo-900/50 rounded-full flex items-center justify-center text-slate-400 hover:text-indigo-500 transition active:scale-95 shadow-sm">
+                            <button id="btn-audio-front-normal"
+                                class="w-9 h-9 bg-slate-100 dark:bg-slate-700/50 hover:bg-indigo-50 dark:hover:bg-indigo-900/50 rounded-full flex items-center justify-center text-slate-400 hover:text-indigo-500 transition active:scale-95 shadow-sm">
                                 <i class="fa-solid fa-volume-high"></i>
                             </button>
                         </div>
 
                         <div class="flex-grow flex flex-col items-center justify-center text-center px-6">
-                            <span id="question-label" class="text-slate-400 dark:text-slate-500 text-[10px] font-bold tracking-[0.2em] uppercase mb-4 opacity-70">Question</span>
-                            
-                            <h2 id="card-front-text" class="font-heading font-bold text-slate-800 dark:text-slate-100 leading-tight break-words animate-fade-up text-4xl">
+                            <span id="question-label"
+                                class="text-slate-400 dark:text-slate-500 text-[10px] font-bold tracking-[0.2em] uppercase mb-4 opacity-70">Question</span>
+
+                            <h2 id="card-front-text"
+                                class="font-heading font-bold text-slate-800 dark:text-slate-100 leading-tight break-words animate-fade-up text-4xl">
                                 Loading...
                             </h2>
 
-                            <div id="mic-feedback" class="h-6 mt-2 text-sm font-medium transition-all opacity-0 transform translate-y-2"></div>
+                            <div id="mic-feedback"
+                                class="h-6 mt-2 text-sm font-medium transition-all opacity-0 transform translate-y-2">
+                            </div>
 
-                            <p id="tap-hint" class="text-slate-400 dark:text-slate-600 text-xs mt-8 font-medium flex items-center gap-2 opacity-60 animate-pulse">
+                            <p id="tap-hint"
+                                class="text-slate-400 dark:text-slate-600 text-xs mt-8 font-medium flex items-center gap-2 opacity-60 animate-pulse">
                                 <i class="fa-solid fa-arrow-rotate-left"></i> Tap to flip
                             </p>
                         </div>
                     </div>
 
                     <div class="card-face card-back">
-                        <div class="flex-none w-full px-5 py-3 flex justify-between items-center border-b border-slate-100 dark:border-slate-700 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm z-20">
-                            <span class="text-indigo-500 dark:text-indigo-400 text-[10px] font-bold uppercase tracking-widest">Answer</span>
+                        <div
+                            class="flex-none w-full px-5 py-3 flex justify-between items-center border-b border-slate-100 dark:border-slate-700 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm z-20">
+                            <span
+                                class="text-indigo-500 dark:text-indigo-400 text-[10px] font-bold uppercase tracking-widest">Answer</span>
                             <div class="flex gap-2" id="back-audio-btns" onclick="event.stopPropagation()">
-                                <button id="btn-audio-back-slow" class="w-7 h-7 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-500 text-[10px] font-bold hover:bg-slate-200">0.5x</button>
-                                <button id="btn-audio-back-normal" class="w-7 h-7 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-300 hover:bg-indigo-200"><i class="fa-solid fa-volume-high text-[10px]"></i></button>
+                                <button id="btn-audio-back-slow"
+                                    class="w-7 h-7 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-500 text-[10px] font-bold hover:bg-slate-200">0.5x</button>
+                                <button id="btn-audio-back-normal"
+                                    class="w-7 h-7 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-300 hover:bg-indigo-200"><i
+                                        class="fa-solid fa-volume-high text-[10px]"></i></button>
                             </div>
                         </div>
 
                         <div class="flex-grow w-full custom-scroll p-6 flex flex-col items-center text-center">
-                            <h3 id="card-vocab-back" class="font-heading font-bold text-indigo-600 dark:text-indigo-400 mb-2 leading-tight text-3xl">Vocab</h3>
-                            <p id="card-meaning" class="font-medium text-slate-600 dark:text-slate-300 mb-4 leading-relaxed text-lg">Meaning</p>
-                            
-                            <div class="w-full bg-slate-50 dark:bg-slate-800/80 p-4 rounded-xl border border-slate-100 dark:border-slate-700 text-left space-y-2 relative">
+                            <h3 id="card-vocab-back"
+                                class="font-heading font-bold text-indigo-600 dark:text-indigo-400 mb-2 leading-tight text-3xl">
+                                Vocab</h3>
+                            <p id="card-meaning"
+                                class="font-medium text-slate-600 dark:text-slate-300 mb-4 leading-relaxed text-lg">
+                                Meaning</p>
+
+                            <div
+                                class="w-full bg-slate-50 dark:bg-slate-800/80 p-4 rounded-xl border border-slate-100 dark:border-slate-700 text-left space-y-2 relative">
                                 <div class="flex items-start gap-3">
                                     <div class="w-1 self-stretch bg-indigo-400 rounded-full"></div>
                                     <div class="flex-grow">
-                                        <p id="card-ex-th" class="text-slate-700 dark:text-slate-200 text-sm font-medium">ตัวอย่างไทย</p>
+                                        <p id="card-ex-th"
+                                            class="text-slate-700 dark:text-slate-200 text-sm font-medium">ตัวอย่างไทย
+                                        </p>
                                         <div class="flex items-center gap-2 mt-1">
-                                            <p id="card-ex-en" class="text-slate-500 dark:text-slate-400 italic font-serif text-sm">"English Example"</p>
-                                            <button id="btn-audio-sent-normal" class="flex-none w-5 h-5 flex items-center justify-center text-indigo-400 hover:text-indigo-600" onclick="event.stopPropagation()">
+                                            <p id="card-ex-en"
+                                                class="text-slate-500 dark:text-slate-400 italic font-serif text-sm">
+                                                "English Example"</p>
+                                            <button id="btn-audio-sent-normal"
+                                                class="flex-none w-5 h-5 flex items-center justify-center text-indigo-400 hover:text-indigo-600"
+                                                onclick="event.stopPropagation()">
                                                 <i class="fa-solid fa-volume-high text-xs"></i>
                                             </button>
                                         </div>
@@ -156,34 +204,42 @@
                 </div>
             </div>
 
-            <div id="next-category-area" class="hidden absolute inset-0 z-50 flex flex-col items-center justify-center bg-white/90 dark:bg-slate-900/90 backdrop-blur-md p-8 text-center animate-fade-in">
-                <div class="w-20 h-20 bg-green-100 dark:bg-green-900/30 text-green-500 rounded-full flex items-center justify-center mb-6 text-3xl shadow-lg">
+            <div id="next-category-area"
+                class="hidden absolute inset-0 z-50 flex flex-col items-center justify-center bg-white/90 dark:bg-slate-900/90 backdrop-blur-md p-8 text-center animate-fade-in">
+                <div
+                    class="w-20 h-20 bg-green-100 dark:bg-green-900/30 text-green-500 rounded-full flex items-center justify-center mb-6 text-3xl shadow-lg">
                     <i class="fa-solid fa-check"></i>
                 </div>
                 <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-2">Awesome!</h2>
                 <p class="text-slate-500 dark:text-slate-400 mb-8">You've mastered this set.</p>
-                <button id="btn-next-category" class="w-full py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl shadow-lg font-bold flex items-center justify-center gap-2 transition transform hover:-translate-y-1">
+                <button id="btn-next-category"
+                    class="w-full py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl shadow-lg font-bold flex items-center justify-center gap-2 transition transform hover:-translate-y-1">
                     <span>Next Category</span> <i class="fa-solid fa-arrow-right"></i>
                 </button>
-                <button id="btn-restart-set" class="mt-4 text-slate-400 text-sm hover:text-slate-600 underline">Review this set again</button>
+                <button id="btn-restart-set" class="mt-4 text-slate-400 text-sm hover:text-slate-600 underline">Review
+                    this set again</button>
             </div>
 
         </main>
 
-        <footer class="flex-none p-4 pb-6 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 z-30">
+        <footer
+            class="flex-none p-4 pb-6 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 z-30">
             <div class="grid grid-cols-4 gap-3 max-w-sm mx-auto">
-                
-                <button id="btn-srs-again" class="col-span-1 h-14 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-500 hover:border-red-200 transition-all flex flex-col items-center justify-center gap-1 active:scale-95">
+
+                <button id="btn-srs-again"
+                    class="col-span-1 h-14 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-500 hover:border-red-200 transition-all flex flex-col items-center justify-center gap-1 active:scale-95">
                     <i class="fa-solid fa-rotate-left text-lg"></i>
                     <span class="text-[9px] font-bold uppercase">Again</span>
                 </button>
 
-                <button id="btn-srs-good" class="col-span-1 h-14 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-500 hover:border-amber-200 transition-all flex flex-col items-center justify-center gap-1 active:scale-95">
+                <button id="btn-srs-good"
+                    class="col-span-1 h-14 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-500 hover:border-amber-200 transition-all flex flex-col items-center justify-center gap-1 active:scale-95">
                     <i class="fa-regular fa-clock text-lg"></i>
                     <span class="text-[9px] font-bold uppercase">Good</span>
                 </button>
 
-                <button id="btn-srs-easy" class="col-span-2 h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-2xl shadow-lg shadow-emerald-200/50 dark:shadow-none font-heading font-bold text-lg flex items-center justify-center gap-2 active:scale-95 transition-transform">
+                <button id="btn-srs-easy"
+                    class="col-span-2 h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-2xl shadow-lg shadow-emerald-200/50 dark:shadow-none font-heading font-bold text-lg flex items-center justify-center gap-2 active:scale-95 transition-transform">
                     <i class="fa-regular fa-circle-check"></i>
                     <span class="text-base">Easy (Known)</span>
                 </button>
@@ -197,7 +253,8 @@
         </div>
 
     </div>
-    
+
     <script type="module" src="app.js"></script>
 </body>
+
 </html>
