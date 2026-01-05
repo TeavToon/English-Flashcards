@@ -73,7 +73,7 @@ class App {
             this.state.isReversed = !this.state.isReversed;
             this.storage.saveReverseMode(this.state.isReversed);
             this.ui.setReverseUI(this.state.isReversed);
-            this.filterCards(); // Reload to apply
+            this.filterCards(); 
         });
 
         const startDrag = (x, y) => { this.dragState = { isDragging: false, startX: x, startY: y }; };
@@ -102,6 +102,11 @@ class App {
             if(btn) btn.addEventListener("click", e => { e.stopPropagation(); this.playAudio(type); });
         };
         bindAudio(els.btnAudioFrontNormal, 'front');
+        
+        // --- ส่วนที่เพิ่ม: ผูกปุ่มเสียงช้าหน้าการ์ด ---
+        bindAudio(document.getElementById("btn-audio-front-slow"), 'front_slow'); 
+        // ----------------------------------------
+
         bindAudio(document.getElementById("btn-audio-back-normal"), 'vocab');
         bindAudio(document.getElementById("btn-audio-back-slow"), 'vocab_slow');
         bindAudio(els.btnAudioSentNormal, 'sentence');
@@ -175,9 +180,10 @@ class App {
         let text = "";
         let rate = 1.0;
 
-        if (this.state.isReversed && type === 'front') return;
+        if (this.state.isReversed && (type === 'front' || type === 'front_slow')) return;
 
         if (type === 'front') text = card.exampleEn || card.vocab;
+        else if (type === 'front_slow') { text = card.exampleEn || card.vocab; rate = 0.5; } // เพิ่มตรรกะเสียงช้า
         else if (type === 'vocab') text = card.vocab;
         else if (type === 'vocab_slow') { text = card.vocab; rate = 0.5; }
         else if (type === 'sentence') text = card.exampleEn;
@@ -185,6 +191,7 @@ class App {
         this.audio.speak(text, rate);
     }
 
+    // ... (ส่วนที่เหลือเหมือนเดิม: handleMic, exportData, importData, nextCategory, restartSet) ...
     handleMic() {
         if (!this.mic.isSupported()) {
             alert("Mic not supported in this browser");

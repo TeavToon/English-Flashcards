@@ -21,6 +21,8 @@ export class UIManager {
             reverseIndicator: document.getElementById("reverse-indicator"),
             btnMic: document.getElementById("btn-mic"),
             btnAudioFrontNormal: document.getElementById("btn-audio-front-normal"),
+            // เพิ่มการอ้างอิงปุ่มใหม่
+            btnAudioFrontSlow: document.getElementById("btn-audio-front-slow"), 
             btnAudioSentNormal: document.getElementById("btn-audio-sent-normal"),
             btnAgain: document.getElementById("btn-srs-again"),
             btnGood: document.getElementById("btn-srs-good"),
@@ -54,11 +56,15 @@ export class UIManager {
             this.els.cardFrontText.innerText = card.meaning;
             this.els.cardFrontText.classList.remove('font-heading');
             this.els.btnAudioFrontNormal.style.display = 'none';
+            if (this.els.btnAudioFrontSlow) this.els.btnAudioFrontSlow.style.display = 'none';
         } else {
             this.els.questionLabel.innerText = "Translate to Thai";
-            this.els.cardFrontText.innerText = card.exampleEn ? `"${card.exampleEn}"` : card.vocab;
+            // --- ลบเครื่องหมายคำพูดออกตรงนี้ ---
+            this.els.cardFrontText.innerText = card.exampleEn ? card.exampleEn : card.vocab; 
+            // --------------------------------
             this.els.cardFrontText.classList.add('font-heading');
             this.els.btnAudioFrontNormal.style.display = 'flex';
+            if (this.els.btnAudioFrontSlow) this.els.btnAudioFrontSlow.style.display = 'flex';
         }
 
         this.els.cardBackVocab.innerText = `${card.vocab} ${card.type || ''}`;
