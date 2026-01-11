@@ -40,8 +40,7 @@ I am waiting for my partner.
 
 Tourist (n.) นักท่องเที่ยว
 Can you recommend a place for tourists?
-คุณช่วยแนะนำสถานที่สำหรับนักท่องเที่ยวหน่อยได้ไหม
-ครับ
+คุณช่วยแนะนำสถานที่สำหรับนักท่องเที่ยวหน่อยได้ไหมครับ
 
 Tourist (n.) นักท่องเที่ยว
 I am a tourist.
@@ -111,7 +110,7 @@ Nobody came to pick me up.
 หมวดอาชีพ
 Boss (n.) เจ้านาย, หัวหน้า
 Are you the boss?
-คุณเป็นเจ้านาย (เจ้าของร้าน)ใช่ไหมครับ?
+คุณเป็นเจ้านาย (เจ้าของร้าน) ใช่ไหมครับ?
 
 Boss (n.) เจ้านาย, หัวหน้า
 Is the boss here?
@@ -132,33 +131,21 @@ Is she a model? / Do you have the new model? / This model car is cool.
 Police (n.) ตำรวจ
 Where is the nearest police station?
 สถานีตำรวจที่ใกล้ที่สุดอยู่ที่ไหนครับ?
-(ถามทางเมื่อเกิดเหตุฉุกเฉิน)
 
 Worker (n.) คนงาน, พนักงาน
 Is he a worker here?
 เขาเป็นพนักงานที่นี่ใช่ไหมครับ
 
-
-
-หมวดอาชีพ
 Waiter (n.) พนักงานเสิร์ฟ (ชาย)
-Excuse me, do you work as a waiter here?
-ขอโทษนะครับ คุณทำงานเป็นพนักงานเสิร์ฟที่นี่หรือเปล่า
-ครับ?
-
-หรือ
-
-Is the service charge for the waiter included?
-ค่าบริการสำหรับพนักงานเสิร์ฟรวมอยู่ในนี้หรือยังครับ?
-(ถามตอนเช็คบิลเพื่อจะได้รู้ว่าต้องให้ทิปเพิ่มไหม)
+Excuse me, do you work as a waiter here? / Is the service charge for the waiter included?
+ขอโทษนะครับ คุณทำงานเป็นพนักงานเสิร์ฟที่นี่หรือเปล่าครับ? / ค่าบริการสำหรับพนักงานเสิร์ฟรวมอยู่ในนี้หรือยังครับ?
 
 
 
 หมวดการทำงาน
 Career (n.) อาชีพ, หน้า ที่การงาน
 What is your career back home?
-คุณประกอบอาชีพอะไรที่ประเทศของคุณเหรอครับ? (ใช้
-ชวนคุยแลกเปลี่ยนเรื่องงานกับเพื่อนต่างชาติ)
+คุณประกอบอาชีพอะไรที่ประเทศของคุณเหรอครับ?
 
 Factory (n.) โรงงาน
 Is the factory open for tours?
@@ -166,7 +153,7 @@ Is the factory open for tours?
 
 Job (n.) งาน, อาชีพ
 I took a break from my job to travel.
-ผมลางานมาเที่ยวครับ / ผมพักจากงานมาเที่ยวครับ
+ผมลางานมาเที่ยวครับ
 
 Meeting (n.) การประชุม
 Where is the meeting point for the tour?
@@ -174,7 +161,7 @@ Where is the meeting point for the tour?
 
 Staff (n.) พนักงาน, เจ้าหน้า ที่ (โดยรวม)
 Excuse me, where can I find the hotel staff?
-ขอโทษครับ ผมจะหาเจ้าหน้า ที่โรงแรมได้ที่ไหนครับ?
+ขอโทษครับ ผมจะหาเจ้าหน้าที่โรงแรมได้ที่ไหนครับ?
 
 Work (v., n.) ทำงาน (กริยา), งาน (นาม)
 How does this ticket machine work?

@@ -50,7 +50,7 @@ export function parseFlashcardData(text, categoriesSet, allCardsArray) {
                     let exampleTh = "";
                     const hasThai = /[\u0E00-\u0E7F]/.test(rawContent);
                     if (hasThai) {
-                        const splitMatch = rawContent.match(/([\u0E00-\u0E7F]+)\s+([A-Z"])/);
+                        const splitMatch = rawContent.match(/^(.+?)\s+([A-Z"])/);
                         if (splitMatch && splitMatch.index) {
                             const splitIndex = rawContent.indexOf(splitMatch[0]) + splitMatch[1].length;
                             meaning = rawContent.substring(0, splitIndex).trim();

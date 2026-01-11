@@ -28,6 +28,7 @@ class App {
             knownCards: this.storage.loadKnownCards()
         };
 
+        this.isAnimating = false;
         this.init();
     }
 
@@ -161,7 +162,8 @@ class App {
     }
 
     processRating(rating) {
-        if (this.activeCards.length === 0) return;
+        if (this.activeCards.length === 0 || this.isAnimating) return;
+        this.isAnimating = true; // ล็อกการทำงาน
         this.ui.animateSRSButton(rating);
         const result = SRSLogic.handleRating(this.activeCards, this.currentIndex, rating);
         if (result.action === 'remove') {
@@ -171,6 +173,7 @@ class App {
         this.currentIndex = result.nextIndex;
         setTimeout(() => {
             this.ui.renderCard(this.activeCards[this.currentIndex], this.state.isReversed, this.allCards.length, this.activeCards.length);
+            this.isAnimating = false; // ปลดล็อกเมื่อทำเสร็จ
         }, 250);
     }
 
