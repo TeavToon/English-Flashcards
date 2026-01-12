@@ -2,7 +2,6 @@ import { RAW_DATA_CONTENT } from './data.js';
 import { StorageManager } from './logic/storage.js';
 import { parseFlashcardData } from './logic/parser.js';
 import { AudioManager } from './logic/audio.js';
-import { SpeechRecognizer } from './logic/recognition.js';
 import { SRSLogic } from './logic/srs.js';
 import { UIManager } from './ui.js';
 
@@ -10,7 +9,6 @@ class App {
     constructor() {
         this.storage = new StorageManager();
         this.audio = new AudioManager();
-        this.mic = new SpeechRecognizer();
         this.ui = new UIManager();
 
         this.allCards = [];
@@ -97,16 +95,12 @@ class App {
         els.btnGood.addEventListener("click", e => { e.stopPropagation(); this.processRating('good'); });
         els.btnEasy.addEventListener("click", e => { e.stopPropagation(); this.processRating('easy'); });
 
-        els.btnMic.addEventListener("click", e => { e.stopPropagation(); this.handleMic(); });
-        
         const bindAudio = (btn, type) => {
             if(btn) btn.addEventListener("click", e => { e.stopPropagation(); this.playAudio(type); });
         };
         bindAudio(els.btnAudioFrontNormal, 'front');
         
-        // --- ส่วนที่เพิ่ม: ผูกปุ่มเสียงช้าหน้าการ์ด ---
         bindAudio(document.getElementById("btn-audio-front-slow"), 'front_slow'); 
-        // ----------------------------------------
 
         bindAudio(document.getElementById("btn-audio-back-normal"), 'vocab');
         bindAudio(document.getElementById("btn-audio-back-slow"), 'vocab_slow');
@@ -163,7 +157,7 @@ class App {
 
     processRating(rating) {
         if (this.activeCards.length === 0 || this.isAnimating) return;
-        this.isAnimating = true; // ล็อกการทำงาน
+        this.isAnimating = true; 
         this.ui.animateSRSButton(rating);
         const result = SRSLogic.handleRating(this.activeCards, this.currentIndex, rating);
         if (result.action === 'remove') {
@@ -173,7 +167,7 @@ class App {
         this.currentIndex = result.nextIndex;
         setTimeout(() => {
             this.ui.renderCard(this.activeCards[this.currentIndex], this.state.isReversed, this.allCards.length, this.activeCards.length);
-            this.isAnimating = false; // ปลดล็อกเมื่อทำเสร็จ
+            this.isAnimating = false; 
         }, 250);
     }
 
@@ -186,42 +180,12 @@ class App {
         if (this.state.isReversed && (type === 'front' || type === 'front_slow')) return;
 
         if (type === 'front') text = card.exampleEn || card.vocab;
-        else if (type === 'front_slow') { text = card.exampleEn || card.vocab; rate = 0.5; } // เพิ่มตรรกะเสียงช้า
+        else if (type === 'front_slow') { text = card.exampleEn || card.vocab; rate = 0.5; } 
         else if (type === 'vocab') text = card.vocab;
         else if (type === 'vocab_slow') { text = card.vocab; rate = 0.5; }
         else if (type === 'sentence') text = card.exampleEn;
 
         this.audio.speak(text, rate);
-    }
-
-    // ... (ส่วนที่เหลือเหมือนเดิม: handleMic, exportData, importData, nextCategory, restartSet) ...
-    handleMic() {
-        if (!this.mic.isSupported()) {
-            alert("Mic not supported in this browser");
-            return;
-        }
-        this.ui.showMicFeedback("<span class='text-primary-500'>Listening...</span>", true);
-        this.mic.start(
-            (transcript) => {
-                const card = this.activeCards[this.currentIndex];
-                // ให้ target เป็นประโยคถ้ามี (เหมือนที่ตาเห็น) ถ้าไม่มีค่อยเป็นคำศัพท์
-                const targetText = card.exampleEn || card.vocab; 
-                const target = targetText.toLowerCase().replace(/[^a-z0-9]/g, '');
-
-                const spoken = transcript.toLowerCase().replace(/[^a-z0-9]/g, '');
-                
-                // ปรับเงื่อนไขเช็คความถูกต้องเล็กน้อยเพื่อให้ยืดหยุ่นขึ้น
-                if (spoken === target || target.includes(spoken) || spoken.includes(target)) {
-                    this.ui.showMicFeedback(`<span class="text-green-500 font-bold"><i class="fa-solid fa-check"></i> Correct!</span>`, false);
-                } else {
-                    this.ui.showMicFeedback(`<span class="text-red-500"><i class="fa-solid fa-xmark"></i> ${transcript}</span>`, false);
-                }
-            },
-            (err) => {
-                this.ui.showMicFeedback("<span class='text-slate-400'>Error/No Input</span>", false);
-            },
-            () => {}
-        );
     }
 
     exportData() {

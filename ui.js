@@ -13,15 +13,12 @@ export class UIManager {
             cardExEn: document.getElementById("card-ex-en"),
             questionLabel: document.getElementById("question-label"),
             tapHint: document.getElementById("tap-hint"),
-            micFeedback: document.getElementById("mic-feedback"),
             progressText: document.getElementById("progress-text"),
             progressBar: document.getElementById("progress-bar"),
             btnTheme: document.getElementById("btn-theme"),
             btnReverse: document.getElementById("btn-reverse"),
             reverseIndicator: document.getElementById("reverse-indicator"),
-            btnMic: document.getElementById("btn-mic"),
             btnAudioFrontNormal: document.getElementById("btn-audio-front-normal"),
-            // เพิ่มการอ้างอิงปุ่มใหม่
             btnAudioFrontSlow: document.getElementById("btn-audio-front-slow"), 
             btnAudioSentNormal: document.getElementById("btn-audio-sent-normal"),
             btnAgain: document.getElementById("btn-srs-again"),
@@ -49,7 +46,6 @@ export class UIManager {
 
         this.hideEmptyState();
         this.els.cardCategory.innerText = card.category.replace('หมวด', '').trim();
-        this.els.micFeedback.innerHTML = "";
 
         if (isReversed) {
             this.els.questionLabel.innerText = "Translate to English";
@@ -59,9 +55,7 @@ export class UIManager {
             if (this.els.btnAudioFrontSlow) this.els.btnAudioFrontSlow.style.display = 'none';
         } else {
             this.els.questionLabel.innerText = "Translate to Thai";
-            // --- ลบเครื่องหมายคำพูดออกตรงนี้ ---
             this.els.cardFrontText.innerText = card.exampleEn ? card.exampleEn : card.vocab; 
-            // --------------------------------
             this.els.cardFrontText.classList.add('font-heading');
             this.els.btnAudioFrontNormal.style.display = 'flex';
             if (this.els.btnAudioFrontSlow) this.els.btnAudioFrontSlow.style.display = 'flex';
@@ -94,12 +88,6 @@ export class UIManager {
         } else {
             this.els.reverseIndicator.classList.add('hidden');
         }
-    }
-    showMicFeedback(html, isListening) {
-        this.els.micFeedback.innerHTML = html;
-        this.els.micFeedback.style.opacity = '1';
-        if (isListening) this.els.btnMic.classList.add('mic-listening');
-        else this.els.btnMic.classList.remove('mic-listening');
     }
     animateSRSButton(type) {
         const btn = type === 'again' ? this.els.btnAgain : (type === 'good' ? this.els.btnGood : this.els.btnEasy);
