@@ -203,9 +203,15 @@ class App {
         this.ui.showMicFeedback("<span class='text-primary-500'>Listening...</span>", true);
         this.mic.start(
             (transcript) => {
-                const target = this.activeCards[this.currentIndex].vocab.toLowerCase().replace(/[^a-z0-9]/g, '');
+                const card = this.activeCards[this.currentIndex];
+                // ให้ target เป็นประโยคถ้ามี (เหมือนที่ตาเห็น) ถ้าไม่มีค่อยเป็นคำศัพท์
+                const targetText = card.exampleEn || card.vocab; 
+                const target = targetText.toLowerCase().replace(/[^a-z0-9]/g, '');
+
                 const spoken = transcript.toLowerCase().replace(/[^a-z0-9]/g, '');
-                if (spoken === target || target.includes(spoken)) {
+                
+                // ปรับเงื่อนไขเช็คความถูกต้องเล็กน้อยเพื่อให้ยืดหยุ่นขึ้น
+                if (spoken === target || target.includes(spoken) || spoken.includes(target)) {
                     this.ui.showMicFeedback(`<span class="text-green-500 font-bold"><i class="fa-solid fa-check"></i> Correct!</span>`, false);
                 } else {
                     this.ui.showMicFeedback(`<span class="text-red-500"><i class="fa-solid fa-xmark"></i> ${transcript}</span>`, false);
